@@ -38,4 +38,8 @@ Route::get('/n', function(){
   return view('notification');
 });
 
+Route::get('/n3', function(){
+  return view('notification3');
+});
+
 Route::post('/image-upload/{id}', 'ImageUploadController@upload');
