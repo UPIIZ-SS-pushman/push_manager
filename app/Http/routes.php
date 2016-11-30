@@ -37,6 +37,9 @@ Route::get('/d', function(){
 Route::get('/n', function(){
   return view('notification');
 });
+Route::get('/n2', function(){
+  return view('notification2');
+});
 
 Route::get('/n3', function(){
   return view('notification3');
