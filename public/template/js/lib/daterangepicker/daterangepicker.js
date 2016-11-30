@@ -41,7 +41,7 @@
         this.element = $(element);
         this.startDate = moment().startOf('day');
         this.endDate = moment().endOf('day');
-        this.minDate = false;
+        this.minDate = moment().startOf('day');
         this.maxDate = false;
         this.dateLimit = false;
         this.autoApply = false;
@@ -50,7 +50,7 @@
         this.showWeekNumbers = false;
         this.showISOWeekNumbers = false;
         this.timePicker = false;
-        this.timePicker24Hour = false;
+        this.timePicker24Hour = true;
         this.timePickerIncrement = 1;
         this.timePickerSeconds = false;
         this.linkedCalendars = true;
@@ -71,12 +71,12 @@
         this.cancelClass = 'btn-default';
 
         this.locale = {
-            format: 'MM/DD/YYYY',
+            format: 'DD/MM/YYYY',
             separator: ' - ',
-            applyLabel: 'Apply',
-            cancelLabel: 'Cancel',
-            weekLabel: 'W',
-            customRangeLabel: 'Custom Range',
+            applyLabel: 'Aceptar',
+            cancelLabel: 'Cancelar',
+            weekLabel: 'S',
+            customRangeLabel: 'Rango personalizado',
             daysOfWeek: moment.weekdaysMin(),
             monthNames: moment.monthsShort(),
             firstDay: moment.localeData().firstDayOfWeek()

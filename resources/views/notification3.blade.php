@@ -1,7 +1,8 @@
 @extends('layout')
 
 @section('style')
-<link rel="stylesheet" href="template/css/lib/fullcalendar/fullcalendar.min.css">
+<!-- <link rel="stylesheet" href="template/css/lib/fullcalendar/fullcalendar.min.css"> -->
+<link rel="stylesheet" href="template/css/lib/clockpicker/bootstrap-clockpicker.min.css">
 @stop
 
 @section('content')
@@ -10,66 +11,72 @@
 
 <div class = "col-xl-6">
 
-<section class="box-typical steps-icon-block">
-  <div class="steps-icon-progress">
-    <ul>
-      <li class="active">
-        <div class="icon">
-          <i class="font-icon font-icon-edit"></i>
+  <section class="box-typical steps-icon-block">
+    <div class="steps-icon-progress">
+      <ul>
+        <li class="active">
+          <div class="icon">
+            <i class="font-icon font-icon-edit"></i>
+          </div>
+          <div class="caption">Contenido</div>
+        </li>
+        <li class="active">
+          <div class="icon">
+            <i class="font-icon font-icon-user"></i>
+          </div>
+          <div class="caption">Destinatarios</div>
+        </li>
+        <li class="active">
+          <div class="icon">
+            <i class="font-icon font-icon-calend"></i>
+          </div>
+          <div class="caption">Calendarizar</div>
+        </li>
+        <li>
+          <div class="icon">
+            <i class="font-icon font-icon-check-bird"></i>
+          </div>
+          <div class="caption">Confirmación</div>
+        </li>
+      </ul>
+    </div>
+
+    <div id = "not-step1">
+      <header class="steps-numeric-title">Programando notificación</header>
+
+      <section class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-xs-8 col-sm-6">
+              <label class="form-label" for="daterange3">Fecha</label>
+              <div class="form-group">
+                <div class='input-group date'>
+                  <input id="daterange3" type="text" value="" class="form-control">
+                  <span class="input-group-addon">
+                    <i class="font-icon font-icon-calend"></i>
+                  </span>
+                </div>
+              </div>
+            </div><!--.col-->
+          </div>
+          <div class="row">
+            <div class="col-xs-8 col-sm-6">
+              <label class="form-label" for="clockselector">Hora</label>
+              <div class="form-group">
+                <div class="input-group clockpicker" data-autoclose="true">
+                  <input id="clockselector" type="text" class="form-control" value="">
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="caption">Contenido</div>
-      </li>
-      <li class="active">
-        <div class="icon">
-          <i class="font-icon font-icon-user"></i>
-        </div>
-        <div class="caption">Destinatarios</div>
-      </li>
-      <li class="active">
-        <div class="icon">
-          <i class="font-icon font-icon-calend"></i>
-        </div>
-        <div class="caption">Calendarizar</div>
-      </li>
-      <li>
-        <div class="icon">
-          <i class="font-icon font-icon-check-bird"></i>
-        </div>
-        <div class="caption">Confirmación</div>
-      </li>
-    </ul>
-  </div>
-
-  <div id = "not-step1">
-    <header class="steps-numeric-title">Programando notificación</header>
-
-        <div class="form-group">
-    			<label class="form-label" for="date-and-time-mask-input">Fecha y hora</label>
-    			<input type="text" class="form-control" id="date-and-time-mask-input">
-    		</div>
-
-        <div class="form-group">
-    			<div class="input-group">
-    								<input type="text" class="form-control" aria-label="Text input with dropdown button">
-    								<div class="input-group-btn">
-    									<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    										Action
-    									</button>
-    									<div class="dropdown-menu dropdown-menu-right">
-    										<a class="dropdown-item" href="#">Action</a>
-    										<a class="dropdown-item" href="#">Another action</a>
-    										<a class="dropdown-item" href="#">Something else here</a>
-    										<div role="separator" class="dropdown-divider"></div>
-    										<a class="dropdown-item" href="#">Separated link</a>
-    									</div>
-    								</div>
-    							</div>
-    		</div>
-      </div>
-
-
+			</section>
     <!-- <button type="button" class="btn btn-rounded btn-grey float-left">← Back</button> -->
-    <button type="button" class="btn btn-rounded float-right">Next →</button>
+    <button type="button" class="btn btn-rounded float-right">Confirmar →</button>
   </div>
 
 </section><!--.steps-icon-block-->
@@ -79,6 +86,19 @@
 @stop
 
 @section('scripts')
-<script src="template/js/lib/input-mask/jquery.mask.min.js"></script>
-<script src="template/js/lib/input-mask/input-mask-init.js"></script>
+<script src="template/js/lib/clockpicker/bootstrap-clockpicker.min.js"></script>
+	<script src="template/js/lib/clockpicker/bootstrap-clockpicker-init.js"></script>
+	<script src="template/js/lib/daterangepicker/daterangepicker.js"></script>
+	<script src="template/js/lib/bootstrap-select/bootstrap-select.min.js"></script>
+	<script>
+
+		$(function() {
+			$('#daterange3').daterangepicker({
+				singleDatePicker: true,
+				showDropdowns: true
+			});
+
+		});
+
+	</script>
 @stop

@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('.clockpicker').clockpicker({
         autoclose: true,
-        donetext: 'Done',
+        donetext: 'Listo',
         'default': 'now'
     });
 });
