@@ -57,7 +57,7 @@
 			<br/>
 			<br/>
 		<!--</div>-->
-					
+
     </div>
 
     <div class="form-group">
@@ -75,8 +75,8 @@
 		<!--</div>-->
     </div>
 
-    <a href="n"><button type="button" class="btn btn-rounded btn-grey float-left">← Back</button></a>
-    <button type="button" class="btn btn-rounded float-right">Next →</button>
+    <a href="n"><button type="button" class="btn btn-rounded btn-grey float-left">← Atrás</button></a>
+    <a href="n3"><button type="button" class="btn btn-rounded float-right">Siguiente →</button></a>
   </div>
 
 </section><!--.steps-icon-block-->

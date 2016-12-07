@@ -35,14 +35,14 @@ Route::get('/d', function(){
 });
 
 Route::get('/n', function(){
-  return view('notification');
+  return view('notification.notification');
 });
 Route::get('/n2', function(){
-  return view('notification2');
+  return view('notification.notification2');
 });
 
 Route::get('/n3', function(){
-  return view('notification3');
+  return view('notification.notification3');
 });
 
 Route::post('/image-upload/{id}', 'ImageUploadController@upload');

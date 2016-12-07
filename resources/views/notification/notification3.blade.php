@@ -76,7 +76,8 @@
         </div>
 			</section>
     <!-- <button type="button" class="btn btn-rounded btn-grey float-left">← Back</button> -->
-    <button type="button" class="btn btn-rounded float-right">Confirmar →</button>
+    <a href="n2"><button type="button" class="btn btn-rounded btn-grey float-left">← Atrás</button></a>
+    <a href="n4"><button type="button" class="btn btn-rounded float-right">Confirmar →</button></a>
   </div>
 
 </section><!--.steps-icon-block-->
