@@ -23,4 +23,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function admin_messages(){
+      return $this->hasMany(AdminMessage::class);
+    }
+
+    public function notification_log(){
+      return $this->hasMany(NotificationLog::class);
+    }
+
+    public function user_type(){
+      return $this->belongsTo(UserType::class);
+    }
+
+    public function sector(){
+      return $this->belongsTo(Sector::class);
+    }
 }

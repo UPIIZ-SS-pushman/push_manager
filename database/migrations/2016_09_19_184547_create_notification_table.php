@@ -12,14 +12,15 @@ class CreateNotificationTable extends Migration
      */
     public function up()
     {
-      Schema::create('notification', function (Blueprint $table) {
+      Schema::create('notifications', function (Blueprint $table) {
           $table->increments('id');
           $table->string('title');
           $table->string('body');
           $table->date('sent');
           $table->date('created');
           $table->string('destination');
-          $table->integer('sector_id');
+          $table->integer('sector_id')->unsigned()->index();
+          $table->integer('notification_log_id')->unsigned()->index();
           $table->rememberToken();
           $table->timestamps();
       });
@@ -32,6 +33,6 @@ class CreateNotificationTable extends Migration
      */
     public function down()
     {
-        Schema::drop('notification');
+        Schema::drop('notifications');
     }
 }

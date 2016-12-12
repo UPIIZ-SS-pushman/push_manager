@@ -12,7 +12,7 @@ class CreateUsersTypeTable extends Migration
      */
     public function up()
     {
-      Schema::create('users_type', function (Blueprint $table) {
+      Schema::create('user_types', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name');
           $table->rememberToken();
@@ -27,6 +27,6 @@ class CreateUsersTypeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users_type');
+        Schema::drop('user_types');
     }
 }

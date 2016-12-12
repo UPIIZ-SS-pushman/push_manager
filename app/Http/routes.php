@@ -46,3 +46,17 @@ Route::get('/n3', function(){
 });
 
 Route::post('/image-upload/{id}', 'ImageUploadController@upload');
+
+Route::get('/testjson', function(){
+  return Response::json(array(
+    '0' =>array('id' => '0', 'description' => 'Alumno'),
+    '1' =>array('id' => '1', 'description' => 'Maestro'),
+  ));
+});
+
+Route::get('/testjson2', function(){
+  return Response::json(array(
+    '0' =>array('id' => '0', 'description' => 'Sistemas'),
+    '1' =>array('id' => '1', 'description' => 'Mecatrónica'),
+  ));
+});
