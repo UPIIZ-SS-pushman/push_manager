@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSectorTable extends Migration
+class CreateIndividualSelectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateSectorTable extends Migration
      */
     public function up()
     {
-      Schema::create('sectors', function (Blueprint $table) {
-          $table->increments('id');
-          $table->string('name');
-          // $table->rememberToken();
-          $table->timestamps();
-      });
+        Schema::create('individual_selects', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -27,6 +25,6 @@ class CreateSectorTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sectors');
+        Schema::drop('individual_selects');
     }
 }

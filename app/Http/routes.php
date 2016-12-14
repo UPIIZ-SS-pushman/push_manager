@@ -60,3 +60,7 @@ Route::get('/testjson2', function(){
     '1' =>array('id' => '1', 'description' => 'Mecatrónica'),
   ));
 });
+
+Route::get('/generateDB', 'DataForDatabase@generateData');
+
+Route::get('/createNotif', 'DataForDatabase@createNotif');

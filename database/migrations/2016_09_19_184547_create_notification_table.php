@@ -16,12 +16,11 @@ class CreateNotificationTable extends Migration
           $table->increments('id');
           $table->string('title');
           $table->string('body');
-          $table->date('sent');
-          $table->date('created');
+          $table->dateTime('sent');
           $table->string('destination');
           $table->integer('sector_id')->unsigned()->index();
           $table->integer('notification_log_id')->unsigned()->index();
-          $table->rememberToken();
+          // $table->rememberToken();
           $table->timestamps();
       });
     }

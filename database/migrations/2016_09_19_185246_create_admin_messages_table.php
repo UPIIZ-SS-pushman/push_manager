@@ -17,7 +17,7 @@ class CreateAdminMessagesTable extends Migration
           $table->string('body_message');
           $table->integer('sender_id')->unsigned()->index();
           $table->date('sent_date');
-          $table->rememberToken();
+          // $table->rememberToken();
           $table->timestamps();
       });
     }

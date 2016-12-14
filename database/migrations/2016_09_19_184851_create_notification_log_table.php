@@ -13,11 +13,12 @@ class CreateNotificationLogTable extends Migration
     public function up()
     {
       Schema::create('notification_logs', function (Blueprint $table) {
-          $table->increments('id');
-          $table->integer('notification_id')->unsigned()->index();
+          //$table->increments('id');
+          $table->integer('notification_id')->unsigned()->nullable();
+          $table->foreign('notification_id')->references('id')->on('notifications')->onDelete('cascade');
           $table->integer('user_id')->unsigned()->index();
           $table->integer('status');
-          $table->rememberToken();
+          // $table->rememberToken();
           $table->timestamps();
       });
     }
