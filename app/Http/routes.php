@@ -34,16 +34,16 @@ Route::get('/d', function(){
   return view('dashboard');
 });
 
-Route::get('/n', function(){
-  return view('notification.notification');
-});
-Route::get('/n2', function(){
-  return view('notification.notification2');
-});
+Route::get('/notificationmaker', 'NotificationMakerController@getMaker');
+Route::get('/notificationmaker/{step}', 'NotificationMakerController@getMakerStep')->where(['step' => '[1-3]']);
 
-Route::get('/n3', function(){
-  return view('notification.notification3');
-});
+// Route::get('/n2', function(){
+//   return view('notification.notification2');
+// });
+//
+// Route::get('/n3', function(){
+//   return view('notification.notification3');
+// });
 
 Route::post('/image-upload/{id}', 'ImageUploadController@upload');
 

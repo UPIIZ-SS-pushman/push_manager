@@ -6,24 +6,24 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>StartUI - Premium Bootstrap 4 Admin Dashboard Template</title>
 
-	<link href="template/img/favicon.144x144.png" rel="apple-touch-icon" type="image/png" sizes="144x144">
-	<link href="template/img/favicon.114x114.png" rel="apple-touch-icon" type="image/png" sizes="114x114">
-	<link href="template/img/favicon.72x72.png" rel="apple-touch-icon" type="image/png" sizes="72x72">
-	<link href="template/img/favicon.57x57.png" rel="apple-touch-icon" type="image/png">
-	<link href="template/img/favicon.png" rel="icon" type="image/png">
-	<link href="template/img/favicon.ico" rel="shortcut icon">
+	<link href="{{ URL::asset('template/img/favicon.144x144.png') }}" rel="apple-touch-icon" type="image/png" sizes="144x144">
+	<link href="{{ URL::asset('template/img/favicon.114x114.png') }}" rel="apple-touch-icon" type="image/png" sizes="114x114">
+	<link href="{{ URL::asset('template/img/favicon.72x72.png') }}" rel="apple-touch-icon" type="image/png" sizes="72x72">
+	<link href="{{ URL::asset('template/img/favicon.57x57.png') }}" rel="apple-touch-icon" type="image/png">
+	<link href="{{ URL::asset('template/img/favicon.png') }}" rel="icon" type="image/png">
+	<link href="{{ URL::asset('template/img/favicon.ico') }}" rel="shortcut icon">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
-	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js') }}"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script>
 	<![endif]-->
 	@yield('style')
 
-	<link rel="stylesheet" href="template/css/lib/lobipanel/lobipanel.min.css">
-    <link rel="stylesheet" href="template/css/lib/jqueryui/jquery-ui.min.css">
-    <link rel="stylesheet" href="template/css/lib/font-awesome/font-awesome.min.css">
-    <link rel="stylesheet" href="template/css/main.css">
+	<link rel="stylesheet" href="{{ URL::asset('template/css/lib/lobipanel/lobipanel.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('template/css/lib/jqueryui/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('template/css/lib/font-awesome/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('template/css/main.css') }}">
 
 
 </head>
@@ -33,8 +33,8 @@
 	<header class="site-header">
 	    <div class="container-fluid">
 	        <a href="#" class="site-logo">
-	            <img class="hidden-md-down" src="template/img/logo-2.png" alt="">
-	            <img class="hidden-lg-up" src="template/img/logo-2-mob.png" alt="">
+	            <img class="hidden-md-down" src="{{ URL::asset('template/img/logo-2.png') }}" alt="">
+	            <img class="hidden-lg-up" src="{{ URL::asset('template/img/logo-2-mob.png') }}" alt="">
 	        </a>
 	        <button class="hamburger hamburger--htla">
 	            <span>toggle menu</span>
@@ -60,7 +60,7 @@
 	                            <div class="dropdown-menu-notif-list">
 	                                <div class="dropdown-menu-notif-item">
 	                                    <div class="photo">
-	                                        <img src="template/img/photo-64-1.jpg" alt="">
+	                                        <img src="{{ URL::asset('template/img/photo-64-1.jpg') }}" alt="">
 	                                    </div>
 	                                    <div class="dot"></div>
 	                                    <a href="#">Morgan</a> was bothering about something
@@ -68,7 +68,7 @@
 	                                </div>
 	                                <div class="dropdown-menu-notif-item">
 	                                    <div class="photo">
-	                                        <img src="template/img/photo-64-2.jpg" alt="">
+	                                        <img src="{{ URL::asset('template/img/photo-64-2.jpg') }}" alt="">
 	                                    </div>
 	                                    <div class="dot"></div>
 	                                    <a href="#">Lioneli</a> had commented on this <a href="#">Super Important Thing</a>
@@ -76,7 +76,7 @@
 	                                </div>
 	                                <div class="dropdown-menu-notif-item">
 	                                    <div class="photo">
-	                                        <img src="template/img/photo-64-3.jpg" alt="">
+	                                        <img src="{{ URL::asset('template/img/photo-64-3.jpg') }}" alt="">
 	                                    </div>
 	                                    <div class="dot"></div>
 	                                    <a href="#">Xavier</a> had commented on the <a href="#">Movie title</a>
@@ -84,7 +84,7 @@
 	                                </div>
 	                                <div class="dropdown-menu-notif-item">
 	                                    <div class="photo">
-	                                        <img src="template/img/photo-64-4.jpg" alt="">
+	                                        <img src="{{ URL::asset('template/img/photo-64-4.jpg') }}" alt="">
 	                                    </div>
 	                                    <a href="#">Lionely</a> wants to go to <a href="#">Cinema</a> with you to see <a href="#">This Movie</a>
 	                                    <div class="color-blue-grey-lighter">hace 7 horas</div>
@@ -134,22 +134,22 @@
 	                                <div class="tab-pane active" id="tab-incoming" role="tabpanel">
 	                                    <div class="dropdown-menu-messages-list">
 	                                        <a href="#" class="mess-item">
-	                                            <span class="avatar-preview avatar-preview-32"><img src="template/img/photo-64-2.jpg" alt=""></span>
+	                                            <span class="avatar-preview avatar-preview-32"><img src="{{ URL::asset('template/img/photo-64-2.jpg') }}" alt=""></span>
 	                                            <span class="mess-item-name">Tim Collins</span>
 	                                            <span class="mess-item-txt">Morgan was bothering about something!</span>
 	                                        </a>
 	                                        <a href="#" class="mess-item">
-	                                            <span class="avatar-preview avatar-preview-32"><img src="template/img/avatar-2-64.png" alt=""></span>
+	                                            <span class="avatar-preview avatar-preview-32"><img src="{{ URL::asset('template/img/avatar-2-64.png') }}" alt=""></span>
 	                                            <span class="mess-item-name">Christian Burton</span>
 	                                            <span class="mess-item-txt">Morgan was bothering about something! Morgan was bothering about something.</span>
 	                                        </a>
 	                                        <a href="#" class="mess-item">
-	                                            <span class="avatar-preview avatar-preview-32"><img src="template/img/photo-64-2.jpg" alt=""></span>
+	                                            <span class="avatar-preview avatar-preview-32"><img src="{{ URL::asset('template/img/photo-64-2.jpg') }}" alt=""></span>
 	                                            <span class="mess-item-name">Tim Collins</span>
 	                                            <span class="mess-item-txt">Morgan was bothering about something!</span>
 	                                        </a>
 	                                        <a href="#" class="mess-item">
-	                                            <span class="avatar-preview avatar-preview-32"><img src="template/img/avatar-2-64.png" alt=""></span>
+	                                            <span class="avatar-preview avatar-preview-32"><img src="{{ URL::asset('template/img/avatar-2-64.png') }}" alt=""></span>
 	                                            <span class="mess-item-name">Christian Burton</span>
 	                                            <span class="mess-item-txt">Morgan was bothering about something...</span>
 	                                        </a>
@@ -158,22 +158,22 @@
 	                                <div class="tab-pane" id="tab-outgoing" role="tabpanel">
 	                                    <div class="dropdown-menu-messages-list">
 	                                        <a href="#" class="mess-item">
-	                                            <span class="avatar-preview avatar-preview-32"><img src="template/img/avatar-2-64.png" alt=""></span>
+	                                            <span class="avatar-preview avatar-preview-32"><img src="{{ URL::asset('template/img/avatar-2-64.png') }}" alt=""></span>
 	                                            <span class="mess-item-name">Christian Burton</span>
 	                                            <span class="mess-item-txt">Morgan was bothering about something! Morgan was bothering about something...</span>
 	                                        </a>
 	                                        <a href="#" class="mess-item">
-	                                            <span class="avatar-preview avatar-preview-32"><img src="template/img/photo-64-2.jpg" alt=""></span>
+	                                            <span class="avatar-preview avatar-preview-32"><img src="{{ URL::asset('template/img/photo-64-2.jpg') }}" alt=""></span>
 	                                            <span class="mess-item-name">Tim Collins</span>
 	                                            <span class="mess-item-txt">Morgan was bothering about something! Morgan was bothering about something.</span>
 	                                        </a>
 	                                        <a href="#" class="mess-item">
-	                                            <span class="avatar-preview avatar-preview-32"><img src="template/img/avatar-2-64.png" alt=""></span>
+	                                            <span class="avatar-preview avatar-preview-32"><img src="{{ URL::asset('template/img/avatar-2-64.png') }}" alt=""></span>
 	                                            <span class="mess-item-name">Christian Burtons</span>
 	                                            <span class="mess-item-txt">Morgan was bothering about something!</span>
 	                                        </a>
 	                                        <a href="#" class="mess-item">
-	                                            <span class="avatar-preview avatar-preview-32"><img src="template/img/photo-64-2.jpg" alt=""></span>
+	                                            <span class="avatar-preview avatar-preview-32"><img src="{{ URL::asset('template/img/photo-64-2.jpg') }}" alt=""></span>
 	                                            <span class="mess-item-name">Tim Collins</span>
 	                                            <span class="mess-item-txt">Morgan was bothering about something!</span>
 	                                        </a>
@@ -190,7 +190,7 @@
 											<!-- usuario administrador -->
 	                    <div class="dropdown user-menu">
 	                        <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                            <img src="template/img/avatar-2-64.png" alt="">
+	                            <img src="{{ URL::asset('template/img/avatar-2-64.png') }}" alt="">
 	                        </button>
 	                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
 	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
@@ -318,7 +318,7 @@
 
 					<!-- notificaciones -->
 	        <li class="magenta with-sub">
-						<a href="n">
+						<a href="/notificationmaker">
 	            <span>
 	                <span class="glyphicon glyphicon-list-alt"></span>
 	                <span class="lbl">Crear notificación</span>
@@ -334,15 +334,15 @@
 	                <span class="lbl">Historial</span>
 	            </span>
 	            <ul>
-	                <li><a href="c"><span class="lbl">Calendario (Resumen)</span></a></li>
-	                <li><a href="h"><span class="lbl">Tabla (Detalle)</span></a></li>
+	                <li><a href="/c"><span class="lbl">Calendario (Resumen)</span></a></li>
+	                <li><a href="/h"><span class="lbl">Tabla (Detalle)</span></a></li>
 	            </ul>
 	        </li>
 					<!-- fin historial -->
 
 					<!-- usuarios -->
 	        <li class="blue-dirty">
-	            <a href="u">
+	            <a href="/u">
 	                <span class="font-icon font-icon-user"></span>
 	                <span class="lbl">Usuarios</span>
 	            </a>
@@ -365,13 +365,13 @@
 
 
 	<!--//Scripts section -->
-	<script src="template/js/lib/jquery/jquery.min.js"></script>
-	<script src="template/js/lib/tether/tether.min.js"></script>
-	<script src="template/js/lib/bootstrap/bootstrap.min.js"></script>
-	<script src="template/js/plugins.js"></script>
+	<script src="{{ URL::asset('template/js/lib/jquery/jquery.min.js') }}"></script>
+	<script src="{{ URL::asset('template/js/lib/tether/tether.min.js') }}"></script>
+	<script src="{{ URL::asset('template/js/lib/bootstrap/bootstrap.min.js') }}"></script>
+	<script src="{{ URL::asset('template/js/plugins.js') }}"></script>
 
 
 	@yield('scripts')
-	<script src="template/js/app.js"></script>
+	<script src="{{ URL::asset('template/js/app.js') }}"></script>
 </body>
 </html>

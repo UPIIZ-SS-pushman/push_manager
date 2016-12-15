@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IndividualSelect extends Model
+class SectorSelect extends Model
 {
   public function notification_maker(){
     return $this->belongsTo(NotificationMaker::class);
   }
 
-  public function user(){
-    return $this->belongsTo(User::class);
+  public function sector(){
+    return $this->belongsTo(Sector::class);
   }
 }

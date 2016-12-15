@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIndividualSelectsTable extends Migration
+class CreateSectorSelectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreateIndividualSelectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('individual_selects', function (Blueprint $table) {
+        Schema::create('sector_selects', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
+            $table->integer('sector_id')->unsigned()->index();
             $table->integer('notification_maker_id')->unsigned()->index();
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ class CreateIndividualSelectsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('individual_selects');
+        Schema::drop('sector_selects');
     }
 }

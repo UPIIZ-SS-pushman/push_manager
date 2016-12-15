@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('style')
-<link rel="stylesheet" href="template/css/lib/fullcalendar/fullcalendar.min.css">
+<link rel="stylesheet" href="{{ URL::asset('template/css/lib/fullcalendar/fullcalendar.min.css') }}">
 @stop
 
 @section('content')
@@ -48,11 +48,9 @@
     <label class="form-control-label">Individual</label>
 		<!--<div class="col-md-6">-->
 			<select class="select2" multiple="multiple" id="select-individual">
-				<option data-icon="font-icon-home">Quant Verbal</option>
-				<option selected data-icon="font-icon-cart">Real Gmat Test</option>
-				<option data-icon="font-icon-speed">Prep test</option>
-				<option data-icon="font-icon-users">Catprep test</option>
-				<option data-icon="font-icon-comments">Third Party Test</option>
+        @foreach(App\User::all() as $user)
+          <option>{{$user->surname}} {{$user->lastname}}</option>
+        @endforeach
 			</select>
 			<br/>
 			<br/>
@@ -64,19 +62,17 @@
     <label class="form-control-label">Grupos</label>
       <!--<div class="col-md-6">-->
 			<select class="select2" multiple="multiple" id="select-groups">
-				<option data-icon="font-icon-home">Quant Verbal</option>
-				<option selected data-icon="font-icon-cart">Real Gmat Test</option>
-				<option data-icon="font-icon-speed">Prep test</option>
-				<option data-icon="font-icon-users">Catprep test</option>
-				<option data-icon="font-icon-comments">Third Party Test</option>
+				@foreach(App\Sector::all() as $sector)
+          <option>{{$sector->name}}</option>
+        @endforeach
 			</select>
 			<br/>
 			<br/>
 		<!--</div>-->
     </div>
 
-    <a href="n"><button type="button" class="btn btn-rounded btn-grey float-left">← Atrás</button></a>
-    <a href="n3"><button type="button" class="btn btn-rounded float-right">Siguiente →</button></a>
+    <a href="1"><button type="button" class="btn btn-rounded btn-grey float-left">← Atrás</button></a>
+    <a href="3"><button type="button" class="btn btn-rounded float-right">Siguiente →</button></a>
   </div>
 
 </section><!--.steps-icon-block-->
@@ -86,9 +82,9 @@
 @stop
 
 @section('scripts')
-<script src="template/js/lib/jquery-tag-editor/jquery.caret.min.js"></script>
-	<script src="template/js/lib/jquery-tag-editor/jquery.tag-editor.min.js"></script>
-<script src="template/js/lib/bootstrap-select/bootstrap-select.min.js"></script>
-<script src="template/js/lib/select2/select2.full.min.js"></script>
+<script src="{{ URL::asset('template/js/lib/jquery-tag-editor/jquery.caret.min.js') }}"></script>
+	<script src="{{ URL::asset('template/js/lib/jquery-tag-editor/jquery.tag-editor.min.js') }}"></script>
+<script src="{{ URL::asset('template/js/lib/bootstrap-select/bootstrap-select.min.js') }}"></script>
+<script src="{{ URL::asset('template/js/lib/select2/select2.full.min.js') }}"></script>
 
 @stop

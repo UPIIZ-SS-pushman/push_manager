@@ -9,6 +9,8 @@ use App\Sector;
 use App\UserType;
 use App\User;
 use App\Notification;
+use App\NotificationIndividual;
+use App\NotificationSector;
 use App\NotificationLog;
 use Carbon\Carbon;
 
@@ -19,8 +21,20 @@ class DataForDatabase extends Controller
       $sector->name = "Ingeniería en Sistemas Computacionales";
       $sector->save();
 
+      $sector = new Sector;
+      $sector->name = "Ingeniería en Mecatrónica";
+      $sector->save();
+
+      $userType = new UserType;
+      $userType->name = "Administrador";
+      $userType->save();
+
       $userType = new UserType;
       $userType->name = "Estudiante";
+      $userType->save();
+
+      $userType = new UserType;
+      $userType->name = "Maestro";
       $userType->save();
 
       $user = new User;
@@ -32,6 +46,16 @@ class DataForDatabase extends Controller
       $user->sector_id = 1;
       $user->password = bcrypt('1234');
       $user->save();
+
+      $user = new User;
+      $user->username = "jlujan1";
+      $user->surname = "Juan";
+      $user->lastname = "Luján";
+      $user->email = "juan@mail.com";
+      $user->user_type_id = 1;
+      $user->sector_id = 1;
+      $user->password = bcrypt('1234');
+      $user->save();
     }
 
     public function createNotif(){
@@ -39,9 +63,24 @@ class DataForDatabase extends Controller
       $notification->title = "Test message";
       $notification->body = "This is a test message\nJust testing ;)";
       $notification->sent = Carbon::now();
-      $notification->destination = "all";
-      $notification->sector_id = 1;
+      //$notification->destination = "all";
+      //$notification->sector_id = 1;
       $notification->save();
+
+      $notificationind = new NotificationIndividual;
+      $notificationind->user_id = 1;
+      $notificationind->notification_id = $notification->id;
+      $notificationind->save();
+
+      $notificationsec = new NotificationSector;
+      $notificationsec->sector_id = 1;
+      $notificationsec->notification_id = $notification->id;
+      $notificationsec->save();
+
+      $notificationsec = new NotificationSector;
+      $notificationsec->sector_id = 2;
+      $notificationsec->notification_id = $notification->id;
+      $notificationsec->save();
 
       $notificationlog = new NotificationLog;
       $notificationlog->notification_id = $notification->id;
@@ -52,5 +91,9 @@ class DataForDatabase extends Controller
       $notification->notification_log()->save($notificationlog);
       //$notification->save();
       echo $notification->notification_log;
+    }
+
+    public function createNotifMaker(){
+
     }
 }

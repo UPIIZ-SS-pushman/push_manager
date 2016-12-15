@@ -17,8 +17,8 @@ class CreateNotificationTable extends Migration
           $table->string('title');
           $table->string('body');
           $table->dateTime('sent');
-          $table->string('destination');
-          $table->integer('sector_id')->unsigned()->index();
+          //$table->string('destination');
+          //$table->integer('sector_id')->unsigned()->index();
           $table->integer('notification_log_id')->unsigned()->index();
           // $table->rememberToken();
           $table->timestamps();

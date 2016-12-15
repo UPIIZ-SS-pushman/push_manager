@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('style')
-<link rel="stylesheet" href="template/css/lib/fullcalendar/fullcalendar.min.css">
+<link rel="stylesheet" src="{{ URL::asset('template/css/lib/fullcalendar/fullcalendar.min.css') }}">
 @stop
 
 @section('content')
@@ -57,6 +57,13 @@
 
   <div id = "not-step1">
     <header class="steps-numeric-title">Escribe tu notificación</header>
+    @if($errors->any())
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
 
     <div class="form-group">
       <label class="form-control-label">Titulo</label>
@@ -69,7 +76,7 @@
     </div>
 
     <!-- <button type="button" class="btn btn-rounded btn-grey float-left">← Back</button> -->
-    <a href="n2"><button type="button" class="btn btn-rounded float-right">Siguiente →</button></a>
+    <a href="2"><button type="button" class="btn btn-rounded float-right">Siguiente →</button></a>
   </div>
 
 </section><!--.steps-icon-block-->

@@ -14,14 +14,14 @@ class CreateNotificationMakersTable extends Migration
     {
         Schema::create('notification_makers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_id');
+            $table->integer('user_id')->unsigned()->index();;
             $table->unique('user_id');
-            $table->string('title');
-            $table->string('body');
-            $table->integer('individual_selects_id')->unsigned()->index();
-            $table->integer('group_selects_id')->unsigned()->index();
-            $table->date('send_date');
-            $table->time('send_time');
+            $table->string('title')->nullable();
+            $table->string('body')->nullable();
+            //$table->integer('individual_selects_id')->unsigned()->index()->nullable();
+            //$table->integer('sector_selects_id')->unsigned()->index()->nullable();
+            $table->date('send_date')->nullable();
+            $table->time('send_time')->nullable();
             $table->timestamps();
         });
     }

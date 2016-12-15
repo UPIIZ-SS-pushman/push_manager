@@ -15,7 +15,7 @@ class CreateAdminMessagesTable extends Migration
       Schema::create('admin_messages', function (Blueprint $table) {
           $table->increments('id');
           $table->string('body_message');
-          $table->integer('sender_id')->unsigned()->index();
+          $table->integer('user_id')->unsigned()->index();
           $table->date('sent_date');
           // $table->rememberToken();
           $table->timestamps();

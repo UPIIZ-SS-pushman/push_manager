@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('style')
-<!-- <link rel="stylesheet" href="template/css/lib/fullcalendar/fullcalendar.min.css"> -->
-<link rel="stylesheet" href="template/css/lib/clockpicker/bootstrap-clockpicker.min.css">
+<!-- <link rel="stylesheet" href="{{ URL::asset('template/css/lib/fullcalendar/fullcalendar.min.css') }}"> -->
+<link rel="stylesheet" href="{{ URL::asset('template/css/lib/clockpicker/bootstrap-clockpicker.min.css') }}">
 @stop
 
 @section('content')
@@ -76,8 +76,8 @@
         </div>
 			</section>
     <!-- <button type="button" class="btn btn-rounded btn-grey float-left">← Back</button> -->
-    <a href="n2"><button type="button" class="btn btn-rounded btn-grey float-left">← Atrás</button></a>
-    <a href="n4"><button type="button" class="btn btn-rounded float-right">Confirmar →</button></a>
+    <a href="2"><button type="button" class="btn btn-rounded btn-grey float-left">← Atrás</button></a>
+    <a href="4"><button type="button" class="btn btn-rounded float-right">Confirmar →</button></a>
   </div>
 
 </section><!--.steps-icon-block-->
@@ -87,10 +87,10 @@
 @stop
 
 @section('scripts')
-<script src="template/js/lib/clockpicker/bootstrap-clockpicker.min.js"></script>
-	<script src="template/js/lib/clockpicker/bootstrap-clockpicker-init.js"></script>
-	<script src="template/js/lib/daterangepicker/daterangepicker.js"></script>
-	<script src="template/js/lib/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="{{ URL::asset('template/js/lib/clockpicker/bootstrap-clockpicker.min.js') }}"></script>
+	<script src="{{ URL::asset('template/js/lib/clockpicker/bootstrap-clockpicker-init.js') }}"></script>
+	<script src="{{ URL::asset('template/js/lib/daterangepicker/daterangepicker.js') }}"></script>
+	<script src="{{ URL::asset('template/js/lib/bootstrap-select/bootstrap-select.min.js') }}"></script>
 	<script>
 
 		$(function() {
