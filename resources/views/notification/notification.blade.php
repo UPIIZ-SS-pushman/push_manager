@@ -64,19 +64,25 @@
             @endforeach
         </ul>
     @endif
+    {{Form::model($maker)}}
 
-    <div class="form-group">
-      <label class="form-control-label">Titulo</label>
-      <input type="text" class="form-control" placeholder="Titulo"/>
-    </div>
+      <div class="form-group">
+        <label class="form-control-label">Titulo</label>
+        {{Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Título'])}}
+        <!-- <input name="title" type="text" class="form-control" placeholder="Titulo"/> -->
+      </div>
 
-    <div class="form-group">
-      <label class="form-control-label">Contenido</label>
-      <textarea rows="4" class="form-control" placeholder="Textarea"></textarea>
-    </div>
+      <div class="form-group">
+        <label class="form-control-label">Contenido</label>
+        {{Form::textarea('body', null, ['rows'=>4, 'class'=>'form-control', 'placeholder'=>'Contenido'])}}
+        <!-- <textarea name="body" rows="4" class="form-control" placeholder="Textarea"></textarea> -->
+      </div>
 
-    <!-- <button type="button" class="btn btn-rounded btn-grey float-left">← Back</button> -->
-    <a href="2"><button type="button" class="btn btn-rounded float-right">Siguiente →</button></a>
+      <!-- <button type="button" class="btn btn-rounded btn-grey float-left">← Back</button> -->
+      <!-- <a href="2"> -->
+        <button type="submit" class="btn btn-rounded float-right">Siguiente →</button>
+      <!-- </a> -->
+    {{Form::close()}}
   </div>
 
 </section><!--.steps-icon-block-->

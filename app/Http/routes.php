@@ -35,7 +35,8 @@ Route::get('/d', function(){
 });
 
 Route::get('/notificationmaker', 'NotificationMakerController@getMaker');
-Route::get('/notificationmaker/{step}', 'NotificationMakerController@getMakerStep')->where(['step' => '[1-3]']);
+Route::get('/notificationmaker/{step}', 'NotificationMakerController@getMakerStep')->where(['step' => '[1-4]']);
+Route::post('/notificationmaker/{step}', 'NotificationMakerController@postMakerData')->where(['step' => '[1-4]']);
 
 // Route::get('/n2', function(){
 //   return view('notification.notification2');
