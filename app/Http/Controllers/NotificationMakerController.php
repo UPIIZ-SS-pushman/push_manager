@@ -24,7 +24,7 @@ class NotificationMakerController extends Controller
           return view('notification.notification', ['maker' => $request->session()->get('maker')]);
           break;
         case 2:
-          return view('notification.notification2');
+          return view('notification.notification2', ['maker' => $request->session()->get('maker')]);
           break;
         case 3:
           return view('notification.notification3');
@@ -51,6 +51,7 @@ class NotificationMakerController extends Controller
           return redirect()->action('NotificationMakerController@getMakerStep', ['step' => 2]);
           break;
         case 2:
+        echo var_dump($request->all());
           break;
         case 3:
           break;

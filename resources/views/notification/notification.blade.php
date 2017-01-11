@@ -10,82 +10,62 @@
 
 <div class = "col-xl-6">
 
-<section class="box-typical steps-icon-block">
-  <div class="steps-icon-progress">
-    <ul>
-      <li class="active">
-        <div class="icon">
-          <i class="font-icon font-icon-edit"></i>
-        </div>
-        <div class="caption">Contenido</div>
-      </li>
-      <li>
-        <div class="icon">
-          <i class="font-icon font-icon-user"></i>
-        </div>
-        <div class="caption">Destinatarios</div>
-      </li>
-      <li>
-        <div class="icon">
-          <i class="font-icon font-icon-calend"></i>
-        </div>
-        <div class="caption">Calendarizar</div>
-      </li>
-      <li>
-        <div class="icon">
-          <i class="font-icon font-icon-check-bird"></i>
-        </div>
-        <div class="caption">Confirmación</div>
-      </li>
-    </ul>
-  </div>
+  <section class="box-typical steps-icon-block">
+    <div class="steps-icon-progress">
+      <ul>
+        <li class="active">
+          <div class="icon">
+            <i class="font-icon font-icon-edit"></i>
+          </div>
+          <div class="caption">Contenido</div>
+        </li>
+        <li>
+          <div class="icon">
+            <i class="font-icon font-icon-user"></i>
+          </div>
+          <div class="caption">Destinatarios</div>
+        </li>
+        <li>
+          <div class="icon">
+            <i class="font-icon font-icon-calend"></i>
+          </div>
+          <div class="caption">Calendarizar</div>
+        </li>
+        <li>
+          <div class="icon">
+            <i class="font-icon font-icon-check-bird"></i>
+          </div>
+          <div class="caption">Confirmación</div>
+        </li>
+      </ul>
+    </div>
 
-
-
-  <!-- <header class="steps-numeric-title">Customer information</header>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="E-Mail"/>
-  </div>
-  <div class="form-group">
-    <input type="password" class="form-control" placeholder="Password"/>
-  </div>
-  <div class="form-group">
-    <input type="password" class="form-control" placeholder="Repeat password"/>
-  </div>
-  <button type="button" class="btn btn-rounded btn-grey float-left">← Back</button>
-  <button type="button" class="btn btn-rounded float-right">Next →</button> -->
-
-  <div id = "not-step1">
-    <header class="steps-numeric-title">Escribe tu notificación</header>
-    @if($errors->any())
+    <div id = "not-step1">
+      <header class="steps-numeric-title">Escribe tu notificación</header>
+      @if($errors->any())
+        <span style="color: red;">Error:</span>
         <ul>
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+          @foreach($errors->all() as $error)
+            <li style="color: red;">{{ $error }}</li>
+          @endforeach
         </ul>
-    @endif
-    {{Form::model($maker)}}
+      @endif
+      {{Form::model($maker)}}
+        <div class="form-group">
+          <label class="form-control-label">Título</label>
+          {{Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Título'])}}
+        </div>
 
-      <div class="form-group">
-        <label class="form-control-label">Titulo</label>
-        {{Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Título'])}}
-        <!-- <input name="title" type="text" class="form-control" placeholder="Titulo"/> -->
-      </div>
+        <div class="form-group">
+          <label class="form-control-label">Contenido</label>
+          {{Form::textarea('body', null, ['rows'=>4, 'class'=>'form-control', 'placeholder'=>'Contenido'])}}
+        </div>
 
-      <div class="form-group">
-        <label class="form-control-label">Contenido</label>
-        {{Form::textarea('body', null, ['rows'=>4, 'class'=>'form-control', 'placeholder'=>'Contenido'])}}
-        <!-- <textarea name="body" rows="4" class="form-control" placeholder="Textarea"></textarea> -->
-      </div>
-
-      <!-- <button type="button" class="btn btn-rounded btn-grey float-left">← Back</button> -->
-      <!-- <a href="2"> -->
         <button type="submit" class="btn btn-rounded float-right">Siguiente →</button>
-      <!-- </a> -->
-    {{Form::close()}}
-  </div>
+      {{Form::close()}}
+    </div>
 
-</section><!--.steps-icon-block-->
+  </section><!--.steps-icon-block-->
 
 </div>
 

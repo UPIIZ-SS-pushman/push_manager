@@ -10,72 +10,73 @@
 
 <div class = "col-xl-6">
 
-<section class="box-typical steps-icon-block">
-  <div class="steps-icon-progress">
-    <ul>
-      <li class="active">
-        <div class="icon">
-          <i class="font-icon font-icon-edit"></i>
-        </div>
-         <div class="caption">Contenido</div>
-      </li>
-      <li class="active">
-        <div class="icon">
-          <i class="font-icon font-icon-user"></i>
-        </div>
-        <div class="caption">Destinatarios</div>
-      </li>
-      <li>
-        <div class="icon">
-          <i class="font-icon font-icon-calend"></i>
-        </div>
-        <div class="caption">Calendarizar</div>
-      </li>
-      <li>
-        <div class="icon">
-          <i class="font-icon font-icon-check-bird"></i>
-        </div>
-        <div class="caption">Confirmación</div>
-      </li>
-    </ul>
-  </div>
-
-
-<div id = "not-step2">
-    <header class="steps-numeric-title">Selecciona tus destinatarios</header>
-
-    <div class="form-group">
-    <label class="form-control-label">Individual</label>
-		<!--<div class="col-md-6">-->
-			<select class="select2" multiple="multiple" id="select-individual">
-        @foreach(App\User::all() as $user)
-          <option>{{$user->surname}} {{$user->lastname}}</option>
-        @endforeach
-			</select>
-			<br/>
-			<br/>
-		<!--</div>-->
-
+  <section class="box-typical steps-icon-block">
+    <div class="steps-icon-progress">
+      <ul>
+        <li class="active">
+          <div class="icon">
+            <i class="font-icon font-icon-edit"></i>
+          </div>
+          <div class="caption">Contenido</div>
+        </li>
+        <li class="active">
+          <div class="icon">
+            <i class="font-icon font-icon-user"></i>
+          </div>
+          <div class="caption">Destinatarios</div>
+        </li>
+        <li>
+          <div class="icon">
+            <i class="font-icon font-icon-calend"></i>
+          </div>
+          <div class="caption">Calendarizar</div>
+        </li>
+        <li>
+          <div class="icon">
+            <i class="font-icon font-icon-check-bird"></i>
+          </div>
+          <div class="caption">Confirmación</div>
+        </li>
+      </ul>
     </div>
 
-    <div class="form-group">
-    <label class="form-control-label">Grupos</label>
-      <!--<div class="col-md-6">-->
-			<select class="select2" multiple="multiple" id="select-groups">
-				@foreach(App\Sector::all() as $sector)
-          <option>{{$sector->name}}</option>
-        @endforeach
-			</select>
-			<br/>
-			<br/>
-		<!--</div>-->
+
+    <div id = "not-step2">
+      <header class="steps-numeric-title">Selecciona tus destinatarios</header>
+      @if($errors->any())
+        <span style="color: red;">Error:</span>
+        <ul>
+          @foreach($errors->all() as $error)
+            <li style="color: red;">{{ $error }}</li>
+          @endforeach
+        </ul>
+      @endif
+      {{Form::model($maker)}}
+      <div class="form-group">
+        <label class="form-control-label">Individual</label>
+        <select class="select2" multiple="multiple" id="select-individual" name="select-individual[]">
+          @foreach(App\User::all() as $user)
+          <option value="{{$user->id}}">{{$user->surname}} {{$user->lastname}}</option>
+          @endforeach
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label">Grupos</label>
+        <select class="select2" multiple="multiple" id="select-groups" name="select-groups[]">
+          @foreach(App\Sector::all() as $sector)
+          <option value="{{$sector->id}}">{{$sector->name}}</option>
+          @endforeach
+        </select>
+      </div>
+
+      <a href="1"><button type="button" class="btn btn-rounded btn-grey float-left">← Atrás</button></a>
+      <!-- <a href="3"><button type="button" class="btn btn-rounded float-right">Siguiente →</button></a> -->
+      <button type="submit" class="btn btn-rounded float-right">Siguiente →</button>
+      {{Form::close()}}
     </div>
 
-    <a href="1"><button type="button" class="btn btn-rounded btn-grey float-left">← Atrás</button></a>
-    <a href="3"><button type="button" class="btn btn-rounded float-right">Siguiente →</button></a>
-  </div>
-
-</section><!--.steps-icon-block-->
+  </section><!--.steps-icon-block-->
 
 </div>
 
@@ -83,7 +84,7 @@
 
 @section('scripts')
 <script src="{{ URL::asset('template/js/lib/jquery-tag-editor/jquery.caret.min.js') }}"></script>
-	<script src="{{ URL::asset('template/js/lib/jquery-tag-editor/jquery.tag-editor.min.js') }}"></script>
+<script src="{{ URL::asset('template/js/lib/jquery-tag-editor/jquery.tag-editor.min.js') }}"></script>
 <script src="{{ URL::asset('template/js/lib/bootstrap-select/bootstrap-select.min.js') }}"></script>
 <script src="{{ URL::asset('template/js/lib/select2/select2.full.min.js') }}"></script>
 
