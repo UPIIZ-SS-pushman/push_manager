@@ -39,4 +39,12 @@ class User extends Authenticatable
     public function sector(){
       return $this->belongsTo(Sector::class);
     }
+
+    public function individual_selects(){
+      return $this->hasMany(IndividualSelect::class);
+    }
+
+    public function __toString(){
+      return $this->surname.' '.$this->lastname;
+    }
 }

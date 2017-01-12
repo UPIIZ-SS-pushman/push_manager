@@ -52,22 +52,23 @@
         </ul>
       @endif
       {{Form::model($maker)}}
+      <?php $individuals = $maker->getSelectedIndividuals();
+            $sectors = $maker->getSelectedSectors();?>
+
       <div class="form-group">
         <label class="form-control-label">Individual</label>
-        <select class="select2" multiple="multiple" id="select-individual" name="select-individual[]">
-          @foreach(App\User::all() as $user)
-          <option value="{{$user->id}}">{{$user->surname}} {{$user->lastname}}</option>
-          @endforeach
-        </select>
+        {{Form::select('individuos[]',
+        App\User::all(),
+        $individuals,
+        ['multiple'=>true, 'class'=>'select2'])}}
       </div>
 
       <div class="form-group">
         <label class="form-control-label">Grupos</label>
-        <select class="select2" multiple="multiple" id="select-groups" name="select-groups[]">
-          @foreach(App\Sector::all() as $sector)
-          <option value="{{$sector->id}}">{{$sector->name}}</option>
-          @endforeach
-        </select>
+        {{Form::select('grupos[]',
+        App\Sector::all(),
+        $sectors,
+        ['multiple'=>true, 'class'=>'select2'])}}
       </div>
 
       <a href="1"><button type="button" class="btn btn-rounded btn-grey float-left">← Atrás</button></a>

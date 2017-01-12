@@ -9,4 +9,8 @@ class Sector extends Model
   public function users(){
     return $this->hasMany(User::class);
   }
+
+  public function __toString(){
+    return $this->name;
+  }
 }

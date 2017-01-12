@@ -17,4 +17,8 @@ class Notification extends Model
     public function notification_sectors(){
       return $this->hasMany(NotificationSector::class);
     }
+
+    public function __toString(){
+      return $this->title;
+    }
 }

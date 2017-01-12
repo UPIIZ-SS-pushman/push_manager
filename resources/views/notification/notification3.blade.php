@@ -42,7 +42,16 @@
     </div>
 
     <div id = "not-step1">
-      <header class="steps-numeric-title">Programando notificación</header>
+      <header class="steps-numeric-title">Programa la hora y fecha</header>
+      @if($errors->any())
+        <span style="color: red;">Error:</span>
+        <ul>
+          @foreach($errors->all() as $error)
+            <li style="color: red;">{{ $error }}</li>
+          @endforeach
+        </ul>
+      @endif
+      {{Form::model($maker)}}
 
       <section class="card">
         <div class="card-block">
@@ -51,7 +60,11 @@
               <label class="form-label" for="daterange3">Fecha</label>
               <div class="form-group">
                 <div class='input-group date'>
-                  <input id="daterange3" type="text" value="" class="form-control">
+                  <?php
+                    $time = \Carbon\Carbon::parse($maker->send_date.' '.$maker->send_time);
+                    $time->setTimezone('America/Mexico_City');
+                  ?>
+                  {{Form::text('date', $time->format("d/m/Y"), ['id'=>'daterange3','class' => 'form-control', 'placeholder' => '01/01/1990'])}}
                   <span class="input-group-addon">
                     <i class="font-icon font-icon-calend"></i>
                   </span>
@@ -64,7 +77,8 @@
               <label class="form-label" for="clockselector">Hora</label>
               <div class="form-group">
                 <div class="input-group clockpicker" data-autoclose="true">
-                  <input id="clockselector" type="text" class="form-control" value="">
+
+                  {{Form::text('time', $time->format("H:i"), ['id'=>'clockselector','class' => 'form-control', 'placeholder' => 'hora'])}}
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-time"></span>
                   </span>
@@ -77,7 +91,9 @@
 			</section>
     <!-- <button type="button" class="btn btn-rounded btn-grey float-left">← Back</button> -->
     <a href="2"><button type="button" class="btn btn-rounded btn-grey float-left">← Atrás</button></a>
-    <a href="4"><button type="button" class="btn btn-rounded float-right">Confirmar →</button></a>
+    <!-- <a href="4"><button type="button" class="btn btn-rounded float-right">Confirmar →</button></a> -->
+    <button type="submit" class="btn btn-rounded float-right">Siguiente →</button>
+    {{Form::close()}}
   </div>
 
 </section><!--.steps-icon-block-->

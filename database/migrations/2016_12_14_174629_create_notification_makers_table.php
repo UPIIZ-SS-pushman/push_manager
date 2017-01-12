@@ -18,6 +18,7 @@ class CreateNotificationMakersTable extends Migration
             $table->unique('user_id');
             $table->string('title')->nullable();
             $table->string('body')->nullable();
+            $table->integer('step')->unsigned()->nullable();
             //$table->integer('individual_selects_id')->unsigned()->index()->nullable();
             //$table->integer('sector_selects_id')->unsigned()->index()->nullable();
             $table->date('send_date')->nullable();
