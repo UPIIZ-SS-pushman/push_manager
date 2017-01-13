@@ -53,12 +53,19 @@
       @endif
       {{Form::model($maker)}}
       <?php $individuals = $maker->getSelectedIndividuals();
-            $sectors = $maker->getSelectedSectors();?>
+            $sectors = $maker->getSelectedSectors();
+
+            $users = App\User::all();
+            $userslist = array();
+            foreach($users as $u){
+              $userslist[$u->id] = $u->surname.' '.$u->lastname;
+            }
+            ?>
 
       <div class="form-group">
         <label class="form-control-label">Individual</label>
         {{Form::select('individuos[]',
-        App\User::all(),
+        $userslist,
         $individuals,
         ['multiple'=>true, 'class'=>'select2'])}}
       </div>
@@ -66,7 +73,7 @@
       <div class="form-group">
         <label class="form-control-label">Grupos</label>
         {{Form::select('grupos[]',
-        App\Sector::all(),
+        App\Sector::lists('name', 'id'),
         $sectors,
         ['multiple'=>true, 'class'=>'select2'])}}
       </div>

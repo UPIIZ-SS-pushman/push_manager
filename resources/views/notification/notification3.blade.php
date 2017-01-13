@@ -108,7 +108,6 @@
 	<script src="{{ URL::asset('template/js/lib/daterangepicker/daterangepicker.js') }}"></script>
 	<script src="{{ URL::asset('template/js/lib/bootstrap-select/bootstrap-select.min.js') }}"></script>
 	<script>
-
 		$(function() {
 			$('#daterange3').daterangepicker({
 				singleDatePicker: true,
@@ -116,6 +115,5 @@
 			});
 
 		});
-
 	</script>
 @stop

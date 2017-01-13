@@ -15,7 +15,9 @@ class CreateNotificationSectorsTable extends Migration
         Schema::create('notification_sectors', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sector_id')->unsigned()->index();
+            $table->foreign('sector_id')->references('id')->on('sectors')->onDelete('cascade');
             $table->integer('notification_id')->unsigned()->index();
+            $table->foreign('notification_id')->references('id')->on('notifications')->onDelete('cascade');
             $table->timestamps();
         });
     }

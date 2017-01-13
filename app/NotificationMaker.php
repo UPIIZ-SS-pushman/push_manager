@@ -24,4 +24,5 @@ class NotificationMaker extends Model
   public function getSelectedSectors(){
     return $this->sector_selects->lists('sector_id')->toArray();
   }
+
 }

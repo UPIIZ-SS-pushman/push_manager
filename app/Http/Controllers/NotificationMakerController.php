@@ -10,6 +10,10 @@ use App\User;
 use App\IndividualSelect;
 use App\SectorSelect;
 use App\NotificationMaker;
+use App\Notification;
+use App\NotificationLog;
+use App\NotificationIndividual;
+use App\NotificationSector;
 
 class NotificationMakerController extends Controller
 {
@@ -39,16 +43,25 @@ class NotificationMakerController extends Controller
           return view('notification.notification', ['maker' => $maker]);
           break;
         case 2:
-          return view('notification.notification2', ['maker' => $maker]);
+          if($maker->title!=null && $maker->body!=null){
+            return view('notification.notification2', ['maker' => $maker]);
+          }else{
+            return redirect('notificationmaker/1');
+          }
           break;
         case 3:
-          return view('notification.notification3', ['maker' => $maker]);
+          if(!($maker->individual_selects->isEmpty() && $maker->sector_selects->isEmpty()) ){
+            return view('notification.notification3', ['maker' => $maker]);
+          }else{
+            return redirect('notificationmaker/2');
+          }
           break;
         case 4:
-          // echo $request->session()->get('maker', function() {
-          //     return redirect()->action('NotificationMakerController@getMaker');
-          // });
-          echo $maker;
+          if($maker->send_date!=null && $maker->send_time!=null){
+            return view('notification.notification4', ['maker' => $maker]);
+          }else{
+            return redirect('notificationmaker/3');
+          }
           break;
         default:
           abort(400, "Error: No such step");
@@ -112,10 +125,54 @@ class NotificationMakerController extends Controller
           //echo $maker;
           return redirect()->action('NotificationMakerController@getMakerStep', ['step' => 4]);
           break;
+        case 4:
+        $this->validate($request,[
+          'title' => 'required|min:2|max:50',
+          'body' => 'required|min:2|max:255',
+          'send_time' => 'required|date_format:H:i',
+          'send_date' => 'required|date_format:d/m/Y|after:yesterday'
+        ]);
+          $this->storeScheduleNotification($maker);
+          return view('notification.notification5');
+          break;
         default:
           abort(400, "Error: No such step");
         break;
       }
 
+    }
+
+    private function storeScheduleNotification(NotificationMaker $maker){
+      $notification = new Notification;
+      $notification->title = $maker->title;
+      $notification->body = $maker->body;
+
+      $time = \Carbon\Carbon::parse($maker->send_date.' '.$maker->send_time);
+      $notification->sent = $time;
+      $notification->save();
+
+      $notificationlog = new NotificationLog;
+      $notificationlog->notification_id = $notification->id;
+      $notificationlog->user_id = $maker->user_id;
+      $notificationlog->status = 0;
+      $notificationlog->save();
+
+      $notification->notification_log()->save($notificationlog);
+
+      foreach($maker->individual_selects as $i){
+        $ni = new NotificationIndividual;
+        $ni->user_id = $i->user_id;
+        $ni->notification_id = $notification->id;
+        $ni->save();
+      }
+
+      foreach($maker->sector_selects as $s){
+        $ns = new NotificationSector;
+        $ns->sector_id = $s->sector_id;
+        $ns->notification_id = $notification->id;
+        $ns->save();
+      }
+
+      $maker->delete();
     }
 }

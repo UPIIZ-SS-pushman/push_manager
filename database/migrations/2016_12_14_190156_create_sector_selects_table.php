@@ -16,6 +16,8 @@ class CreateSectorSelectsTable extends Migration
             $table->increments('id');
             $table->integer('sector_id')->unsigned()->index();
             $table->integer('notification_maker_id')->unsigned()->index();
+            $table->foreign('sector_id')->references('id')->on('sectors')->onDelete('cascade');
+            $table->foreign('notification_maker_id')->references('id')->on('notification_makers')->onDelete('cascade');
             $table->timestamps();
         });
     }
