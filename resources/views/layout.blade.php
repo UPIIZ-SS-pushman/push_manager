@@ -311,7 +311,7 @@
 	            <ul>
 	                <li><a href="messenger.html"><span class="lbl">Recientes</span></a></li>
 	                <li><a href="chat.html"><span class="lbl">Importantes</span><span class="label label-custom label-pill label-danger">8</span></a></li>
-	                <li><a href="chat-write.html"><span class="lbl">Escribir Mensaje</span></a></li>
+	                <li><a href="/messageadmin"><span class="lbl">Escribir Mensaje</span></a></li>
 	            </ul>
 	        </li>
 					<!-- fin mensajes -->

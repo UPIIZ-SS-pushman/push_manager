@@ -118,6 +118,10 @@ class NotificationMakerController extends Controller
           $time = Carbon::createFromFormat('d/m/Y H:i', $request->input('date').' '.$request->input('time'), 'America/Mexico_City');
           $time->setTimezone('UTC');
 
+          if($time->lt(Carbon::now('UTC'))){
+            return redirect('/notificationmaker/3')->withErrors("La fecha no puede ser anterior a este momento.");
+          }
+
           $maker->update([
             'send_date' => $time->format('Y-m-d'),
             'send_time' => $time->format('H:i'),
@@ -126,12 +130,24 @@ class NotificationMakerController extends Controller
           return redirect()->action('NotificationMakerController@getMakerStep', ['step' => 4]);
           break;
         case 4:
-        $this->validate($request,[
-          'title' => 'required|min:2|max:50',
-          'body' => 'required|min:2|max:255',
-          'send_time' => 'required|date_format:H:i',
-          'send_date' => 'required|date_format:d/m/Y|after:yesterday'
-        ]);
+          $this->validate($request,[
+            'title' => 'required|min:2|max:50',
+            'body' => 'required|min:2|max:255',
+            'send_time' => 'required|date_format:H:i',
+            'send_date' => 'required|date_format:d/m/Y|after:yesterday'
+          ]);
+          $individuals = $maker->getSelectedIndividuals();
+          $sectors = $maker->getSelectedSectors();
+
+          if(empty($individuals) && empty($sectors)){
+            return redirect('/notificationmaker/2')->withErrors("Selecciona a los destinatarios.");
+          }
+
+          $time = \Carbon\Carbon::parse($maker->send_date.' '.$maker->send_time);
+          if($time->lt(Carbon::now('UTC'))){
+            return redirect('/notificationmaker/3')->withErrors("Por favor cambia la fecha para que sea después de este momento.");
+          }
+
           $this->storeScheduleNotification($maker);
           return view('notification.notification5');
           break;
@@ -157,7 +173,9 @@ class NotificationMakerController extends Controller
       $notificationlog->status = 0;
       $notificationlog->save();
 
-      $notification->notification_log()->save($notificationlog);
+      //$notification->notification_log()->save($notificationlog);
+      $notification->notification_log_id = $notificationlog->id;
+      $notification->save();
 
       foreach($maker->individual_selects as $i){
         $ni = new NotificationIndividual;

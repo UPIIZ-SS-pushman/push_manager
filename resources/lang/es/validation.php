@@ -81,9 +81,9 @@ return [
         'array'   => '":attribute" debe contener :size elementos.',
     ],
     'string'               => 'El campo ":attribute" debe ser una cadena de caracteres.',
-    'timezone'             => 'El ":attribute" debe ser una zona válida.',
-    'unique'               => '":attribute" ya ha sido registrado.',
-    'uploaded'             => 'Subir ":attribute" ha fallado.',
+    'timezone'             => 'El ":attribute" debe ser una zona horaria válida.',
+    'unique'               => '":attribute" ya existe.',
+    'uploaded'             => 'La carga de ":attribute" ha fallado.',
     'url'                  => 'El formato ":attribute" es inválido.',
 
     /*
@@ -126,7 +126,7 @@ return [
         'country'               => 'país',
         'address'               => 'dirección',
         'phone'                 => 'teléfono',
-        'mobile'                => 'móvil',
+        'mobile'                => 'celular',
         'age'                   => 'edad',
         'sex'                   => 'sexo',
         'gender'                => 'género',
