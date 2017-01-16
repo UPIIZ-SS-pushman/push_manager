@@ -39,7 +39,7 @@ class DataForDatabase extends Controller
 
       $user = new User;
       $user->username = "rmontes1";
-      $user->surname = "Ricardo";
+      $user->name = "Ricardo";
       $user->lastname = "Montes";
       $user->email = "ricardo@mail.com";
       $user->user_type_id = 1;
@@ -49,7 +49,7 @@ class DataForDatabase extends Controller
 
       $user = new User;
       $user->username = "jlujan1";
-      $user->surname = "Juan";
+      $user->name = "Juan";
       $user->lastname = "Luján";
       $user->email = "juan@mail.com";
       $user->user_type_id = 1;

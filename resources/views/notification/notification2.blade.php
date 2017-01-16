@@ -58,7 +58,7 @@
             $users = App\User::all();
             $userslist = array();
             foreach($users as $u){
-              $userslist[$u->id] = $u->surname.' '.$u->lastname;
+              $userslist[$u->id] = $u->name.' '.$u->lastname;
             }
             ?>
 
