@@ -38,13 +38,7 @@ Route::get('/notificationmaker', 'NotificationMakerController@getMaker');
 Route::get('/notificationmaker/{step}', 'NotificationMakerController@getMakerStep')->where(['step' => '[1-4]']);
 Route::post('/notificationmaker/{step}', 'NotificationMakerController@postMakerData')->where(['step' => '[1-4]']);
 
-// Route::get('/n2', function(){
-//   return view('notification.notification2');
-// });
-//
-// Route::get('/n3', function(){
-//   return view('notification.notification3');
-// });
+Route::get('/notificationcalendarfeed', 'CalendarController@getEventJson');
 
 Route::post('/image-upload/{id}', 'ImageUploadController@upload');
 
