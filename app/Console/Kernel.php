@@ -1,6 +1,18 @@
 <?php
 
 namespace App\Console;
+use App\Notification;
+use Carbon\Carbon;
+use App\NotificationIndividual;
+use App\NotificationSector;
+use App\NotificationLog;
+use App\User;
+
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use FCM;
+
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -24,7 +36,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call(function () {
+
+        })->everyMinute();
     }
 }

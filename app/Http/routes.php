@@ -39,6 +39,9 @@ Route::get('/notificationmaker/{step}', 'NotificationMakerController@getMakerSte
 Route::post('/notificationmaker/{step}', 'NotificationMakerController@postMakerData')->where(['step' => '[1-4]']);
 
 Route::get('/notificationcalendarfeed', 'CalendarController@getEventJson');
+Route::get('/notification/view/{id}', 'NotificationController@viewNotification');
+Route::post('/notification/view/{id}', 'NotificationController@editNotification');
+Route::post('/notification/update/{id}', 'NotificationController@updateNotification');
 
 Route::post('/image-upload/{id}', 'ImageUploadController@upload');
 
@@ -56,6 +59,7 @@ Route::get('/testjson2', function(){
   ));
 });
 
+//these routes are for testing only
 Route::get('/generateDB', 'DataForDatabase@generateData');
-
 Route::get('/createNotif', 'DataForDatabase@createNotif');
+Route::get('/sendtestNotif', 'NotificationController@sendTestNotif');

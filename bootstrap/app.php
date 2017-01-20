@@ -15,6 +15,9 @@ $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
 
+class_alias(\LaravelFCM\Facades\FCM::class, 'FCM');
+class_alias(\LaravelFCM\Facades\FCMGroup::class, 'FCMGroup');
+
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
@@ -40,6 +43,8 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
+
+$app->register(LaravelFCM\FCMServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

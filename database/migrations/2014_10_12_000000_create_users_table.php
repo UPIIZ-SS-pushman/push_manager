@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('user_type_id')->unsigned()->index();
             $table->integer('sector_id')->unsigned()->index();
+            $table->string('firebase_key')->index()->nullable();;
             // $table->rememberToken();
             $table->timestamps();
         });

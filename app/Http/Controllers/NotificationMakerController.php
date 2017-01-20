@@ -110,7 +110,7 @@ class NotificationMakerController extends Controller
         case 3:
           $this->validate($request,[
             'time' => 'required|date_format:H:i',
-            'date' => 'required|date_format:d/m/Y|after:yesterday',
+            'date' => 'required|date_format:d/m/Y',
           ]);
           $maker->step = 4;
 
@@ -134,7 +134,7 @@ class NotificationMakerController extends Controller
             'title' => 'required|min:2|max:50',
             'body' => 'required|min:2|max:255',
             'send_time' => 'required|date_format:H:i',
-            'send_date' => 'required|date_format:d/m/Y|after:yesterday'
+            'send_date' => 'required|date_format:d/m/Y'
           ]);
           $individuals = $maker->getSelectedIndividuals();
           $sectors = $maker->getSelectedSectors();

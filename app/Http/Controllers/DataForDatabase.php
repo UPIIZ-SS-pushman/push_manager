@@ -93,7 +93,4 @@ class DataForDatabase extends Controller
       echo $notification->notification_log;
     }
 
-    public function createNotifMaker(){
-
-    }
 }
