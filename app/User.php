@@ -44,6 +44,10 @@ class User extends Authenticatable
       return $this->hasMany(IndividualSelect::class);
     }
 
+    public function notification_individuals(){
+      return $this->hasMany(NotificationIndividual::class);
+    }
+
     public function __toString(){
       return $this->surname.' '.$this->lastname;
     }

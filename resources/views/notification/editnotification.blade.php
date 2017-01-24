@@ -26,6 +26,14 @@
           Ver notificación
         @endif
       </header>
+      
+      @if($notification->notification_log->status == 1)
+        <button type="button" class="btn btn-success">Enviada</button>
+      @elseif($notification->notification_log->status == -1)
+        <button type="button" class="btn btn-danger">No enviada</button>
+      @elseif($notification->notification_log->status == 0)
+        <button type="button" class="btn btn-info">Programada</button>
+      @endif
       @if($errors->any())
       <span style="color: red;">Error:</span>
       <ul>
