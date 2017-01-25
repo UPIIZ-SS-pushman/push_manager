@@ -26,7 +26,7 @@
           Ver notificación
         @endif
       </header>
-      
+
       @if($notification->notification_log->status == 1)
         <button type="button" class="btn btn-success">Enviada</button>
       @elseif($notification->notification_log->status == -1)
@@ -121,7 +121,7 @@
 
       <div class="row">
         <a href="/c"><button type="button" class="btn btn-rounded btn-grey float-left">Cancelar</button></a>
-        @if($time->gt(\Carbon\Carbon::now('UTC')))
+        @if($time->gt(\Carbon\Carbon::now('UTC')->addMinutes(2)))
         <button type="submit" class="btn btn-rounded btn-success float-right">
           @if($editable=='')
             Guardar
