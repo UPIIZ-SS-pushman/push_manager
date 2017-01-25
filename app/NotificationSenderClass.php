@@ -44,8 +44,7 @@ class NotificationSenderClass
 
       if(!empty($tokens)){
         $downstreamResponse = FCM::sendTo($tokens, $option, $notification);
-        NotificationSenderClass::updateDBtokens($downstreamResponse);
-        return 0;
+        return NotificationSenderClass::updateDBtokens($downstreamResponse);
       }
       return 1;
     }
@@ -67,7 +66,12 @@ class NotificationSenderClass
       }
 
       //return Array - you should try to resend the message to the tokens in the array
-      $downstreamResponse->tokensToRetry();
+      if(!empty($downstreamResponse->tokensToRetry())){
+        return $downstreamResponse->tokensToRetry();
+      }else{
+        return 0;
+      }
+
     }
 }
 ?>
