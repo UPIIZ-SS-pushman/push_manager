@@ -342,7 +342,7 @@
 
 					<!-- usuarios -->
 	        <li class="blue-dirty">
-	            <a href="/u">
+	            <a href="/users">
 	                <span class="font-icon font-icon-user"></span>
 	                <span class="lbl">Usuarios</span>
 	            </a>

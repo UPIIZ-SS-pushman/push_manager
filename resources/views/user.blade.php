@@ -1,187 +1,132 @@
 <!-- <link rel="stylesheet" href="/css/build/css/separate/main.css"> -->
+
 @extends('layout')
+@extends('popups.userPopups')
 
 @section('content')
 
-              <h5 class="m-t-lg with-border m-t-0">Usuarios registrados en el sistema</h5>
+<h5 class="m-t-lg with-border m-t-0">Usuarios registrados en el sistema</h5>
 
+<!--foreach($sectors as $sec)
+<h5 class="m-t-lg with-border m-t-0"> $sec->name </h5>
+    foreach($sec->users as $us)
+         $us->name 
+    endforeach
+endforeach-->
 
-            <section class="widget widget-accordion" id="accordion" role="tablist" aria-multiselectable="true">
-          <article class="panel">
-            <div class="panel-heading" role="tab" id="headingOne">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                Sistemas computacionales
+<section class="widget widget-accordion" id="accordion" role="tablist" aria-multiselectable="true" style="z-index: 1;">
+<?php $counter = 0;
+
+$converter = array(
+ "",
+ "One",
+ "Two",
+ "Three",
+ "Four",
+ "Five",
+ "Six",
+ "Seven",
+ "Eight",
+ "Nine",
+ "Ten",
+ "Eleven",
+ "Twelve",
+ "Thirteen",
+ "Fourteen",
+ "Fifteen",
+ "Sixteen",
+ "Seventeen",
+ "Eighteen",
+ "Nineteen"
+);
+
+?>
+@foreach($sectors as $sec)
+<?php
+    $counter++;
+    $index = $converter[$counter];
+?>
+    <article class="panel">
+        <div class="panel-heading" role="tab" id="heading{{$index}}">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}" class="collapsed">
+                {{ $sec->name }}
                 <i class="font-icon font-icon-arrow-down"></i>
-              </a>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
-              <div class="panel-collapse-in">
-
+            </a>
+        </div>
+<!--         content -->
+        <div id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$index}}" aria-expanded="false" style="height: 0px;">
+            <div class="panel-collapse-in">
+<!--                 begin table -->
                 <section class="box-typical">
-
-              <header class="box-typical-header">
-                <div class="tbl-row">
-                  <div class="tbl-cell tbl-cell-title">
-                    <h3>3 Usuarios</h3>
-                  </div>
-                  <!--<div class="tbl-cell tbl-cell-action-bordered">
-                    <button type="button" class="action-btn"><i class="font-icon font-icon-pencil"></i></button>
-                  </div>-->
-                  <div class="tbl-cell tbl-cell-action-bordered">
-                    <button type="button" class="action-btn"><i class="font-icon font-icon-trash"></i></button>
-                  </div>
-                </div>
-              </header>
-
-              <table id="table-edit2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                          <th></th>
-                  <th width="1">ID</th>
-                  <th>Nombre</th>
-                  <th>Correo</th>
-                          <th>Tipo</th>
-                          <th width="300">Sector</th>
-                          <th>Fecha de creación</th>
-
-                  <!--<th class="table-icon-cell">
-                    <i class="font-icon font-icon-heart"></i>
-                  </th>
-                  <th class="table-icon-cell">
-                    <i class="font-icon font-icon-comment"></i>
-                  </th>-->
-
-                  <th>Usuario</th>
-                  <th></th>
-                </tr>
-                </thead>
-
-                <tbody>
-                  <tr>
-                              <td>
-                  <div class="checkbox checkbox-only">
-                    <input id="table-check-1" type="checkbox">
-                    <label for="table-check-1"></label>
-                  </div>
-                              </td>
-
-                    <td>1</td>
-                    <td>Edu Javier Reyes</td>
-                    <td>email@correo.com.mx</td>
-                              <td class="table-icon-cell">Alumno</td>
-                              <td class="table-icon-cell">Sistemac computacionales</td>
-                              <td class="table-icon-cell">01/01/2017</td>
-                    <!--<td class="table-icon-cell">5</td>
-                    <td class="table-icon-cell">24</td>-->
-                    <td class="table-photo">
-                      <img src="template/img/photo-64-1.jpg" alt="" data-toggle="tooltip" data-placement="bottom" title="Nicholas<br/>Barrett">
-                    </td>
-
-                    <td>
-
-                                  <button type="button" class="btn btn-inline btn-warning-outline"><i class="font-icon font-icon-pencil"></i></button>
-                                  <button type="button" class="btn btn-inline btn-danger-outline"><i class="font-icon font-icon-trash"></i></button>
-
-                              </td>
-                  </tr>
-
-
-                </tbody>
-              </table>
-            </section><!--.box-typical-->
-
-              </div>
+                    <header class="box-typical-header">
+                        <div class="tbl-row">
+                            <div class="tbl-cell tbl-cell-title">
+                                <h3>{{ $sec->users->count() }} Usuarios</h3>
+                            </div>
+                            <div class="tbl-cell tbl-cell-action-bordered">
+                                <button type="button" class="action-btn" onclick="div_show2()"><i class="font-icon font-icon-trash"></i></button>
+                            </div>
+                        </div>
+                    </header>
+                    
+                     <div class="pre-scrollable">
+                        <table id="table-edit2" class="table table-bordered table-hover">
+<!--                             titles -->
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th width="1">ID</th>
+                                    <th>Usuario</th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>Correo</th>
+                                    <th>Tipo</th>
+                                    <th>Sector</th>
+                                    <th>Fecha de creación</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                @foreach($sec->users as $us)
+                                <tr>
+                                    <td>
+                                        <div class="checkbox checkbox-only" style="z-index: 1;">
+                                            <input id="table-check-{{$us->id}}" type="checkbox">
+                                            <label for="table-check-{{$us->id}}"></label>
+                                        </div>
+                                    </td>
+                            
+    <!--                         begin data -->
+                                    <td class="table-icon-cell">{{ $us->id }}</td>
+                                    <td>{{ $us->username }}</td>
+                                    <td>{{ $us->name }}</td>
+                                    <td>{{ $us->lastname }}</td>
+                                    <td>{{ $us->email }}</td>
+                                    <td>{{ $us->user_type->name }}</td>
+                                    <td>{{ $us->sector->name }}</td>
+                                    <td class="table-icon-cell">{{ $us->created_at }}</td>
+    <!--                         actions -->
+                                    <td>
+                                        <button type="button" class="btn btn-inline btn-warning-outline" onclick="div_show({{$us->id}}, '{{$us->username}}', '{{$us->name}}', '{{$us->lastname}}', '{{$us->email}}', {{$us->user_type->id}}, {{$us->sector->id}})"><i class="font-icon font-icon-pencil"></i></button>
+                                        <button type="button" class="btn btn-inline btn-danger-outline" onclick="div_show3({{$us->id}})"><i class="font-icon font-icon-trash"></i></button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+<!--                     end titles -->
+                        </table>
+                     </div>
+                </section>
             </div>
-          </article>
-
-          <article class="panel">
-            <div class="panel-heading" role="tab" id="headingTwo">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">
-                Mecatronica
-                <i class="font-icon font-icon-arrow-down"></i>
-              </a>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
-              <div class="panel-collapse-in">
-
-                <section class="box-typical">
-
-              <header class="box-typical-header">
-                <div class="tbl-row">
-                  <div class="tbl-cell tbl-cell-title">
-                    <h3>2Usuarios</h3>
-                  </div>
-                  <div class="tbl-cell tbl-cell-action-bordered">
-                    <button type="button" class="action-btn"><i class="font-icon font-icon-pencil"></i></button>
-                  </div>
-                  <div class="tbl-cell tbl-cell-action-bordered">
-                    <button type="button" class="action-btn"><i class="font-icon font-icon-trash"></i></button>
-                  </div>
-                </div>
-              </header>
-
-              <table id="table-edit" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th width="1">ID</th>
-                  <th>Nombre</th>
-                  <th>Correo</th>
-                          <th>Tipo</th>
-                          <th width="300">Sector</th>
-                          <th>Fecha de creación</th>
-
-                  <th class="table-icon-cell">
-                    <i class="font-icon font-icon-heart"></i>
-                  </th>
-                  <th class="table-icon-cell">
-                    <i class="font-icon font-icon-comment"></i>
-                  </th>
-
-                  <th></th>
-                </tr>
-                </thead>
-
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Edu Javier Reyes</td>
-                    <td>email@correo.com.mx</td>
-                              <td class="table-icon-cell">Alumno</td>
-                              <td class="table-icon-cell">Sistemac computacionales</td>
-                              <td class="table-icon-cell">01/01/2017</td>
-                    <td class="table-icon-cell">5</td>
-                    <td class="table-icon-cell">24</td>
-                    <td class="table-photo">
-                      <img src="template/img/photo-64-1.jpg" alt="" data-toggle="tooltip" data-placement="bottom" title="Nicholas<br/>Barrett">
-                    </td>
-                  </tr>
-
-
-                </tbody>
-              </table>
-            </section><!--.box-typical-->
-
-              </div>
-            </div>
-          </article>
-
-
-        </section>
-
+        </div>
+    </article>
+@endforeach
+</section>
 
 @stop
 
 @section('scripts')
-<script src="template/js/lib/table-edit/jquery.tabledit.min.js"></script>
-<script>
-$(function () {
-  $('#table-edit').Tabledit({
-    url: 'example.php',
-    columns: {
-      identifier: [0, 'id'],
-      editable: [[1, 'nombre'], [2, 'correo'], [3, 'tipo'], [4, 'sector']]
-    }
-  });
-});
-</script>
+<script src="{{ URL::asset('template/js/lib/bootstrap-select/bootstrap-select.min.js') }}"></script>
+<script src="{{ URL::asset('template/js/lib/select2/select2.full.min.js') }}"></script>
 @stop

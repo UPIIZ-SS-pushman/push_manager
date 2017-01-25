@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/u', function(){
-  return view('user');
-});
-
 Route::get('/h', function(){
   return view('history');
 });
@@ -33,6 +29,8 @@ Route::get('/c', function(){
 Route::get('/d', function(){
   return view('dashboard');
 });
+
+Route::get('/users', 'UserController@sectors');
 
 Route::get('/notificationmaker', 'NotificationMakerController@getMaker');
 Route::get('/notificationmaker/{step}', 'NotificationMakerController@getMakerStep')->where(['step' => '[1-4]']);
