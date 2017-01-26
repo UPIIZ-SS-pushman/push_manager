@@ -26,8 +26,7 @@ PushManager - Página principal
                       <h3 class="panel-title">Notificación rápida</h3>
                   </header>
                   <div class="box-typical-body panel-body">
-                      <article class="comment-item">
-                          <div class="user-card-row">
+                          <!-- <div class="user-card-row">
                               <div class="tbl-row">
                                   <div class="tbl-cell tbl-cell-photo">
                                       <a href="#">
@@ -42,19 +41,17 @@ PushManager - Página principal
                                       12:45
                                   </div>
                               </div>
-                          </div>
+                          </div> -->
+                          <form method="POST" action="/quick">
                           <div class="comment-item-txt">
-                              <p>Aquí van los campos para enviar la notificación</p>
+                              <label class="form-control-label">Título</label>
+                              <input class="form-control" placeholder="Título" name="title" type="text">
+                              <label class="form-control-label">Contenido</label>
+                              <textarea rows="2" class="form-control" placeholder="Contenido" name="body" cols="50"></textarea>
+                              <button type="submit" class="btn btn-rounded btn-success float-right">Enviar <i class="font-icon font-icon-check-bird"></i></button>
                           </div>
-                          <div class="comment-item-meta">
-                              <a href="#" class="star">
-                                  <i class="font-icon font-icon-star"></i>
-                              </a>
-                              <a href="#">
-                                  <i class="font-icon font-icon-re"></i>
-                              </a>
-                          </div>
-                      </article>
+                          </form>
+                      
                   </div><!--.box-typical-body-->
               </section>
           </div><!--.col-->
@@ -118,4 +115,8 @@ PushManager - Página principal
     }
 });
 </script>
+
+  <script src="{{ URL::asset('template/js/lib/jqueryui/jquery-ui.min.js') }}"></script>
+  <script src="{{ URL::asset('template/js/lib/lobipanel/lobipanel.min.js') }}"></script>
+  <script src="{{ URL::asset('template/js/lib/match-height/jquery.matchHeight.min.js') }}"></script>
 @stop
