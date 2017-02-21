@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	@yield('header')
+	
 	<title>StartUI - Premium Bootstrap 4 Admin Dashboard Template</title>
 
 	<link href="{{ URL::asset('template/img/favicon.144x144.png') }}" rel="apple-touch-icon" type="image/png" sizes="144x144">
@@ -330,7 +332,7 @@
 					<!-- historial -->
 	        <li class="green with-sub">
 	            <span>
-	                <i class="font-icon font-icon-widget"></i>
+	                <i class="glyphicon glyphicon-th"></i>
 	                <span class="lbl">Historial</span>
 	            </span>
 	            <ul>
@@ -348,6 +350,24 @@
 	            </a>
 	        </li>
 					<!-- fin usuarios -->
+            
+					<!-- sectores -->
+            <li class="gold with-sub">
+	            <a href="/sectors">
+	                <span class="font-icon font-icon-widget"></span>
+	                <span class="lbl">Sectores</span>
+	            </a>
+	        </li>
+					<!-- fin sectores -->
+                
+					<!-- tipos -->
+	        <li class="brown with-sub">
+	            <a href="/types">
+	                <span class="font-icon font-icon-contacts"></span>
+	                <span class="lbl">Tipos de usuario</span>
+	            </a>
+	        </li>
+					<!-- fin tipos -->
 
 	    </ul>
 	</nav>

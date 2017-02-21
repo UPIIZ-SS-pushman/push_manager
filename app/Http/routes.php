@@ -30,7 +30,11 @@ Route::get('/d', function(){
   return view('dashboard');
 });
 
-Route::get('/users', 'UserController@sectors');
+Route::get('/users', 'UserController@present');
+Route::delete('/users', 'UserController@deleteUser');
+Route::patch('/users', 'UserController@updateUser');
+Route::put('/users', 'UserController@createUser');
+Route::post('/users', 'UserController@deleteUsers');
 
 Route::get('/notificationmaker', 'NotificationMakerController@getMaker');
 Route::get('/notificationmaker/{step}', 'NotificationMakerController@getMakerStep')->where(['step' => '[1-4]']);

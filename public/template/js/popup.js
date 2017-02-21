@@ -1,51 +1,181 @@
-
-// Validating Empty Field
+// Validating Empty Field userUpdatePopup
 function check_empty() {
-if (document.getElementById('namePop').value == "" || document.getElementById('userPop').value == "" || document.getElementById('lastnamePop').value == "" || document.getElementById('emailPop').value == "" || document.getElementById('typePop').value == "" || document.getElementById('sectorPop').value == "") {
-alert("Por favor llene todos los campos");
-} else {
-document.getElementById('formPop').submit();
-alert("Actualización correcta...");
-}
-}
-//Function To Display Popup
-function div_show(id, username, name, lastname, email, type, sector) {
-document.getElementById('userPop').value=username;
-document.getElementById('namePop').value=name;
-document.getElementById('lastnamePop').value=lastname;
-document.getElementById('emailPop').value=email;
-
-$("#typePop").val(type);
-$("#typePop").change();
-
-$("#sectorPop").val(sector);
-$("#sectorPop").change();
-
-document.getElementById('abc').style.display = "block";
-}
-//Function to Hide Popup
-function div_hide(){
-document.getElementById('abc').style.display = "none";
+    if (document.getElementById('namePop').value == "" || document.getElementById('userPop').value == "" || document.getElementById('lastnamePop').value == "" || document.getElementById('emailPop').value == "" || document.getElementById('typePop').value == "" || document.getElementById('sectorPop').value == "") {
+        cancelPopup("¡Error!", "Llene todos los campos");
+    } else {
+        swal({
+            title: "¡Actualizando!",
+            text: "Realizando cambios en la base de datos..",
+            type: "success",
+            timer: 1500,
+            showConfirmButton: false
+        },
+        function(){
+            document.getElementById('formPop').submit();
+        });
+    }
 }
 
-// Confirm all
-function div_show2(){
-document.getElementById('abc2').style.display = "block";
-}
-function div_hide2(){
-document.getElementById('abc2').style.display = "none";
-}
-function deleteRegAll(){
-document.getElementById('formPop2').submit();
+//Function To Display userUpdatePopup
+function updateUserShow(id, username, name, lastname, email, type, sector) {
+    document.getElementById('idPop').value=id;
+    
+    document.getElementById('userPop').value=username;
+    document.getElementById('namePop').value=name;
+    document.getElementById('lastnamePop').value=lastname;
+    document.getElementById('emailPop').value=email;
+
+    $("#typePop").val(type);
+    $("#typePop").change();
+
+    $("#sectorPop").val(sector);
+    $("#sectorPop").change();
+
+    document.getElementById('updateUserDiv').style.display = "block";
 }
 
-// Confirm one
-function div_show3(id){
-document.getElementById('abc3').style.display = "block";
+//Function to Hide userUpdatePopup
+function updateUserHide(){
+    document.getElementById('updateUserDiv').style.display = "none";
+    cancelPopup("¡Cancelado!", "Se cancelo la actualización del usuario...");
 }
-function div_hide3(){
-document.getElementById('abc3').style.display = "none";
+
+// create one user
+// Validating Empty Field createUserDiv
+function check_empty2() {
+    if (document.getElementById('namePop2').value == "" || document.getElementById('userPop2').value == "" || document.getElementById('lastnamePop2').value == "" || document.getElementById('emailPop2').value == "" || document.getElementById('password').value == "" || document.getElementById('typePop').value == "" || document.getElementById('sectorPop').value == "") {
+        cancelPopup("¡Error!", "Llene todos los campos");
+    } else {
+        swal({
+            title: "¡Creando usuario!",
+            text: "Realizando cambios en la base de datos..",
+            type: "success",
+            timer: 1500,
+            showConfirmButton: false
+        },
+        function(){
+            document.getElementById('formPop2').submit();
+        });
+    }
 }
-function deleteReg(){
-document.getElementById('formPop3').submit();
+
+// Show createUserDiv
+function createUserShow(id){    
+    document.getElementById('userPop2').value="";
+    document.getElementById('namePop2').value="";
+    document.getElementById('lastnamePop2').value="";
+    document.getElementById('emailPop2').value="";
+    document.getElementById('password').value="";
+
+    $("#typePop2").val(2);
+    $("#typePop2").change();
+
+    $("#sectorPop2").val(id);
+    $("#sectorPop2").change();
+    
+    document.getElementById('createUserDiv').style.display = "block";
 }
+// Hide createUserDiv
+function createUserhide(){
+    document.getElementById('createUserDiv').style.display = "none";
+    cancelPopup("¡Cancelado!", "Se cancelo la creación de un usuario...");
+}
+
+// Confirm delete multiple users
+function delMultipleUser(){
+    if(stack.length <= 1){
+        cancelPopup("¡Error!", "No seleccionó suficientes registros");
+    } else{
+        swal({
+            title: "¿Désea eliminar los siguientes registros?",
+            text: "Eliminarán: " + stack,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn btn-rounded btn-inline btn-danger",
+            confirmButtonText: "Si",
+            cancelButtonClass: "btn btn-rounded btn-inline btn-primary",
+            cancelButtonText: "No",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm){
+            if(isConfirm){
+                $.post("/users",{ids:stack},
+                function(data,status){
+                    swal({
+                        title: "¡Eliminado!",
+                        text: "Los registros se han eliminado",
+                        type: "success",
+                        timer: 1500,
+                        showConfirmButton: false
+                    },
+                    function(){
+                        location.reload(); 
+                    });
+                });
+            } else {
+                cancelPopup("¡Cancelado!", "Se cancelo la operación...");
+            }
+        });
+    }   
+}
+
+// Confirm delete oneUser
+function delOneUser(id, username, type){
+    swal({
+        title: "¿Désea eliminar el registro?",
+        text: "Eliminará a el "  + type + " " + username,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn btn-rounded btn-inline btn-danger",
+        confirmButtonText: "Si",
+        cancelButtonClass: "btn btn-rounded btn-inline btn-primary",
+        cancelButtonText: "No",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function(isConfirm) {
+        if (isConfirm) {
+            swal({
+                title: "¡Eliminado!",
+                text: "El registro se ha eliminado",
+                type: "success",
+                timer: 1500,
+                showConfirmButton: false
+            },
+            function(){
+                document.getElementById('idDel').value = id;
+                document.getElementById('formDel').submit();
+            });
+                
+        } else {
+            cancelPopup("¡Cancelado!", "Se cancelo la operación...");
+        }
+    });
+}
+
+// General functions
+function cancelPopup(message, message2){
+    swal({
+        title: message,
+        text: message2,
+        type: "error",
+        timer: 1000,
+        showConfirmButton: false
+    });
+}
+
+var stack = [];
+function delMultipleUserArray(id){
+    for(var i = 0; i < stack.length; i++){
+        if(stack[i] == id){
+            stack.splice( i, 1 );            
+            return;
+        }
+    }
+    stack.push(id);    
+}
+
+$(document).ready(function(){
+    $(':checkbox:checked').prop('checked',false);
+});
