@@ -65,3 +65,22 @@ Route::get('/testjson2', function(){
 Route::get('/generateDB', 'DataForDatabase@generateData');
 Route::get('/createNotif', 'DataForDatabase@createNotif');
 Route::get('/sendtestNotif', 'NotificationController@sendTestNotif');
+Route::get('/scheduler-run-scheduled-tasks', function(){
+  $pendingNotifs = Notification::whereBetween('sent', [Carbon::now()->subMinutes(2), Carbon::now()])->get();//get notifications from the last two minutes
+  foreach($pendingNotifs as $not){
+    if($not->notification_log->status == 0){//if notification hasn't been sent
+      //send notification and update status
+      $status = NotificationSenderClass::sendNotification($not);
+      if($status == 0){
+        $not->notification_log->status = 1;//notification sent
+      }else if(is_array($status)){//check tokens to retry
+        Log::warning("Couldn't send notification to some users: ".var_dump($status));
+        $not->notification_log->status = 1;//notification sent
+      }else{//notification not sent
+        $not->notification_log->status = -1;//couldn't send notification
+      }
+      $not->notification_log->save();
+    }
+  }
+  return '';
+});
