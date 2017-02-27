@@ -58,13 +58,13 @@ class Kernel extends ConsoleKernel
         })->everyMinute();
 
         $schedule->call(function () {
-          $pendingNotifs = Notification::whereBetween('sent', Carbon::now()->subDay(), Carbon::now()->subHour())->get();//get notifications programed between yesterday and last hour
+          $pendingNotifs = Notification::whereBetween('sent', [Carbon::now()->subDay(), Carbon::now()])->get();//get notifications programed between yesterday and last hour
           foreach($pendingNotifs as $not){
             if($not->notification_log->status == 0){//if notification hasn't been sent
               $not->notification_log->status = -1;//mark notifiction as not sent since its time passed
               $not->notification_log->save();
             }
           }
-        })->daily();
+        })->everyMinute();
     }
 }
