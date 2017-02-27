@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	@yield('header')
-	
-	<title>StartUI - Premium Bootstrap 4 Admin Dashboard Template</title>
+
+	<title>@yield('title')</title>
 
 	<link href="{{ URL::asset('template/img/favicon.144x144.png') }}" rel="apple-touch-icon" type="image/png" sizes="144x144">
 	<link href="{{ URL::asset('template/img/favicon.114x114.png') }}" rel="apple-touch-icon" type="image/png" sizes="114x114">
@@ -44,62 +44,7 @@
 	        <div class="site-header-content">
 	            <div class="site-header-content-in">
 	                <div class="site-header-shown">
-	                    <div class="dropdown dropdown-notification notif">
-	                        <a href="#"
-	                           class="header-alarm dropdown-toggle active"
-	                           id="dd-notification"
-	                           data-toggle="dropdown"
-	                           aria-haspopup="true"
-	                           aria-expanded="false">
-	                            <i class="font-icon-alarm"></i>
-	                        </a>
-													<!-- notificaciones -->
-	                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-notif" aria-labelledby="dd-notification">
-	                            <div class="dropdown-menu-notif-header">
-	                                Notificaciones
-	                                <span class="label label-pill label-danger">4</span>
-	                            </div>
-	                            <div class="dropdown-menu-notif-list">
-	                                <div class="dropdown-menu-notif-item">
-	                                    <div class="photo">
-	                                        <img src="{{ URL::asset('template/img/photo-64-1.jpg') }}" alt="">
-	                                    </div>
-	                                    <div class="dot"></div>
-	                                    <a href="#">Morgan</a> was bothering about something
-	                                    <div class="color-blue-grey-lighter">hace 7 horas</div>
-	                                </div>
-	                                <div class="dropdown-menu-notif-item">
-	                                    <div class="photo">
-	                                        <img src="{{ URL::asset('template/img/photo-64-2.jpg') }}" alt="">
-	                                    </div>
-	                                    <div class="dot"></div>
-	                                    <a href="#">Lioneli</a> had commented on this <a href="#">Super Important Thing</a>
-	                                    <div class="color-blue-grey-lighter">hace 7 horas</div>
-	                                </div>
-	                                <div class="dropdown-menu-notif-item">
-	                                    <div class="photo">
-	                                        <img src="{{ URL::asset('template/img/photo-64-3.jpg') }}" alt="">
-	                                    </div>
-	                                    <div class="dot"></div>
-	                                    <a href="#">Xavier</a> had commented on the <a href="#">Movie title</a>
-	                                    <div class="color-blue-grey-lighter">hace 7 horas</div>
-	                                </div>
-	                                <div class="dropdown-menu-notif-item">
-	                                    <div class="photo">
-	                                        <img src="{{ URL::asset('template/img/photo-64-4.jpg') }}" alt="">
-	                                    </div>
-	                                    <a href="#">Lionely</a> wants to go to <a href="#">Cinema</a> with you to see <a href="#">This Movie</a>
-	                                    <div class="color-blue-grey-lighter">hace 7 horas</div>
-	                                </div>
-	                            </div>
-	                            <div class="dropdown-menu-notif-more">
-	                                <a href="#">Ver más</a>
-	                            </div>
-	                        </div>
-													<!-- notificaciones -->
-	                    </div>
-
-											<!-- notificaciones2 -->
+	                    											<!-- notificaciones2 -->
 	                    <div class="dropdown dropdown-notification messages">
 	                        <a href="#"
 	                           class="header-alarm dropdown-toggle active"
@@ -195,18 +140,14 @@
 	                            <img src="{{ URL::asset('template/img/avatar-2-64.png') }}" alt="">
 	                        </button>
 	                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
-	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-user"></span>Perfil</a>
-	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-cog"></span>Configuración</a>
-	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-question-sign"></span>Ayuda</a>
+	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-user"></span>{{Auth::user()->name}} {{Auth::user()->lastname}}</a>
+	                            <!-- <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-cog"></span>Configuración</a>
+	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-question-sign"></span>Ayuda</a> -->
 	                            <div class="dropdown-divider"></div>
-	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-log-out"></span>Salir</a>
+	                            <a class="dropdown-item" href="{{ url('/logout') }}"><span class="font-icon glyphicon glyphicon-log-out"></span>Salir</a>
 	                        </div>
 	                    </div>
 											<!-- fin usuario administrador -->
-
-	                    <button type="button" class="burger-right">
-	                        <i class="font-icon-menu-addl"></i>
-	                    </button>
 
 	                </div><!--.site-header-shown-->
 
@@ -223,56 +164,6 @@
 	                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Third Party Test</a> -->
 	                            </div>
 	                        </div>
-
-													<!-- medios -->
-	                        <div class="dropdown dropdown-typical">
-	                            <a class="dropdown-toggle" id="dd-header-social" data-target="#" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                                <span class="font-icon font-icon-share"></span>
-	                                <span class="lbl">Redes sociales</span>
-	                            </a>
-
-	                            <div class="dropdown-menu" aria-labelledby="dd-header-social">
-	                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Facebook</a>
-	                                <!-- <a class="dropdown-item" href="#"><span class="font-icon font-icon-cart"></span>Real Gmat Test</a>
-	                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-speed"></span>Prep Official App</a>
-	                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>CATprer Test</a>
-	                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Third Party Test</a> -->
-	                            </div>
-	                        </div>
-													<!-- medios -->
-
-												  <!-- boton add -->
-	                        <div class="dropdown">
-	                            <button class="btn btn-rounded dropdown-toggle" id="dd-header-add" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                                Agregar
-	                            </button>
-	                            <div class="dropdown-menu" aria-labelledby="dd-header-add">
-	                                <a class="dropdown-item" href="#">Algo</a>
-	                                <!-- <a class="dropdown-item" href="#">Real Gmat Test</a>
-	                                <a class="dropdown-item" href="#">Prep Official App</a>
-	                                <a class="dropdown-item" href="#">CATprer Test</a>
-	                                <a class="dropdown-item" href="#">Third Party Test</a> -->
-	                            </div>
-	                        </div>
-													<!-- fin boton add -->
-
-
-	                        <a class="btn btn-nav btn-rounded btn-inline btn-danger-outline" href="" onclick="return alert('Demonios :v');">
-	                            Emergencia
-	                        </a>
-
-													<!-- boton busqueda -->
-	                        <div class="site-header-search-container">
-	                            <form class="site-header-search closed">
-	                                <input type="text" placeholder="Buscar"/>
-	                                <button type="submit">
-	                                    <span class="font-icon-search"></span>
-	                                </button>
-	                                <div class="overlay"></div>
-	                            </form>
-	                        </div>
-													<!-- fin boton busqueda -->
-
 	                    </div><!--.site-header-collapsed-in-->
 	                </div><!--.site-header-collapsed-->
 	            </div><!--site-header-content-in-->
@@ -284,25 +175,23 @@
 
 	<!--//Begin lateral menu section -->
 
-
-
 	<!--//Begin lateral menu section -->
 	<div class="mobile-menu-left-overlay"></div>
 	<nav class="side-menu">
 	    <ul class="side-menu-list">
 
 	        <li class="red with-sub">
-						<!-- calendario -->
+						<a href="/dashboard">
 							<span>
 								<i class="font-icon font-icon-calend"></i>
 								<span class="lbl">Dashboard</span>
 	            </span>
 	            <ul>
-	                <li><a href="widgets.html"><span class="lbl">Opción 1</span></a></li>
-	                <li><a href="elements.html"><span class="lbl">Opción 2</span></a></li>
+	                <!-- <li><a href="widgets.html"><span class="lbl">Opción 1</span></a></li>
+	                <li><a href="elements.html"><span class="lbl">Opción 2</span></a></li> -->
 	            </ul>
+						</a>
 	        </li>
-					<!-- fin calendario -->
 
 					<!-- mensajes -->
 	        <li class="purple with-sub">
@@ -336,8 +225,8 @@
 	                <span class="lbl">Historial</span>
 	            </span>
 	            <ul>
-	                <li><a href="/c"><span class="lbl">Calendario (Resumen)</span></a></li>
-	                <li><a href="/h"><span class="lbl">Tabla (Detalle)</span></a></li>
+	                <li><a href="/calendar"><span class="lbl">Calendario (Resumen)</span></a></li>
+	                <!-- <li><a href="/h"><span class="lbl">Tabla (Detalle)</span></a></li> -->
 	            </ul>
 	        </li>
 					<!-- fin historial -->
@@ -350,7 +239,7 @@
 	            </a>
 	        </li>
 					<!-- fin usuarios -->
-            
+
 					<!-- sectores -->
             <li class="gold with-sub">
 	            <a href="/sectors">
@@ -359,7 +248,7 @@
 	            </a>
 	        </li>
 					<!-- fin sectores -->
-                
+
 					<!-- tipos -->
 	        <li class="brown with-sub">
 	            <a href="/types">
@@ -389,8 +278,7 @@
 	<script src="{{ URL::asset('template/js/lib/tether/tether.min.js') }}"></script>
 	<script src="{{ URL::asset('template/js/lib/bootstrap/bootstrap.min.js') }}"></script>
 	<script src="{{ URL::asset('template/js/plugins.js') }}"></script>
-
-
+	
 	@yield('scripts')
 	<script src="{{ URL::asset('template/js/app.js') }}"></script>
 </body>

@@ -2,7 +2,13 @@
 
     <?php $files = File::allFiles("img/dashboard");?>
     @foreach ($files as $file)
+      <?php 
+        $filename = pathinfo($file);
+        $validImg = $filename['extension'] == "jpg" || $filename['extension'] == "png";
+      ?>
+      @if($validImg)
       <img class="dashboard-gallery" src="{{$file}}" style='height: 100%; width: 100%; object-fit: contain'/>
+      @endif
     @endforeach
 
   <a class="w3-btn-floating" style="position:absolute;top:45%;left:0" onclick="plusDivs(-1)">&#10094;</a>

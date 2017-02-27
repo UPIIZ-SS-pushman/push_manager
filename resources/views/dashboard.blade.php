@@ -1,4 +1,8 @@
 @extends('layout')
+
+@section('title')
+PushManager - Página principal
+@stop
 @section('content')
 <h5 class="m-t-lg with-border m-t-0">Página principal</h5>
 

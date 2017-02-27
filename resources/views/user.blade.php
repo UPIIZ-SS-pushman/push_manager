@@ -1,7 +1,9 @@
 <!-- <link rel="stylesheet" href="/css/build/css/separate/main.css"> -->
 
 @extends('layout')
-
+@section('title')
+PushManager - Lista de usuarios
+@stop
 @section('header')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @stop
@@ -90,7 +92,7 @@ $converter = array(
                             </div>
                         </div>
                     </header>
-                    
+
                      <div class="pre-scrollable">
                         <table id="table-edit2" class="table table-bordered table-hover">
 <!--                             titles -->
@@ -108,7 +110,7 @@ $converter = array(
                                     <th></th>
                                 </tr>
                             </thead>
-                            
+
                             <tbody>
                                 @foreach($sec->users as $us)
                                 <tr>
@@ -118,7 +120,7 @@ $converter = array(
                                             <label for="check-bird-{{$us->id}}"></label>
                                         </div>
                                     </td>
-                            
+
     <!--                         begin data -->
                                     <td class="table-icon-cell">{{ $us->id }}</td>
                                     <td>{{ $us->username }}</td>

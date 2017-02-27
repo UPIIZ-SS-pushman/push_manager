@@ -12,40 +12,44 @@
 */
 
 Route::get('/', function () {
+  if(Auth::guest()){
     return view('welcome');
+  }else {
+    return view('dashboard');
+  }
 });
 
-Route::get('/h', function(){
-  return view('history');
-});
+// Route::get('/h', function(){
+//   return view('history');
+// });
 
-Route::get('/m', function(){
+Route::get('/viewMessages', function(){
   return view('messages');
-});
+})->middleware('auth');
 
-Route::get('/c', function(){
+Route::get('/calendar', function(){
   return view('calendar');
-});
-Route::get('/d', function(){
+})->middleware('auth');
+Route::get('/dashboard', function(){
   return view('dashboard');
-});
+})->middleware('auth');
 
-Route::get('/users', 'UserController@present');
-Route::delete('/users', 'UserController@deleteUser');
-Route::patch('/users', 'UserController@updateUser');
-Route::put('/users', 'UserController@createUser');
-Route::post('/users', 'UserController@deleteUsers');
+Route::get('/users', 'UserController@present')->middleware('auth');
+Route::delete('/users', 'UserController@deleteUser')->middleware('auth');
+Route::patch('/users', 'UserController@updateUser')->middleware('auth');
+Route::put('/users', 'UserController@createUser')->middleware('auth');
+Route::post('/users', 'UserController@deleteUsers')->middleware('auth');
 
-Route::get('/notificationmaker', 'NotificationMakerController@getMaker');
-Route::get('/notificationmaker/{step}', 'NotificationMakerController@getMakerStep')->where(['step' => '[1-4]']);
-Route::post('/notificationmaker/{step}', 'NotificationMakerController@postMakerData')->where(['step' => '[1-4]']);
+Route::get('/notificationmaker', 'NotificationMakerController@getMaker')->middleware('auth');
+Route::get('/notificationmaker/{step}', 'NotificationMakerController@getMakerStep')->where(['step' => '[1-4]'])->middleware('auth');
+Route::post('/notificationmaker/{step}', 'NotificationMakerController@postMakerData')->where(['step' => '[1-4]'])->middleware('auth');
 
-Route::get('/notificationcalendarfeed', 'CalendarController@getEventJson');
-Route::get('/notification/view/{id}', 'NotificationController@viewNotification');
-Route::post('/notification/view/{id}', 'NotificationController@editNotification');
-Route::post('/notification/update/{id}', 'NotificationController@updateNotification');
+Route::get('/notificationcalendarfeed', 'CalendarController@getEventJson')->middleware('auth');
+Route::get('/notification/view/{id}', 'NotificationController@viewNotification')->middleware('auth');
+Route::post('/notification/view/{id}', 'NotificationController@editNotification')->middleware('auth');
+Route::post('/notification/update/{id}', 'NotificationController@updateNotification')->middleware('auth');
 
-Route::post('/image-upload/{id}', 'ImageUploadController@upload');
+Route::post('/image-upload/{id}', 'ImageUploadController@upload')->middleware('auth');
 
 Route::get('/testjson', function(){
   return Response::json(array(
@@ -65,6 +69,7 @@ Route::get('/testjson2', function(){
 Route::get('/generateDB', 'DataForDatabase@generateData');
 Route::get('/createNotif', 'DataForDatabase@createNotif');
 Route::get('/sendtestNotif', 'NotificationController@sendTestNotif');
+
 Route::get('/scheduler-run-scheduled-tasks', function(){
   $pendingNotifs = Notification::whereBetween('sent', [Carbon::now()->subMinutes(2), Carbon::now()])->get();//get notifications from the last two minutes
   foreach($pendingNotifs as $not){
@@ -84,3 +89,10 @@ Route::get('/scheduler-run-scheduled-tasks', function(){
   }
   return '';
 });
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+// Route::get('/home', function(){
+//   return view('dashboard');
+// });

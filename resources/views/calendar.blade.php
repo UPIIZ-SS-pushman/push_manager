@@ -1,5 +1,7 @@
 @extends('layout')
-
+@section('title')
+PushManager - Calendario de notificaciones
+@stop
 @section('style')
 <link rel="stylesheet" href="template/css/lib/fullcalendar/fullcalendar.min.css">
 @stop

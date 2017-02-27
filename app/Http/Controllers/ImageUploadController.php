@@ -13,7 +13,15 @@ class ImageUploadController extends Controller
         return 'Error: No hay ningún archivo';
       }
       $destinationPath = 'img/dashboard';
+
+
       $filename = $id.'.'.$file->getClientOriginalExtension();
+      foreach(glob($destinationPath."/".$id.".*") as $ftd){
+        if(!unlink($ftd)){
+          file_put_contents($destinationPath."log.txt", "error deleting file: ".$ftd);
+        }
+
+      }
 
       $upload_success = $request->file('file')->move($destinationPath, $filename);
 

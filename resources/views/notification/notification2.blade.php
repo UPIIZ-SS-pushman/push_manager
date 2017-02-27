@@ -1,5 +1,7 @@
 @extends('layout')
-
+@section('title')
+PushManager - Crear notificación (2/4)
+@stop
 @section('style')
 <link rel="stylesheet" href="{{ URL::asset('template/css/lib/fullcalendar/fullcalendar.min.css') }}">
 @stop

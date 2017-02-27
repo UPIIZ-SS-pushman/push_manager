@@ -1,5 +1,7 @@
 @extends('layout')
-
+@section('title')
+PushManager - Mensajes del administrador
+@stop
 @section('style')
 
 

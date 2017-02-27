@@ -1,5 +1,7 @@
 @extends('layout')
-
+@section('title')
+PushManager - Editar notificación
+@stop
 @section('style')
 <!-- <link rel="stylesheet" src="{{ URL::asset('template/css/lib/fullcalendar/fullcalendar.min.css') }}"> -->
 <link rel="stylesheet" href="{{ URL::asset('template/css/lib/clockpicker/bootstrap-clockpicker.min.css') }}">
@@ -120,7 +122,7 @@
       </div>
 
       <div class="row">
-        <a href="/c"><button type="button" class="btn btn-rounded btn-grey float-left">Cancelar</button></a>
+        <a href="/calendar"><button type="button" class="btn btn-rounded btn-grey float-left">Cancelar</button></a>
         @if($time->gt(\Carbon\Carbon::now('UTC')->addMinutes(2)))
         <button type="submit" class="btn btn-rounded btn-success float-right">
           @if($editable=='')
