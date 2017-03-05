@@ -92,9 +92,9 @@ $converter = array(
                             </div>
                         </div>
                     </header>
-
+                    
                      <div class="pre-scrollable">
-                        <table id="table-edit2" class="table table-bordered table-hover">
+                        <table id="table-edit2" class="table table-bordered table-hover pre-scrollable">
 <!--                             titles -->
                             <thead>
                                 <tr>
@@ -107,10 +107,11 @@ $converter = array(
                                     <th>Tipo</th>
 <!--                                     <th>Sector</th> -->
                                     <th>Fecha de creación</th>
+                                    <th>Fecha de modificación</th>
                                     <th></th>
                                 </tr>
                             </thead>
-
+                            
                             <tbody>
                                 @foreach($sec->users as $us)
                                 <tr>
@@ -120,7 +121,7 @@ $converter = array(
                                             <label for="check-bird-{{$us->id}}"></label>
                                         </div>
                                     </td>
-
+                            
     <!--                         begin data -->
                                     <td class="table-icon-cell">{{ $us->id }}</td>
                                     <td>{{ $us->username }}</td>
@@ -130,9 +131,11 @@ $converter = array(
                                     <td>{{ $us->user_type->name }}</td>
 <!--                                     <td>{{ $us->sector->name }}</td> -->
                                     <td class="table-icon-cell">{{ $us->created_at }}</td>
+                                    <td class="table-icon-cell">{{ $us->updated_at }}</td>
     <!--                         actions -->
-                                    <td>
+                                    <td style="text-align: center">
                                         <button type="button" class="btn btn-inline btn-warning-outline" onclick="updateUserShow({{$us->id}}, '{{$us->username}}', '{{$us->name}}', '{{$us->lastname}}', '{{$us->email}}', {{$us->user_type_id}}, {{$us->sector_id}} )"><i class="font-icon font-icon-pencil"></i></button>
+                                    
                                         <button type="button" class="btn btn-inline btn-danger-outline" onclick="delOneUser({{$us->id}}, '{{$us->username}}', '{{$us->user_type->name}}')"><i class="font-icon font-icon-trash"></i></button>
                                     </td>
                                 </tr>
@@ -157,7 +160,7 @@ $converter = array(
 <script src="{{ URL::asset('template/js/lib/select2/select2.full.min.js') }}"></script>
 <script src="{{ URL::asset('template/js/lib/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
 
-<script src="{{ URL::asset('template/js/popup.js') }}"></script>
+<script src="{{ URL::asset('template/js/popups/userPopup.js') }}"></script>
 
 <script src="{{ URL::asset('template/js/lib/hide-show-password/bootstrap-show-password.min.js') }}"></script>
 <script src="{{ URL::asset('template/js/lib/hide-show-password/bootstrap-show-password-init.js') }}"></script>

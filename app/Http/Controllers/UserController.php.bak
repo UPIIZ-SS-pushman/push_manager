@@ -11,9 +11,10 @@ use App\Sector;
 class UserController extends Controller
 {
     public function present(){
+        $user = User::first();
         $sector = Sector::all();
     
-        return view('user', ['sectors' => $sector]);
+        return view('user', ['users' => $user, 'sectors' => $sector]);
     }
     
     public function deleteUser(){
@@ -26,10 +27,10 @@ class UserController extends Controller
     
     public function updateUser(Request $request){
         $this->validate($request,[
-        'userPop' => 'required|min:3|max:15|unique:users,username,'.$request->idPop,
+        'userPop' => 'required|min:3|max:15',
         'namePop' => 'required|min:4|max:30',
         'lastnamePop' => 'required|min:5|max:30',
-        'emailPop' => 'required|min:3|max:25|email|unique:users,email,'.$request->idPop,
+        'emailPop' => 'required|min:3|max:25|email'
         ]);
         
         $user=User::find($request->idPop);
@@ -49,7 +50,7 @@ class UserController extends Controller
     public function createUser(Request $request){        
         $this->validate($request,[
         'userPop2' => 'bail|required|min:3|max:15|unique:users,username',
-        'passwordPop2' => 'bail|required|min:3|max:15',
+        'password' => 'min:3|max:15',
         'namePop2' => 'required|min:4|max:30',
         'lastnamePop2' => 'required|min:5|max:30',
         'emailPop2' => 'required|min:3|max:25|email|unique:users,email'
@@ -62,7 +63,7 @@ class UserController extends Controller
         $user->email = $request->input('emailPop2');
         $user->user_type_id = $request->input('typePop2');
         $user->sector_id = $request->input('sectorPop2');
-        $user->password = bcrypt($request->input('passwordPop2'));
+        $user->password = bcrypt($request->input('password'));
         $user->save();
         
         return back();

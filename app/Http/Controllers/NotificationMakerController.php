@@ -14,14 +14,12 @@ use App\Notification;
 use App\NotificationLog;
 use App\NotificationIndividual;
 use App\NotificationSector;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationMakerController extends Controller
 {
     private function getMakerByUser(){
-      /*TODO
-        change this line to get the real user
-      */
-      $user = User::first();
+      $user = Auth::user();
       $maker = NotificationMaker::firstOrCreate(['user_id' => $user->id]);
       //$request->session()->put('maker', $maker);
       return $maker;

@@ -101,61 +101,6 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        
-        'userPop' => [
-            'required' => 'El nombre usuario es requerido para la actualización',
-            'min' => 'El nombre de usuario necesita minimo 3 caracteres',
-            'max' => 'El nombre de usuario no puede exceder de 15 caracteres',
-            'unique' => 'El nombre de usuario ya existe en otro registro',
-        ],
-        'namePop' => [
-            'required' => 'El nombre es requerido para la actualización',
-            'min' => 'El nombre necesita minimo 4 caracteres',
-            'max' => 'El nombre no puede exceder de 30 caracteres',
-            'unique' => 'El nombre ya existe en la base de datos'
-        ],
-        'lastnamePop' => [
-            'required' => 'Los apellidos son requeridos para la actualización',
-            'min' => 'Los apellidos necesitan minimo 5 caracteres',
-            'max' => 'Los apellidos no pueden exceder de 30 caracteres',
-        ],
-        'emailPop' => [
-            'required' => 'El email es requerido para la actualización',
-            'min' => 'El email de usuario necesita minimo 3 caracteres',
-            'max' => 'El email de usuario no puede exceder de 25 caracteres',
-            'email' => 'El email de usuario no es valido',
-            'unique' => 'El email de usuario ya existe en otro registro',
-        ],
-        
-        'userPop2' => [
-            'required' => 'El nombre usuario es requerido para la creación del mismo',
-            'min' => 'El nombre de usuario necesita minimo 3 caracteres',
-            'max' => 'El nombre de usuario no puede exceder de 15 caracteres',
-            'unique' => 'El nombre de usuario debe ser unico',
-        ],
-        'passwordPop2' => [
-            'required' => 'La contraseña de usuario es requerida para la creación del usuario',
-            'min' => 'La contraseña debe de tener minimo 3 caracteres',
-            'max' => 'La contraseña debe de tener maximo 15 caracteres',
-        ],
-        'namePop2' => [
-            'required' => 'El nombre es requerido para la creación del usuario',
-            'min' => 'El nombre necesita minimo 4 caracteres',
-            'max' => 'El nombre no pueden exceder de 30 caracteres',
-            'unique' => 'El nombre ya existe en la base de datos',
-        ],
-        'lastnamePop2' => [
-            'required' => 'Los apellidos son requeridos para la creación del usuario',
-            'min' => 'Los apellidos necesitan minimo 5 caracteres',
-            'max' => 'Los apellidos no pueden exceder de 30 caracteres',
-        ],
-        'emailPop2' => [
-            'required' => 'El email es requerido para la creación del usuario',
-            'min' => 'El email de usuario necesita minimo 3 caracteres',
-            'max' => 'El email de usuario no puede exceder de 25 caracteres',
-            'email' => 'El email de usuario no es valido',
-            'unique' => 'El email de usuario debe ser unico',
-        ],
     ],
 
     /*

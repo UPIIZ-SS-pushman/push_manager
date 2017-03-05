@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 // Route::get('/h', function(){
 //   return view('history');
-// });
+// })->middleware('auth');
 
 Route::get('/viewMessages', function(){
   return view('messages');
@@ -33,6 +33,18 @@ Route::get('/calendar', function(){
 Route::get('/dashboard', function(){
   return view('dashboard');
 })->middleware('auth');
+
+Route::get('/types', 'UserTypeController@present');
+Route::delete('/types', 'UserTypeController@deleteSector');
+Route::patch('/types', 'UserTypeController@updateSector');
+Route::put('/types', 'UserTypeController@createSector');
+Route::post('/types', 'UserTypeController@deleteSectors');
+
+Route::get('/sectors', 'SectorController@present');
+Route::delete('/sectors', 'SectorController@deleteSector');
+Route::patch('/sectors', 'SectorController@updateSector');
+Route::put('/sectors', 'SectorController@createSector');
+Route::post('/sectors', 'SectorController@deleteSectors');
 
 Route::get('/users', 'UserController@present')->middleware('auth');
 Route::delete('/users', 'UserController@deleteUser')->middleware('auth');
