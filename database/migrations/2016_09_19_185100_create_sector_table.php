@@ -15,6 +15,7 @@ class CreateSectorTable extends Migration
       Schema::create('sectors', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name');
+          $table->integer('user_type_id')->unsigned()->index();
           // $table->rememberToken();
           $table->timestamps();
       });

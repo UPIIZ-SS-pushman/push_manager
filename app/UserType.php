@@ -15,4 +15,8 @@ class UserType extends Model
     public function __toString(){
       return $this->name;
     }
+
+    public function sectors(){
+      return $this->hasMany(Sector::class);
+    }
 }

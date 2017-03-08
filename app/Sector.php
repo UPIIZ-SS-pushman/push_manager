@@ -16,4 +16,8 @@ class Sector extends Model
   public function __toString(){
     return $this->name;
   }
+
+  public function user_type(){
+    return $this->belongsTo(UserType::class);
+  }
 }

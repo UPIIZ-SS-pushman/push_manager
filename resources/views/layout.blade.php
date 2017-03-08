@@ -23,9 +23,9 @@
 	@yield('style')
 
 	<link rel="stylesheet" href="{{ URL::asset('template/css/lib/lobipanel/lobipanel.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('template/css/lib/jqueryui/jquery-ui.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('template/css/lib/font-awesome/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('template/css/main.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('template/css/lib/jqueryui/jquery-ui.min.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('template/css/lib/font-awesome/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('template/css/main.css') }}">
 
 
 </head>
@@ -73,9 +73,6 @@
 	                                           role="tab">Outbox</a>
 	                                    </li>
 	                                </ul>
-	                                <!--<button type="button" class="create">
-	                                    <i class="font-icon font-icon-pen-square"></i>
-	                                </button>-->
 	                            </div>
 	                            <div class="tab-content">
 	                                <div class="tab-pane active" id="tab-incoming" role="tabpanel">
@@ -158,10 +155,6 @@
 	                        <div class="dropdown dropdown-typical">
 	                            <div class="dropdown-menu" aria-labelledby="dd-header-sales">
 	                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Quant and Verbal</a>
-	                                <!-- <a class="dropdown-item" href="#"><span class="font-icon font-icon-cart"></span>Real Gmat Test</a>
-	                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-speed"></span>Prep Official App</a>
-	                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-users"></span>CATprer Test</a>
-	                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-comments"></span>Third Party Test</a> -->
 	                            </div>
 	                        </div>
 	                    </div><!--.site-header-collapsed-in-->
@@ -272,13 +265,12 @@
 	</div>
 	<!--//Begin main content section -->
 
-
 	<!--//Scripts section -->
 	<script src="{{ URL::asset('template/js/lib/jquery/jquery.min.js') }}"></script>
 	<script src="{{ URL::asset('template/js/lib/tether/tether.min.js') }}"></script>
 	<script src="{{ URL::asset('template/js/lib/bootstrap/bootstrap.min.js') }}"></script>
 	<script src="{{ URL::asset('template/js/plugins.js') }}"></script>
-	
+
 	@yield('scripts')
 	<script src="{{ URL::asset('template/js/app.js') }}"></script>
 </body>
