@@ -17,14 +17,6 @@ use Carbon\Carbon;
 class DataForDatabase extends Controller
 {
     public function generateData(){
-      $sector = new Sector;
-      $sector->name = "Ingeniería en Sistemas Computacionales";
-      $sector->save();
-
-      $sector = new Sector;
-      $sector->name = "Ingeniería en Mecatrónica";
-      $sector->save();
-
       $userType = new UserType;
       $userType->name = "Administrador";
       $userType->save();
@@ -33,9 +25,21 @@ class DataForDatabase extends Controller
       $userType->name = "Estudiante";
       $userType->save();
 
+      $usertypeid = $userType->id;
+
       $userType = new UserType;
       $userType->name = "Maestro";
       $userType->save();
+
+      $sector = new Sector;
+      $sector->name = "Ingeniería en Sistemas Computacionales";
+      $sector->user_type_id = $usertypeid;
+      $sector->save();
+
+      $sector = new Sector;
+      $sector->name = "Ingeniería en Mecatrónica";
+      $sector->user_type_id = $usertypeid;
+      $sector->save();
 
       $user = new User;
       $user->username = "rmontes1";

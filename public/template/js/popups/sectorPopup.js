@@ -20,7 +20,7 @@ function check_empty(){
 function updateSectorShow(id, name){
     document.getElementById('namePop').value = name;
     document.getElementById('idPop').value = id;
-    
+
     document.getElementById('updateDiv').style.display = "block";
 }
 
@@ -52,7 +52,7 @@ function check_empty2(){
 // Function to display sector div create
 function createSectorShow(id, name){
     document.getElementById('namePop2').value = "";
-    
+
     document.getElementById('createDiv').style.display = "block";
 }
 
@@ -67,7 +67,7 @@ function createSectorHide(){
 // Confirm delete oneSector
 function delOneSector(id, name){
     swal({
-        title: "¿Désea eliminar el registro?",
+        title: "¿Desea eliminar el registro?",
         text: "Eliminará " + name,
         type: "warning",
         showCancelButton: true,
@@ -91,7 +91,7 @@ function delOneSector(id, name){
                 document.getElementById('idDel').value = id;
                 document.getElementById('formDel').submit();
             });
-                
+
         } else {
             cancelPopup("¡Cancelado!", "Se canceló la operación...");
         }
@@ -104,7 +104,7 @@ function delMultipleSector(){
         cancelPopup("¡Error!", "No seleccionó suficientes registros");
     } else{
         swal({
-            title: "¿Désea eliminar los siguientes registros?",
+            title: "¿Desea eliminar los siguientes registros?",
             text: "Eliminarán: " + stack,
             type: "warning",
             showCancelButton: true,
@@ -127,14 +127,14 @@ function delMultipleSector(){
                         showConfirmButton: false
                     },
                     function(){
-                        location.reload(); 
+                        location.reload();
                     });
                 });
             } else {
                 cancelPopup("¡Cancelado!", "Se canceló la operación...");
             }
         });
-    }   
+    }
 }
 
 // General functions
@@ -152,11 +152,11 @@ var stack = [];
 function delMultipleSectorArray(id){
     for(var i = 0; i < stack.length; i++){
         if(stack[i] == id){
-            stack.splice( i, 1 );            
+            stack.splice( i, 1 );
             return;
         }
     }
-    stack.push(id);    
+    stack.push(id);
 }
 
 $(document).ready(function(){

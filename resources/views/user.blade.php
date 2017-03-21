@@ -1,6 +1,4 @@
-<!-- <link rel="stylesheet" href="/css/build/css/separate/main.css"> -->
-
-@extends('layout')
+@extends('layouts.main')
 @section('title')
 PushManager - Lista de usuarios
 @stop
@@ -92,7 +90,7 @@ $converter = array(
                             </div>
                         </div>
                     </header>
-                    
+
                      <div class="pre-scrollable">
                         <table id="table-edit2" class="table table-bordered table-hover pre-scrollable">
 <!--                             titles -->
@@ -111,7 +109,7 @@ $converter = array(
                                     <th></th>
                                 </tr>
                             </thead>
-                            
+
                             <tbody>
                                 @foreach($sec->users as $us)
                                 <tr>
@@ -121,7 +119,7 @@ $converter = array(
                                             <label for="check-bird-{{$us->id}}"></label>
                                         </div>
                                     </td>
-                            
+
     <!--                         begin data -->
                                     <td class="table-icon-cell">{{ $us->id }}</td>
                                     <td>{{ $us->username }}</td>
@@ -135,7 +133,7 @@ $converter = array(
     <!--                         actions -->
                                     <td style="text-align: center">
                                         <button type="button" class="btn btn-inline btn-warning-outline" onclick="updateUserShow({{$us->id}}, '{{$us->username}}', '{{$us->name}}', '{{$us->lastname}}', '{{$us->email}}', {{$us->user_type_id}}, {{$us->sector_id}} )"><i class="font-icon font-icon-pencil"></i></button>
-                                    
+
                                         <button type="button" class="btn btn-inline btn-danger-outline" onclick="delOneUser({{$us->id}}, '{{$us->username}}', '{{$us->user_type->name}}')"><i class="font-icon font-icon-trash"></i></button>
                                     </td>
                                 </tr>

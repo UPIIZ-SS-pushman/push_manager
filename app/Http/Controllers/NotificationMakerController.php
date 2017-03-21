@@ -21,11 +21,10 @@ class NotificationMakerController extends Controller
     private function getMakerByUser(){
       $user = Auth::user();
       $maker = NotificationMaker::firstOrCreate(['user_id' => $user->id]);
-      //$request->session()->put('maker', $maker);
       return $maker;
     }
 
-    public function getMaker(Request $request){
+    public function getMaker(){
       $step = 1;
       $maker = $this->getMakerByUser();
       if($maker->step != null){
@@ -34,7 +33,7 @@ class NotificationMakerController extends Controller
       return redirect()->action('NotificationMakerController@getMakerStep', ['step' => $step]);
     }
 
-    public function getMakerStep(Request $request, $step){
+    public function getMakerStep($step){
       $maker = $this->getMakerByUser();
       switch($step){
         case 1:

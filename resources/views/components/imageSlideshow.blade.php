@@ -2,7 +2,7 @@
 
     <?php $files = File::allFiles("img/dashboard");?>
     @foreach ($files as $file)
-      <?php 
+      <?php
         $filename = pathinfo($file);
         $validImg = $filename['extension'] == "jpg" || $filename['extension'] == "png";
       ?>

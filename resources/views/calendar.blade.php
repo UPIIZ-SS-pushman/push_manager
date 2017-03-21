@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.main')
 @section('title')
 PushManager - Calendario de notificaciones
 @stop

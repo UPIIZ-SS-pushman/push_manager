@@ -55,8 +55,10 @@ class UserTypeController extends Controller
 
     public function deleteSectors(Request $request){
         foreach($request->ids as $id){
+          if($id != 1){
             $type = UserType::find($id);
             $type->delete();
+          }
         }
 
         return back();

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.main')
 
 @section('style')
 <link rel="stylesheet" href="template/css/lib/fullcalendar/fullcalendar.min.css">

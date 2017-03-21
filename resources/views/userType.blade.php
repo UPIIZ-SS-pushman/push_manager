@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.main')
 
 @section('header')
 <meta name="csrf-token" content="{{ csrf_token() }}" />

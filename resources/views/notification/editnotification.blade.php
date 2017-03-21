@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.main')
 @section('title')
 PushManager - Editar notificación
 @stop
@@ -36,6 +36,7 @@ PushManager - Editar notificación
       @elseif($notification->notification_log->status == 0)
         <button type="button" class="btn btn-info">Programada</button>
       @endif
+
       @if($errors->any())
       <span style="color: red;">Error:</span>
       <ul>
@@ -71,6 +72,11 @@ PushManager - Editar notificación
       <div class="form-group">
         <label class="form-control-label">Contenido</label>
         {{Form::textarea('body', null, ['rows'=>4, 'class'=>'form-control', 'placeholder'=>'Contenido', $editable])}}
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label">Generada por</label>
+        {{Form::text('remitent', $notification->notification_log->user->name.' '.$notification->notification_log->user->lastname, ['class' => 'form-control', 'placeholder' => 'Remitente', 'readonly'])}}
       </div>
 
       <div class="form-group">

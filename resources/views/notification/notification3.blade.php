@@ -1,9 +1,8 @@
-@extends('layout')
+@extends('layouts.main')
 @section('title')
 PushManager - Crear notificación (3/4)
 @stop
 @section('style')
-<!-- <link rel="stylesheet" href="{{ URL::asset('template/css/lib/fullcalendar/fullcalendar.min.css') }}"> -->
 <link rel="stylesheet" href="{{ URL::asset('template/css/lib/clockpicker/bootstrap-clockpicker.min.css') }}">
 @stop
 

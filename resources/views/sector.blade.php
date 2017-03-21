@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.main')
 
 @section('header')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -59,7 +59,7 @@
                     <th></th>
                 </tr>
             </thead>
-            
+
             <tbody>
                 @foreach($sectors as $sec)
                 <tr>
@@ -69,7 +69,7 @@
                             <label for="check-bird-{{$sec->id}}"></label>
                         </div>
                     </td>
-            
+
     <!--                         begin data -->
                     <td class="table-icon-cell">{{ $sec->id }}</td>
                     <td>{{ $sec->name }}</td>
@@ -78,7 +78,7 @@
     <!--                         actions -->
                     <td style="text-align: center">
                         <button type="button" class="btn btn-inline btn-warning-outline" onclick="updateSectorShow({{$sec->id}}, '{{$sec->name}}')"><i class="font-icon font-icon-pencil"></i></button>
-                    
+
                         <button type="button" class="btn btn-inline btn-danger-outline" onclick="delOneSector({{$sec->id}}, '{{$sec->name}}')"><i class="font-icon font-icon-trash"></i></button>
                     </td>
                 </tr>

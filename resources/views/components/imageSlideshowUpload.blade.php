@@ -1,24 +1,20 @@
-<script src="js/dropzone.js"></script>
-<link rel="stylesheet" href="css/dropzone.css">
+<script src="{{ URL::asset('js/dropzone.js')}}"></script>
+<link rel="stylesheet" href="{{ URL::asset('css/dropzone.css')}}">
 
 <div class="row">
-    <?php $files = File::allFiles("img/dashboard");?>
+    <?php $files = File::allFiles('img/dashboard');?>
     @foreach ($files as $file_index => $file)
-    <div class="col-sm-6">
-            <!-- <div class="row">
-              <div class="col-sm-6" >
-
-              </div>
-            </div> -->
+    <div class="col-sm-4" id="dz-preview{{$file_index}}">
             <form action="/image-upload/{{$file_index}}" class="dropzone" id="image-uploader-{{$file_index}}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
+              <!-- <img src="{{$file}}" width="200" height="200" alt="failed" style="object-fit: contain;"> -->
               <div class="fallback">
                 <input name="file" type="file"/>
                 <input name="fallback" type="hidden" value="isFallback"/>
                 <input type="submit" value="Cargar"/>
               </div>
             </form>
-    </div><!--.col-->
+    </div>
 
     <script>
     Dropzone.options.imageUploader{{$file_index}} = {
@@ -38,13 +34,25 @@
       dictCancelUpload: "Cancelar carga",
       dictRemoveFile: "Quitar archivo",
       dictMaxFilesExceeded: "Error: No puedes subir más archivos",
-
+      init: function(){
+        var thisdropzone = this;
+        var mockFile = { name: "Arrastra imagen para reemplazarla", size: 12345 };
+        thisdropzone.emit("addedfile", mockFile);
+        thisdropzone.emit("thumbnail", mockFile, "/img/dashboard-thumb/thumb{{$file_index}}.{{$file->getExtension()}}");
+        thisdropzone.emit("complete", mockFile);
+        var existingFileCount = 0; // The number of files already uploaded
+        thisdropzone.options.maxFiles = thisdropzone.options.maxFiles - existingFileCount;
+      },
       accept: function(file, done) {
         done();
+        swal({
+            title: "Listo",
+            text: "Imagen actualizada",
+            type: "success",
+            showConfirmButton: true
+        });
       }
     };
-
-
     </script>
     @endforeach
 </div><!--.row-->

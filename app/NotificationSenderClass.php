@@ -11,6 +11,8 @@ use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
 use Exception;
 
+use Log;
+
 class NotificationSenderClass
 {
     public static function sendNotification(Notification $notif){
@@ -39,6 +41,8 @@ class NotificationSenderClass
         if($ni->user->firebase_key != null){
           $tokens[$i] = $ni->user->firebase_key;
           $i++;
+        }else{
+          Log::warning('User with id '.$ni->user->id.' doesn\'t have a valid firebase key');
         }
       }
 

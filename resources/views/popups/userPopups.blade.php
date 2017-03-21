@@ -5,11 +5,11 @@
         <section class="widget">
             <header class="widget-header-dark">Actualización de usuario</header>
             <div class="tab-content widget-tabs-content">
-            
+
                 <!-- Contact Us Form -->
                 {{Form::open(array('url'=>'/users', 'id'=>'formPop', 'class'=>'formPop'))}}
                     {{ method_field('PATCH') }}
-                    
+
                     <input type="hidden" name="idPop" id="idPop" value="{{$us->id}}">
 
                     <div class="row">
@@ -25,19 +25,19 @@
                         <fieldset class="form-group">
                             <label class="form-label">Nombre(s)</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('name', $us->name, ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop', 'name'=>'namePop', 'placeholder'=>'Ej: pedro', 'maxlength'=>'30'])}}
+                                {{Form::text('name', $us->name, ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop', 'name'=>'namePop', 'placeholder'=>'Ej: Pedro', 'maxlength'=>'30'])}}
                                 <i class="font-icon font-icon-user"></i>
                             </div>
                         </fieldset>
-                        
+
                         <fieldset class="form-group">
                             <label class="form-label">Apellidos</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('lastname', $us->lastname, ['class'=>'form-control maxlength-custom-message', 'id'=>'lastnamePop', 'name'=>'lastnamePop', 'placeholder'=>'Ej: Peres', 'maxlength'=>'30'])}}
+                                {{Form::text('lastname', $us->lastname, ['class'=>'form-control maxlength-custom-message', 'id'=>'lastnamePop', 'name'=>'lastnamePop', 'placeholder'=>'Ej: Pérez', 'maxlength'=>'30'])}}
                                 <i class="font-icon font-icon-user"></i>
                             </div>
                         </fieldset>
-                        
+
         <!--                 email -->
                         <fieldset class="form-group">
                             <label class="form-label">Correo</label>
@@ -46,8 +46,8 @@
                                 <i class="font-icon font-icon-earth"></i>
                             </div>
                         </fieldset>
-                        
-        <!--                 type -->                       
+
+        <!--                 type -->
                         <div class="row">
                             <div class="container-fluid">
                                 <label class="form-label">Tipo</label>
@@ -59,7 +59,7 @@
                                 <br/>
                             </div>
                         </div>
-                        
+
         <!--                 sector -->
                         <div class="row">
                             <div class="container-fluid">
@@ -86,7 +86,7 @@
                         </fieldset>
                     </div>
                 {{Form::close()}}
-        
+
             </div>
             <div class="widget-tabs-nav bordered">
                 <ul class="tbl-row" role="tablist">
@@ -98,12 +98,11 @@
                     </li>
                 </ul>
             </div>
-        </section>    
+        </section>
     </div>
 <!-- Popup Div Ends Here -->
 </div>
 
-<!-- ------------------------------------------------------------------------ -->
 
 <!-- contact popup user create            -->
 <div id="createDiv" class="backgroundPopup box-typical">
@@ -112,7 +111,7 @@
         <section class="widget">
             <header class="widget-header-dark">Nuevo usuario</header>
             <div class="tab-content widget-tabs-content">
-                            
+
                 <!-- Contact Us Form -->
                 {{Form::open(array('url'=>'/users', 'id'=>'formPop2', 'class'=>'formPop'))}}
                     {{ method_field('PUT') }}
@@ -126,9 +125,9 @@
                                 <i class="font-icon font-icon-user"></i>
                             </div>
                         </fieldset>
-                        
+
         <!--                 TODO dar formato a los campos y pasar los datos al javascript y realizar las consultas -->
-                        
+
                         <fieldset class="form-group">
                             <label class="form-label">Contraseña</label>
                             {{Form::password('pass', ['name'=>'passwordPop2', 'id'=>'passwordPop2', 'class'=>'form-control maxlength-custom-message', 'placeholder'=>'Ej: 49f9e1', 'maxlength'=>'30'])}}
@@ -137,19 +136,19 @@
                         <fieldset class="form-group">
                             <label class="form-label">Nombre(s)</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop2', 'name'=>'namePop2', 'placeholder'=>'Ej: pedro', 'maxlength'=>'30'])}}
+                                {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop2', 'name'=>'namePop2', 'placeholder'=>'Ej: Pedro', 'maxlength'=>'30'])}}
                                 <i class="font-icon font-icon-user"></i>
                             </div>
                         </fieldset>
-                        
+
                         <fieldset class="form-group">
                             <label class="form-label">Apellidos</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('lastname', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'lastnamePop2', 'name'=>'lastnamePop2', 'placeholder'=>'Ej: Peres', 'maxlength'=>'30'])}}
+                                {{Form::text('lastname', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'lastnamePop2', 'name'=>'lastnamePop2', 'placeholder'=>'Ej: Pérez', 'maxlength'=>'30'])}}
                                 <i class="font-icon font-icon-user"></i>
                             </div>
                         </fieldset>
-                        
+
         <!--                 email -->
                         <fieldset class="form-group">
                             <label class="form-label">Correo</label>
@@ -158,7 +157,7 @@
                                 <i class="font-icon font-icon-earth"></i>
                             </div>
                         </fieldset>
-                        
+
         <!--                 type -->
                         <div class="row">
                             <div class="container-fluid">
@@ -171,7 +170,7 @@
                                 <br/>
                             </div>
                         </div>
-                        
+
         <!--                 sector -->
                         <div class="row">
                             <div class="container-fluid">
@@ -198,7 +197,7 @@
                         </fieldset>
                     </div>
                 {{Form::close()}}
-                
+
             </div>
             <div class="widget-tabs-nav bordered">
                 <ul class="tbl-row" role="tablist">
@@ -210,7 +209,7 @@
                     </li>
                 </ul>
             </div>
-        </section>    
+        </section>
     </div>
 <!-- Popup Div Ends Here -->
 </div>

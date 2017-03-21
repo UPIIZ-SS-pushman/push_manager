@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Notification;
+use App\NotificationLog;
 use App\NotificationSector;
 use App\NotificationIndividual;
 use Carbon\Carbon;
@@ -15,25 +16,21 @@ use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
     public function viewNotification(Request $request, $id){
-      //echo $id;
       $notification = Notification::findOrFail($id);
-      // echo $notification;
       return view('notification.editnotification', ['notification' => $notification, 'editable' => 'readonly', 'enabled' => 'disabled']);
     }
 
     public function editNotification(Request $request, $id){
-      //echo $id;
       $notification = Notification::findOrFail($id);
-      // echo $notification;
       return view('notification.editnotification', ['notification' => $notification, 'editable' => '', 'enabled' => '']);
     }
 
     public function updateNotification(Request $request, $id){
-      //echo $id;
       $notification = Notification::findOrFail($id);
       $this->validate($request,[
         'title' => 'required|min:2|max:50',
@@ -74,6 +71,37 @@ class NotificationController extends Controller
         'sent' => $time
       ]);
       return view('notification.notification5');
+    }
+
+    public function quickNotification(Request $request){
+      $this->validate($request,[
+        'title' => 'required|min:2|max:50',
+        'body' => 'required|min:2|max:255',
+      ]);
+      $notification = new Notification;
+      $notification->title = $request->title;
+      $notification->body = $request->body;
+
+      $notification->sent = Carbon::now()->addMinute();
+      $notification->save();
+
+      $notificationlog = new NotificationLog;
+      $notificationlog->notification_id = $notification->id;
+      $notificationlog->user_id = Auth::user()->id;
+      $notificationlog->status = 0;
+      $notificationlog->save();
+
+      $notification->notification_log_id = $notificationlog->id;
+      $notification->save();
+
+      foreach(\App\User::all() as $i){
+        $ni = new NotificationIndividual;
+        $ni->user_id = $i->id;
+        $ni->notification_id = $notification->id;
+        $ni->save();
+      }
+
+      return back();
     }
 
     public function sendTestNotif(){
