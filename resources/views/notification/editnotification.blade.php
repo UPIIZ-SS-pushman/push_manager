@@ -18,133 +18,156 @@ PushManager - Editar notificación
 
 </h5>
 
-<div class = "col-xl-6">
-  <section class="box-typical steps-icon-block">
-    <div id = "not-step1">
-      <header class="steps-numeric-title">
-        @if($editable=='')
-          Editar notificación
-        @else
-          Ver notificación
-        @endif
-      </header>
+<div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+    <section class="box-typical">
+        <div id = "not-step1">
+            <header class="widget-header-dark">
+            @if($editable=='')
+                Editar notificación
+            @else
+                Ver notificación
+            @endif
+            </header>
 
-      @if($notification->notification_log->status == 1)
-        <button type="button" class="btn btn-success">Enviada</button>
-      @elseif($notification->notification_log->status == -1)
-        <button type="button" class="btn btn-danger">No enviada</button>
-      @elseif($notification->notification_log->status == 0)
-        <button type="button" class="btn btn-info">Programada</button>
-      @endif
 
-      @if($errors->any())
-      <span style="color: red;">Error:</span>
-      <ul>
-        @foreach($errors->all() as $error)
-        <li style="color: red;">{{ $error }}</li>
-        @endforeach
-      </ul>
-      @endif
 
-      @if($editable=='')
-        {{Form::model($notification,['url'=>'/notification/update/'.$notification->id])}}
-      @else
-        {{Form::model($notification)}}
-      @endif
+            <div style="padding:10px;">
 
-      <?php
-      $time = \Carbon\Carbon::parse($notification->sent);
-      $time->setTimezone('America/Mexico_City');
-      $individuals = $notification->getSelectedIndividuals();
-      $sectors = $notification->getSelectedSectors();
-      $users = App\User::all();
-      $userslist = array();
-      foreach($users as $u){
-        $userslist[$u->id] = $u->name.' '.$u->lastname;
-      }
-      ?>
+                 @if($errors->any())
+                    <div class="alert alert-danger alert-fill alert-close alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-      <div class="form-group">
-        <label class="form-control-label">Título</label>
-        {{Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Título', $editable])}}
-      </div>
+                @if($notification->notification_log->status == 1)
+                    <div class="alert alert-success alert-fill alert-close alert-dismissible fade in" role="alert">
+                        <ul>
+                            Enviada
+                        </ul>
+                    </div>
+                @elseif($notification->notification_log->status == -1)
+                    <div class="alert alert-warning alert-fill alert-close alert-dismissible fade in" role="alert">
+                        <ul>
+                            No enviada
+                        </ul>
+                    </div>
+                @elseif($notification->notification_log->status == 0)
+                    <div class="alert alert-purple alert-fill alert-close alert-dismissible fade in" role="alert">
+                        <ul>
+                            Programada
+                        </ul>
+                    </div>
+                @endif
 
-      <div class="form-group">
-        <label class="form-control-label">Contenido</label>
-        {{Form::textarea('body', null, ['rows'=>4, 'class'=>'form-control', 'placeholder'=>'Contenido', $editable])}}
-      </div>
+                @if($editable=='')
+                    {{Form::model($notification,['url'=>'/notification/update/'.$notification->id])}}
+                @else
+                    {{Form::model($notification)}}
+                @endif
 
-      <div class="form-group">
-        <label class="form-control-label">Generada por</label>
-        {{Form::text('remitent', $notification->notification_log->user->name.' '.$notification->notification_log->user->lastname, ['class' => 'form-control', 'placeholder' => 'Remitente', 'readonly'])}}
-      </div>
+                <?php
+                $time = \Carbon\Carbon::parse($notification->sent);
+                $time->setTimezone('America/Mexico_City');
+                $individuals = $notification->getSelectedIndividuals();
+                $sectors = $notification->getSelectedSectors();
+                $users = App\User::all();
+                $userslist = array();
+                foreach($users as $u){
+                    $userslist[$u->id] = $u->name.' '.$u->lastname;
+                }
+                ?>
 
-      <div class="form-group">
-        <label class="form-control-label">Destinatarios (individuos)</label>
-        {{Form::select('individuos[]',
-        $userslist,
-        $individuals,
-        ['multiple'=>true, 'class'=>'select2', $enabled])}}
-      </div>
-      <div class="form-group">
-        <label class="form-control-label">Destinatarios (grupos)</label>
-        {{Form::select('grupos[]',
-        App\Sector::lists('name', 'id'),
-        $sectors,
-        ['multiple'=>true, 'class'=>'select2', $enabled])}}
-      </div>
+                <div class="container-fluid">
+                    <label class="form-control-label">Título</label>
+                    {{Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Título', $editable])}}
+                </div>
 
-      <h5 class="m-t-lg with-border"></h5>
+                <div class="container-fluid">
+                    <label class="form-control-label">Contenido</label>
+                    {{Form::textarea('body', null, ['rows'=>4, 'class'=>'form-control', 'placeholder'=>'Contenido', $editable])}}
+                </div>
 
-      <div class="row">
-        <div class="col-md-6 col-sm-6">
-          <div class="form-group">
-            <div class="input-group">
-              <label class="form-control-label">Fecha de envío</label>
-              @if($editable=='')
-                {{Form::text('send_date', $time->format("d/m/Y"), ['id'=>'daterange3', 'class' => 'form-control maxlength-simple', 'placeholder' => '00:00:00'])}}
-              @else
-                {{Form::text('send_date', $time->format("d/m/Y"), ['id'=>'daterange3', 'class' => 'form-control maxlength-simple', 'placeholder' => '00:00:00', $editable, $enabled])}}
-              @endif
+                <div class="container-fluid">
+                    <label class="form-control-label">Destinatarios (individuos)</label>
+                    {{Form::select('individuos[]',
+                    $userslist,
+                    $individuals,
+                    ['multiple'=>true, 'class'=>'select2', $enabled])}}
+                </div>
 
+                <div class="container-fluid">
+                    <label class="form-control-label">Destinatarios (grupos)</label>
+                    {{Form::select('grupos[]',
+                    App\Sector::lists('name', 'id'),
+                    $sectors,
+                    ['multiple'=>true, 'class'=>'select2', $enabled])}}
+                </div>
+
+                <h5 class="m-t-lg with-border"></h5>
+
+                <div class="row" style="padding:15px;">
+                        <fieldset class="form-group">
+                            <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
+                                <div class="input-group">
+                                    <label class="form-control-label">Fecha</label>
+                                @if($editable=='')
+                                    {{Form::text('send_date', $time->format("d/m/Y"), ['id'=>'daterange3', 'class' => 'form-control maxlength-simple', 'placeholder' => '00:00:00'])}}
+                                @else
+                                    {{Form::text('send_date', $time->format("d/m/Y"), ['id'=>'daterange3', 'class' => 'form-control maxlength-simple', 'placeholder' => '00:00:00', $editable, $enabled])}}
+                                @endif
+                                </div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-0 col-lg-4 col-lg-offset-2">
+                                <div class="input-group">
+                                    <label class="form-control-label">Hora de envío</label>
+                                    <div class="input-group clockpicker" data-autoclose="true">
+                                        @if($editable=='')
+                                            {{Form::text('send_time', $time->format("H:i"), ['id'=>'clockselector', 'class' => 'form-control maxlength-simple', 'placeholder' => '00:00:00'])}}
+                                        @else
+                                            {{Form::text('send_time', $time->format("H:i"), ['id'=>'clockselector', 'class' => 'form-control maxlength-simple', 'placeholder' => '00:00:00', $editable, $enabled])}}
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                <div class="row">
+                    <fieldset class="form-group">
+                            @if($time->gt(\Carbon\Carbon::now('UTC')->addMinutes(2)))
+                                <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0 col-lg-4 col-lg-offset-1">
+                                    <a href="{{url('/calendar')}}"><button type="button" class="btn btn-rounded btn-grey btn-inline btn-lg btn-block">Cancelar</button></a>
+                                </div>
+                                <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0 col-lg-4 col-lg-offset-2">
+                                    @if($editable=='')
+                                        <button type="submit" class="btn btn-rounded btn-success btn-inline btn-lg btn-block">Guardar<i class="font-icon font-icon-check-bird"></i></button>
+                                    @else
+                                        <button type="submit" class="btn btn-rounded btn-warning btn-inline btn-lg btn-block">Editar</button>
+                                    @endif
+                                </div>
+                            @else
+                                <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+                                    <a href="{{url('/calendar')}}"><button type="button" class="btn btn-rounded btn-grey btn-inline btn-lg btn-block">Cancelar</button></a>
+                                </div>
+                            @endif
+                        </div>
+                    </fieldset>
+                </div>
+
+                {{Form::close()}}
             </div>
-          </div>
+
         </div>
-
-        <div class="col-md-6 col-sm-6">
-          <div class="form-group">
-            <div class="input-group">
-              <label class="form-control-label">Hora de envío</label>
-              <div class="input-group clockpicker" data-autoclose="true">
-              @if($editable=='')
-                {{Form::text('send_time', $time->format("H:i"), ['id'=>'clockselector', 'class' => 'form-control maxlength-simple', 'placeholder' => '00:00:00'])}}
-              @else
-                {{Form::text('send_time', $time->format("H:i"), ['id'=>'clockselector', 'class' => 'form-control maxlength-simple', 'placeholder' => '00:00:00', $editable, $enabled])}}
-              @endif
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <a href="/calendar"><button type="button" class="btn btn-rounded btn-grey float-left">Cancelar</button></a>
-        @if($time->gt(\Carbon\Carbon::now('UTC')->addMinutes(2)))
-        <button type="submit" class="btn btn-rounded btn-success float-right">
-          @if($editable=='')
-            Guardar
-          @else
-            Editar
-          @endif
-        <i class="font-icon font-icon-check-bird"></i></button>
-
-
-        @endif
-      </div>
-      {{Form::close()}}
-    </div>
-  </section><!--.steps-icon-block-->
+    </section>
 </div>
+
 @stop
 
 @section('scripts')

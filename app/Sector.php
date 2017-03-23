@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sector extends Model
 {
 
-  protected $fillable = ['name'];
+  protected $fillable = ['name', 'user_type_id'];
 
   public function users(){
     return $this->hasMany(User::class);

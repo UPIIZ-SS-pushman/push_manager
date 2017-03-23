@@ -72,7 +72,7 @@ PushManager - Leer mensaje
       </div>
 
       <div class="row">
-        <a href="/viewMessages"><button type="button" class="btn btn-rounded btn-grey float-left">Volver</button></a>
+        <a href="{{url('/viewMessages')}}"><button type="button" class="btn btn-rounded btn-grey float-left">Volver</button></a>
       </div>
       {{Form::close()}}
     </div>

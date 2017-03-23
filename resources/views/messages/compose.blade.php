@@ -32,7 +32,7 @@ PushManager - Mensajear al administrador
       </div>
 
       <div class="form-group">
-        <a href="/"><button type="button" class="btn btn-rounded btn-grey float-left">Cancelar</button></a>
+        <a href="{{url('/')}}"><button type="button" class="btn btn-rounded btn-grey float-left">Cancelar</button></a>
         <button type="submit" class="btn btn-rounded btn-success float-right">
           Enviar
         <i class="font-icon font-icon-check-bird"></i></button>

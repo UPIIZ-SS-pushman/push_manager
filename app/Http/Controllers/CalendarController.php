@@ -24,7 +24,7 @@ class CalendarController extends Controller
         $events[] = array(
           "title" => $n->title,
           "start" => $time->toIso8601String(),
-          "url" => "/notification/view/".$n->id
+          "url" => url("/notification/view/".$n->id)
         );
       }
 

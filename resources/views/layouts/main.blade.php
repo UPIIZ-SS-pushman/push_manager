@@ -71,7 +71,7 @@
 	                                <div class="tab-pane active" id="tab-incoming" role="tabpanel">
 																		@forelse($newMessages as $message)
 																			<div class="dropdown-menu-messages-list">
-																					<a href="/viewMessage/{{$message->id}}" class="mess-item">
+																					<a href="{{url('/viewMessage/'.$message->id)}}" class="mess-item">
 																							<span class="avatar-preview avatar-preview-32"><img src="{{ URL::asset('template/img/avatar-1-64.png') }}" alt=""></span>
 																							<span class="mess-item-name">{{$message->user->name}} {{$message->user->lastname}}</span>
 																							<span class="mess-item-txt">{{str_limit($message->body_message, $limit = 25, $end = "...")}}</span>
@@ -85,7 +85,7 @@
 
 	                            </div>
 	                            <div class="dropdown-menu-notif-more">
-	                                <a href="/viewMessages">Ver todos</a>
+	                                <a href="{{url('/viewMessages')}}">Ver todos</a>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -133,7 +133,7 @@
 	    <ul class="side-menu-list">
 
 	        <li class="red with-sub">
-						<a href="/dashboard">
+						<a href="{{url('/dashboard')}}">
 							<span>
 								<i class="font-icon font-icon-calend"></i>
 								<span class="lbl">Dashboard</span>
@@ -148,14 +148,14 @@
 					<!-- mensajes -->
 	        <li class="purple with-sub">
 						@if(Auth::user()->user_type_id == 1)
-							<a href="/viewMessages">
+							<a href="{{url('/viewMessages')}}">
 								<span>
 										<i class="font-icon font-icon-comments active"></i>
 										<span class="lbl">Mensajes del administrador</span>
 								</span>
 							</a>
 						@else
-							<a href="/composeMessage">
+							<a href="{{url('/composeMessage')}}">
 								<span>
 										<i class="font-icon font-icon-comments active"></i>
 										<span class="lbl">Mensajear al administrador</span>
@@ -167,7 +167,7 @@
 
 					<!-- notificaciones -->
 	        <li class="magenta with-sub">
-						<a href="/notificationmaker">
+						<a href="{{url('/notificationmaker')}}">
 	            <span>
 	                <span class="glyphicon glyphicon-list-alt"></span>
 	                <span class="lbl">Crear notificación</span>
@@ -183,15 +183,15 @@
 	                <span class="lbl">Historial</span>
 	            </span>
 	            <ul>
-	                <li><a href="/calendar"><span class="lbl">Calendario (Resumen)</span></a></li>
-	                <!-- <li><a href="/h"><span class="lbl">Tabla (Detalle)</span></a></li> -->
+	                <li><a href="{{url('/calendar')}}"><span class="lbl">Calendario (Resumen)</span></a></li>
+	                <!-- <li><a href="{{url('/h')}}"><span class="lbl">Tabla (Detalle)</span></a></li> -->
 	            </ul>
 	        </li>
 					<!-- fin historial -->
 
 					<!-- usuarios -->
 	        <li class="blue-dirty">
-	            <a href="/users">
+	            <a href="{{url('/users')}}">
 	                <span class="font-icon font-icon-user"></span>
 	                <span class="lbl">Usuarios</span>
 	            </a>
@@ -200,7 +200,7 @@
 
 					<!-- sectores -->
             <li class="gold with-sub">
-	            <a href="/sectors">
+	            <a href="{{url('/sectors')}}">
 	                <span class="font-icon font-icon-widget"></span>
 	                <span class="lbl">Sectores</span>
 	            </a>
@@ -209,7 +209,7 @@
 
 					<!-- tipos -->
 	        <li class="brown with-sub">
-	            <a href="/types">
+	            <a href="{{url('/types')}}">
 	                <span class="font-icon font-icon-contacts"></span>
 	                <span class="lbl">Tipos de usuario</span>
 	            </a>

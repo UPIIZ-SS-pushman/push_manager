@@ -54,6 +54,7 @@
                     <th></th>
                     <th width="1">ID</th>
                     <th>Nombre</th>
+                    <th>Tipo de usuario</th>
                     <th>Fecha de creación</th>
                     <th>Fecha de modificación</th>
                     <th></th>
@@ -73,11 +74,12 @@
     <!--                         begin data -->
                     <td class="table-icon-cell">{{ $sec->id }}</td>
                     <td>{{ $sec->name }}</td>
+                    <td>{{ $sec->user_type->name }}</td>
                     <td class="table-icon-cell">{{ $sec->created_at }}</td>
                     <td class="table-icon-cell">{{ $sec->updated_at }}</td>
     <!--                         actions -->
                     <td style="text-align: center">
-                        <button type="button" class="btn btn-inline btn-warning-outline" onclick="updateSectorShow({{$sec->id}}, '{{$sec->name}}')"><i class="font-icon font-icon-pencil"></i></button>
+                        <button type="button" class="btn btn-inline btn-warning-outline" onclick="updateSectorShow({{$sec->id}}, '{{$sec->name}}', {{$sec->user_type_id}})"><i class="font-icon font-icon-pencil"></i></button>
 
                         <button type="button" class="btn btn-inline btn-danger-outline" onclick="delOneSector({{$sec->id}}, '{{$sec->name}}')"><i class="font-icon font-icon-trash"></i></button>
                     </td>
@@ -95,6 +97,8 @@
 
 @section('scripts')
 <script src="{{ URL::asset('template/js/lib/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ URL::asset('template/js/lib/bootstrap-select/bootstrap-select.min.js') }}"></script>
+<script src="{{ URL::asset('template/js/lib/select2/select2.full.min.js') }}"></script>
 
 <script src="{{ URL::asset('template/js/popups/sectorPopup.js') }}"></script>
 

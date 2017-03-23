@@ -45,7 +45,7 @@ PushManager - Página principal
                 <article class="statistic-box yellow">
                     <div>
                         <div class="number">{{\App\AdminMessage::count()}}</div>
-                        <div class="caption"><div>Mensaje @if(\App\AdminMessage::count()!=1) s @endif al administrador</div></div>
+                        <div class="caption"><div>Mensajes al administrador</div></div>
                     </div>
                 </article>
             </div><!--.col-->

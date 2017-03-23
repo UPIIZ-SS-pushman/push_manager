@@ -9,7 +9,7 @@ PushManager - Iniciar sesión
           <div class="tbl-cell">
             <h3>Iniciar sesión</h3>
             <ol class="breadcrumb breadcrumb-simple">
-              <li><a href="/">Inicio</a></li>
+              <li><a href="{{url('/')}}">Inicio</a></li>
               <li class="active">Inicio de sesión</li>
             </ol>
           </div>

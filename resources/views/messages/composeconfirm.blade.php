@@ -24,7 +24,7 @@ PushManager - Mensajear al administrador
           @endforeach
         </ul>
       @endif
-        <a href="/"><button type="button" class="btn btn-rounded btn-grey float-left">Salir</button></a>
+        <a href="{{url('/')}}"><button type="button" class="btn btn-rounded btn-grey float-left">Salir</button></a>
     </div>
   </section><!--.steps-icon-block-->
 </div>

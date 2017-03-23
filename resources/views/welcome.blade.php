@@ -18,7 +18,7 @@ PushManager
             <div class="panel panel-default">
 
                 <div class="panel-body">
-                    <a href="/login">Inicia sesión para continuar</a>
+                    <a href="{{url('/login')}}">Inicia sesión para continuar</a>
                 </div>
             </div>
         </div>

@@ -38,7 +38,7 @@
         var thisdropzone = this;
         var mockFile = { name: "Arrastra imagen para reemplazarla", size: 12345 };
         thisdropzone.emit("addedfile", mockFile);
-        thisdropzone.emit("thumbnail", mockFile, "/img/dashboard-thumb/thumb{{$file_index}}.{{$file->getExtension()}}");
+        thisdropzone.emit("thumbnail", mockFile, "{{url('/img/dashboard-thumb/thumb'.$file_index.'.'.$file->getExtension())}}");
         thisdropzone.emit("complete", mockFile);
         var existingFileCount = 0; // The number of files already uploaded
         thisdropzone.options.maxFiles = thisdropzone.options.maxFiles - existingFileCount;

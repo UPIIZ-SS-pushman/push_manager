@@ -9,8 +9,8 @@ PushManager - Recuperar contraseña
           <div class="tbl-cell">
             <h3>Restaurar contraseña</h3>
             <ol class="breadcrumb breadcrumb-simple">
-              <li><a href="/">Inicio</a></li>
-              <li><a href="/login">Inicio de sesión</a></li>
+              <li><a href="{{url('/')}}">Inicio</a></li>
+              <li><a href="{{url('/login')}}">Inicio de sesión</a></li>
               <li class="active">Restaurar contraseña</li>
             </ol>
           </div>

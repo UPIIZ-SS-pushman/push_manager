@@ -72,13 +72,17 @@ Route::post('/image-upload/{id}', 'ImageUploadController@upload')->middleware('a
 
 Route::get('/fetchusertypes', 'MobileSessionController@fetchUserTypes');
 Route::get('/fetchsectors/{user_type}', 'MobileSessionController@fetchSectors');
+Route::post('/registeruser', 'MobileSessionController@registerUser');
+Route::post('/mobilelogin', 'MobileSessionController@mobileLogin');
+Route::get('/fetchnotifications/{user_id}', 'MobileSessionController@fetchNotifications');
+Route::get('/mobilelogout', 'MobileSessionController@mobileLogout');
 
 Route::get('/scheduler-run-scheduled-tasks', function(){
-  $pendingNotifs = Notification::whereBetween('sent', [Carbon::now()->subHours(2), Carbon::now()])->get();//get notifications from the last two hours
+  $pendingNotifs = App\Notification::whereBetween('sent', [\Carbon\Carbon::now()->subHours(2), \Carbon\Carbon::now()])->get();//get notifications from the last two hours
   foreach($pendingNotifs as $not){
     if($not->notification_log->status == 0){//if notification hasn't been sent
       //send notification and update status
-      $status = NotificationSenderClass::sendNotification($not);
+      $status = App\NotificationSenderClass::sendNotification($not);
       if($status == 0){
         $not->notification_log->status = 1;//notification sent
       }else if(is_array($status)){//check tokens to retry
@@ -91,7 +95,7 @@ Route::get('/scheduler-run-scheduled-tasks', function(){
     }
   }
 
-  $pendingNotifs = Notification::whereBetween('sent', [Carbon::now()->subDay(), Carbon::now()])->get();//get notifications programed between yesterday and last hour
+  $pendingNotifs = App\Notification::whereBetween('sent', [\Carbon\Carbon::now()->subDay(), \Carbon\Carbon::now()])->get();//get notifications programed between yesterday and last hour
   foreach($pendingNotifs as $not){
     if($not->notification_log->status == 0){//if notification hasn't been sent
       $not->notification_log->status = -1;//mark notifiction as not sent since its time passed
@@ -107,18 +111,3 @@ Route::get('/home', 'HomeController@index');
 
 //these routes are for testing only
 Route::get('/generateDB', 'DataForDatabase@generateData');
-Route::get('/createNotif', 'DataForDatabase@createNotif');
-Route::get('/sendtestNotif', 'NotificationController@sendTestNotif');
-Route::get('/testjson', function(){
-  return Response::json(['result'=>array(
-    array('id' => '0', 'description' => 'Alumno'),
-    array('id' => '1', 'description' => 'Maestro'),
-  )]);
-});
-
-Route::get('/testjson2', function(){
-  return Response::json(array(
-    '0' =>array('id' => '0', 'description' => 'Sistemas'),
-    '1' =>array('id' => '1', 'description' => 'Mecatrónica'),
-  ));
-});
