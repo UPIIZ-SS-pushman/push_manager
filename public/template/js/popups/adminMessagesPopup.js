@@ -21,7 +21,7 @@ function deleteAdminMessages() {
         idsnum[i] = ids[i].value;
       }
         if(isConfirm){
-            $.post("/deleteMessages",{ids:idsnum},
+            $.post(postRoute,{ids:idsnum},
             function(data,status){
                 swal({
                     title: "¡Eliminado!",
@@ -56,4 +56,3 @@ function cancelPopup(message, message2){
 $(document).ready(function(){
     $(':checkbox:checked').prop('checked',false);
 });
-

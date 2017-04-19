@@ -117,7 +117,7 @@ function delMultipleSector(){
         },
         function(isConfirm){
             if(isConfirm){
-                $.post("/types",{ids:stack},
+                $.post(postRoute,{ids:stack},
                 function(data,status){
                     swal({
                         title: "¡Eliminado!",

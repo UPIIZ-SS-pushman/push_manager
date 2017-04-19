@@ -66,7 +66,7 @@ PushManager - Lista de sectores
                     <th></th>
                 </tr>
             </thead>
-            
+
             <tbody>
                 @foreach($sectors as $sec)
                 <tr>
@@ -76,7 +76,7 @@ PushManager - Lista de sectores
                             <label for="check-bird-{{$sec->id}}"></label>
                         </div>
                     </td>
-            
+
     <!--                         begin data -->
                     <td class="table-icon-cell">{{ $sec->id }}</td>
                     <td>{{ $sec->name }}</td>
@@ -86,7 +86,7 @@ PushManager - Lista de sectores
     <!--                         actions -->
                     <td style="text-align: center">
                         <button type="button" class="btn btn-inline btn-warning-outline" onclick="updateSectorShow({{$sec->id}}, '{{$sec->name}}', {{$sec->user_type_id}})"><i class="font-icon font-icon-pencil"></i></button>
-                    
+
                         <button type="button" class="btn btn-inline btn-danger-outline" onclick="delOneSector({{$sec->id}}, '{{$sec->name}}')"><i class="font-icon font-icon-trash"></i></button>
                     </td>
                 </tr>
@@ -107,7 +107,7 @@ PushManager - Lista de sectores
 <script src="{{ URL::asset('template/js/lib/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
 <script src="{{ URL::asset('template/js/lib/bootstrap-select/bootstrap-select.min.js') }}"></script>
 <script src="{{ URL::asset('template/js/lib/select2/select2.full.min.js') }}"></script>
-
+<script>var postRoute = "{{url('/sectors')}}";</script>
 <script src="{{ URL::asset('template/js/popups/sectorPopup.js') }}"></script>
 
 <script src="{{ URL::asset('template/js/lib/bootstrap-maxlength/bootstrap-maxlength.js') }}"></script>

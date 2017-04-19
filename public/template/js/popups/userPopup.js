@@ -103,7 +103,7 @@ function delMultipleUser(){
         },
         function(isConfirm){
             if(isConfirm){
-                $.post("/users",{ids:stack},
+                $.post(postRoute,{ids:stack},
                 function(data,status){
                     swal({
                         title: "¡Eliminado!",

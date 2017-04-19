@@ -137,14 +137,14 @@ $converter = array(
                                     <td class="table-icon-cell">{{ $us->created_at }}</td>
                                     <td class="table-icon-cell">{{ $us->updated_at }}</td>
     <!--                         actions -->
-                                    
+
                                     <td style="text-align: center">
                                             <button type="button" class="btn btn-inline btn-warning-outline" onclick="updateUserShow({{$us->id}}, '{{$us->username}}', '{{$us->name}}', '{{$us->lastname}}', '{{$us->email}}', {{$us->user_type_id}}, {{$us->sector_id}} )"><i class="font-icon font-icon-pencil"></i></button>
                                         @unless(Auth::user()->id == $us->id)
                                             <button type="button" class="btn btn-inline btn-danger-outline" onclick="delOneUser({{$us->id}}, '{{$us->username}}', '{{$us->user_type->name}}')"><i class="font-icon font-icon-trash"></i></button>
                                         @endunless
                                     </td>
-                                    
+
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -234,7 +234,7 @@ $converter = array(
                                     <td class="table-icon-cell">{{ $us->created_at }}</td>
                                     <td class="table-icon-cell">{{ $us->updated_at }}</td>
     <!--                         actions -->
-                                    
+
                                     <td style="text-align: center">
                                     @unless($us->user_type->id == 1)
                                             <button type="button" class="btn btn-inline btn-warning-outline" onclick="updateUserShow({{$us->id}}, '{{$us->username}}', '{{$us->name}}', '{{$us->lastname}}', '{{$us->email}}', {{$us->user_type_id}}, {{$us->sector_id}} )"><i class="font-icon font-icon-pencil"></i></button>
@@ -243,7 +243,7 @@ $converter = array(
                                         @endunless
                                     @endunless
                                     </td>
-                                    
+
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -255,7 +255,7 @@ $converter = array(
         </div>
     </article>
     @endif
-    
+
 @endforeach
 @endif
 
@@ -269,7 +269,7 @@ $converter = array(
 <script src="{{ URL::asset('template/js/lib/bootstrap-select/bootstrap-select.min.js') }}"></script>
 <script src="{{ URL::asset('template/js/lib/select2/select2.full.min.js') }}"></script>
 <script src="{{ URL::asset('template/js/lib/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
-
+<script>var postRoute = "{{url('/users')}}";</script>
 <script src="{{ URL::asset('template/js/popups/userPopup.js') }}"></script>
 
 <script src="{{ URL::asset('template/js/lib/hide-show-password/bootstrap-show-password.min.js') }}"></script>

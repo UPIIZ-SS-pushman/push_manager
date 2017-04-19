@@ -59,15 +59,15 @@ PushManager - Mensajes del administrador
             </thead>
 
             <tbody>
-                @foreach(\App\AdminMessage::all() as $message)
-                <tr>                     
+                @foreach(\App\AdminMessage::all()->sortByDesc('created_at') as $message)
+                <tr>
                     <td class="checkbox-bird red">
                         <div class="checkbox-bird checkbox-only">
                         <input type="checkbox" id="table-check-{{$message->id}}" class="table-check" value="{{$message->id}}">
                         <label for="table-check-{{$message->id}}"></label>
                         </div>
                     </td>
-                    
+
                     <td>
                         @if($message->read)
                             <i class="font-icon font-icon-ok"></i>
@@ -79,7 +79,7 @@ PushManager - Mensajes del administrador
                     <td class="color-blue-grey-lighter"><a href="viewMessage/{{$message->id}}">{{str_limit($message->body_message, $limit = 50, $end = "...")}}</a></td>
                     <td class="table-date">{{$message->sent_date}}</td>
                     <td class="table-icon-cell">{{$message->user->name}} {{$message->user->lastname}}</td>
-                    
+
                 </tr>
                 @endforeach
             </tbody>
@@ -155,6 +155,7 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+var postRoute = "{{url('/deleteMessages')}}";
 </script>
 <script src="{{ URL::asset('template/js/popups/adminMessagesPopup.js') }}"></script>
 <script>

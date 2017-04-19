@@ -106,7 +106,7 @@ PushManager - Lista de tipos de usuarios
 
 @section('scripts')
 <script src="{{ URL::asset('template/js/lib/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
-
+<script>var postRoute = "{{url('/types')}}";</script>
 <script src="{{ URL::asset('template/js/popups/userTypePopup.js') }}"></script>
 
 <script src="{{ URL::asset('template/js/lib/bootstrap-maxlength/bootstrap-maxlength.js') }}"></script>
