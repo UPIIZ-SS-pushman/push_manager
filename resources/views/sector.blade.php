@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+PushManager - Lista de sectores
+@stop
+
 @section('header')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @stop
@@ -10,6 +14,8 @@
 @stop
 
 @section('content')
+
+@if(Auth::user()->user_type_id == 1)
 
 <h5 class="m-t-lg with-border m-t-0">Sectores registrados en el sistema</h5>
 
@@ -51,7 +57,7 @@
     <!--                             titles -->
             <thead>
                 <tr>
-                    <th></th>
+                    <th width="1"></th>
                     <th width="1">ID</th>
                     <th>Nombre</th>
                     <th>Tipo de usuario</th>
@@ -60,7 +66,7 @@
                     <th></th>
                 </tr>
             </thead>
-
+            
             <tbody>
                 @foreach($sectors as $sec)
                 <tr>
@@ -70,7 +76,7 @@
                             <label for="check-bird-{{$sec->id}}"></label>
                         </div>
                     </td>
-
+            
     <!--                         begin data -->
                     <td class="table-icon-cell">{{ $sec->id }}</td>
                     <td>{{ $sec->name }}</td>
@@ -80,7 +86,7 @@
     <!--                         actions -->
                     <td style="text-align: center">
                         <button type="button" class="btn btn-inline btn-warning-outline" onclick="updateSectorShow({{$sec->id}}, '{{$sec->name}}', {{$sec->user_type_id}})"><i class="font-icon font-icon-pencil"></i></button>
-
+                    
                         <button type="button" class="btn btn-inline btn-danger-outline" onclick="delOneSector({{$sec->id}}, '{{$sec->name}}')"><i class="font-icon font-icon-trash"></i></button>
                     </td>
                 </tr>
@@ -92,6 +98,8 @@
 </section>
 
 @include('popups.sectorPopups')
+
+@endif
 
 @stop
 

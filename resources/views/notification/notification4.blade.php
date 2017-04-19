@@ -127,7 +127,7 @@ PushManager - Crear notificación (4/4)
                             <a href="3"><button type="button" class="btn btn-rounded btn-grey btn-inline btn-lg btn-block">← Atrás</button></a>
                         </div>
                         <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0 col-lg-4 col-lg-offset-2">
-                            <button type="submit" class="btn btn-rounded btn-success float-right btn-lg btn-block">Confirmar</button>
+                            <button type="submit" class="btn btn-rounded btn-success btn-inline btn-lg btn-block">Confirmar</button>
                         </div>
                     </fieldset>
                 </div>

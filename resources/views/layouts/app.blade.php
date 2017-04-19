@@ -28,7 +28,7 @@
 <body class="with-side-menu">
 
 	<!--//Begin header section -->
-	<header class="site-header">
+<!--	<header class="site-header">
 	    <div class="container-fluid">
 	        <a href="#" class="site-logo">
 	            <img class="hidden-md-down" src="{{ URL::asset('template/img/logo-2.png') }}" alt="">
@@ -37,9 +37,9 @@
 	        <div class="site-header-content">
 	            <div class="site-header-content-in">
 	                <div class="site-header-shown">
-	                </div><!--.site-header-shown-->
+	                </div>
 
-									<!-- Menu add -->
+
 	                <div class="mobile-menu-right-overlay"></div>
 	                <div class="site-header-collapsed">
 	                    <div class="site-header-collapsed-in">
@@ -48,22 +48,22 @@
 	                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Quant and Verbal</a>
 	                            </div>
 	                        </div>
-	                    </div><!--.site-header-collapsed-in-->
-	                </div><!--.site-header-collapsed-->
-	            </div><!--site-header-content-in-->
-	        </div><!--.site-header-content-->
-	    </div><!--.container-fluid-->
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 
-	</header>
+	</header>-->
 	<!--//End header section -->
 
 
 	<!--//Begin main content section -->
-	<div class="page-content">
-	    <div class="container-fluid">
+	<!--<div class="page-content">
+	    <div class="container-fluid">-->
 	      @yield('content')
-	    </div><!--.container-fluid-->
-	</div>
+<!-- 	    </div> -->
+<!-- 	</div> -->
 	<!--//Scripts section -->
 	<script src="{{ URL::asset('template/js/lib/jquery/jquery.min.js') }}"></script>
 	<script src="{{ URL::asset('template/js/lib/tether/tether.min.js') }}"></script>

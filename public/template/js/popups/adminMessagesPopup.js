@@ -27,7 +27,8 @@ function deleteAdminMessages() {
                     title: "¡Eliminado!",
                     text: "Los mensajes se han eliminado",
                     type: "success",
-                    showConfirmButton: true
+                    timer: 1500,
+                    showConfirmButton: false
                 },
                 function(){
                     location.reload();
@@ -47,6 +48,12 @@ function cancelPopup(message, message2){
         title: message,
         text: message2,
         type: "error",
-        showConfirmButton: true
+        timer: 1000,
+        showConfirmButton: false
     });
 }
+
+$(document).ready(function(){
+    $(':checkbox:checked').prop('checked',false);
+});
+

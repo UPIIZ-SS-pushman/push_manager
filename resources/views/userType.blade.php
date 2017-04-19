@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+PushManager - Lista de tipos de usuarios
+@stop
+
 @section('header')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @stop
@@ -10,6 +14,8 @@
 @stop
 
 @section('content')
+
+@if(Auth::user()->user_type_id == 1)
 
 <h5 class="m-t-lg with-border m-t-0">Tipos de usuarios registrados en el sistema</h5>
 
@@ -51,7 +57,7 @@
     <!--                             titles -->
             <thead>
                 <tr>
-                    <th></th>
+                    <th width="1"></th>
                     <th width="1">ID</th>
                     <th>Nombre</th>
                     <th>Fecha de creación</th>
@@ -64,10 +70,12 @@
                 @foreach($types as $type)
                 <tr>
                     <td>
+                        @unless($type->id==1)
                         <div class="checkbox-bird red">
                             <input id="check-bird-{{$type->id}}" name="check{{$type->id}}" type="checkbox" value="{{$type->id}}" onclick="delMultipleSectorArray('{{$type->id}}')">
                             <label for="check-bird-{{$type->id}}"></label>
                         </div>
+                        @endunless
                     </td>
 
     <!--                         begin data -->
@@ -78,8 +86,9 @@
     <!--                         actions -->
                     <td style="text-align: center">
                         <button type="button" class="btn btn-inline btn-warning-outline" onclick="updateSectorShow({{$type->id}}, '{{$type->name}}')"><i class="font-icon font-icon-pencil"></i></button>
-
+                        @unless($type->id==1)
                         <button type="button" class="btn btn-inline btn-danger-outline" onclick="delOneSector({{$type->id}}, '{{$type->name}}')"><i class="font-icon font-icon-trash"></i></button>
+                        @endunless
                     </td>
                 </tr>
                 @endforeach
@@ -90,6 +99,8 @@
 </section>
 
 @include('popups.userTypesPopups')
+
+@endif
 
 @stop
 

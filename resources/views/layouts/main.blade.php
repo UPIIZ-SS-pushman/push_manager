@@ -199,21 +199,25 @@
 					<!-- fin usuarios -->
 
 					<!-- sectores -->
+            @if(Auth::user()->user_type_id == 1)
             <li class="gold with-sub">
 	            <a href="{{url('/sectors')}}">
 	                <span class="font-icon font-icon-widget"></span>
 	                <span class="lbl">Sectores</span>
 	            </a>
 	        </li>
+	        @endif
 					<!-- fin sectores -->
 
 					<!-- tipos -->
+            @if(Auth::user()->user_type_id == 1)
 	        <li class="brown with-sub">
 	            <a href="{{url('/types')}}">
 	                <span class="font-icon font-icon-contacts"></span>
 	                <span class="lbl">Tipos de usuario</span>
 	            </a>
 	        </li>
+	        @endif
 					<!-- fin tipos -->
 
 	    </ul>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\UserType;
+use App\User;
 
 class UserTypeController extends Controller
 {
@@ -21,6 +22,15 @@ class UserTypeController extends Controller
         if($id == 1){
           return "You can't delete the admins!";
         }
+        
+        $users=User::all();
+        foreach($users as $user){
+            if($id == $user->user_type_id){
+                $user->update([
+                    'user_type_id' => 0]);
+            }
+        }
+        
         $type=UserType::find($id);
         $type->delete();
 

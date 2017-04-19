@@ -3,6 +3,55 @@
 PushManager - Recuperar contraseña
 @stop
 @section('content')
+
+<div class="page-center">
+    <div class="page-center-in">
+        <div class="container-fluid">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+        
+            <form class="sign-box" role="form" method="POST" action="{{ url('/password/email') }}">
+            {{ csrf_field() }}
+            
+                <div class="sign-avatar">
+                    <img src="template/img/logo-2-mob.png" alt="">
+                </div>
+                
+                <header class="sign-title">Enviar correo de recuperación</header>
+                
+                @if($errors->any())
+                    <div class="alert alert-danger alert-fill alert-close alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="email" class="form-label">Dirección de correo</label>
+                    <div>
+                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Ej: pepe@correo.com">
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-rounded btn-warning btn-lg btn-block"><i class="fa fa-btn fa-envelope"></i> Recuperar contraseña</button>
+                
+                <a href="{{ url('/') }}"><button type="button" class="close">
+                    <span aria-hidden="true">&times;</span>
+                </button></a>
+            </form>
+        </div>
+    </div>
+</div><!--.page-center-->
+<!--
     <header class="section-header">
       <div class="tbl">
         <div class="tbl-row">
@@ -59,5 +108,5 @@ PushManager - Recuperar contraseña
 
       </div>
     </section>
-</div></div>
+</div></div>-->
 @endsection

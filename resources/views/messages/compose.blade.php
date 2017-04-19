@@ -11,7 +11,49 @@ PushManager - Mensajear al administrador
   Mensajear al administrador
 </h5>
 
-<div class = "col-xl-6">
+<div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+    <section class="box-typical">
+        <header class="widget-header-dark">Escribir mensaje para el administrador</header>
+
+        <div id = "not-step1" style="padding:10px;">
+            @if($errors->any())
+                <div class="alert alert-danger alert-fill alert-close alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            
+            {{Form::open()}}
+                <div class="container-fluid">
+                    <label class="form-control-label">Mensaje</label>
+                    {{Form::textarea('body', null, ['rows'=>10, 'class'=>'form-control', 'placeholder'=>'Describa detalladamente la situación tal y como ocurrió.'])}}
+                </div>
+
+                </br>
+                </br>
+
+                <div class="row">
+                    <fieldset class="form-group">
+                        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0 col-lg-4 col-lg-offset-1">
+                            <a href="{{url('/')}}"><button type="button" class="btn btn-rounded btn-grey btn-inline btn-lg btn-block">Cancelar</button></a>
+                        </div>
+                        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0 col-lg-4 col-lg-offset-2">
+                            <button type="submit" class="btn btn-rounded btn-success btn-inline btn-lg btn-block">Enviar <i class="font-icon font-icon-check-bird"></i></button>
+                        </div>
+                    </fieldset>
+                </div>
+            {{Form::close()}}
+        </div>
+    </section>
+</div>
+
+<!--<div class = "col-xl-6">
   <section class="box-typical steps-icon-block">
     <div id = "not-step1">
       <header class="steps-numeric-title">
@@ -39,8 +81,8 @@ PushManager - Mensajear al administrador
       </div>
       {{Form::close()}}
     </div>
-  </section><!--.steps-icon-block-->
-</div>
+  </section>
+</div>-->
 @stop
 
 @section('scripts')
