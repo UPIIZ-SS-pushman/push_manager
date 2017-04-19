@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\AdminMessage;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Log;
-
+use Validator;
 
 class AdminMessagesController extends Controller
 {
@@ -41,5 +42,36 @@ class AdminMessagesController extends Controller
       }
 
       return "ok";
+    }
+
+    public function createMessageFromMobile(Request $request){
+      try{
+        $validator = Validator::make($request->all(),[
+          'body' => 'required|min:20|max:255',
+          'userid' => 'required|digits_between:1,10',
+        ]);
+
+        if ($validator->fails()) {
+          return [
+            "status"=>"err",
+            "messages"=>($validator->messages()->all()),
+          ];
+        }
+        $user = User::findOrFail($request->input('userid'));
+        $message = new AdminMessage;
+        $message->body_message = $request->input('body');
+        $message->user_id = $request->input('userid');
+        $message->sent_date = \Carbon\Carbon::now();
+
+        $message->save();
+        return [
+          "status"=>"ok",
+        ];
+      }catch(\Exception $e){
+        return [
+          "status"=>"err",
+          "messages"=>['El usuario solicitado no existe'],
+        ];
+      }
     }
 }

@@ -70,12 +70,23 @@ Route::post('/notification/update/{id}', 'NotificationController@updateNotificat
 
 Route::post('/image-upload/{id}', 'ImageUploadController@upload')->middleware('auth');
 
+//
 Route::get('/fetchusertypes', 'MobileSessionController@fetchUserTypes');
 Route::get('/fetchsectors/{user_type}', 'MobileSessionController@fetchSectors');
 Route::post('/registeruser', 'MobileSessionController@registerUser');
 Route::post('/mobilelogin', 'MobileSessionController@mobileLogin');
 Route::get('/fetchnotifications/{user_id}', 'MobileSessionController@fetchNotifications');
-Route::get('/mobilelogout', 'MobileSessionController@mobileLogout');
+Route::get('/fetchuserdata/{user_id}', 'MobileSessionController@fetchUserData');
+Route::post('/updateuserdata/{user_id}', 'MobileSessionController@updateUserData');
+Route::post('/sendmessagefrommobile', 'AdminMessagesController@createMessageFromMobile');
+Route::get('/fetchdashboardimagesroutes', function(){
+  $images = array();
+  foreach (File::allFiles("img/dashboard") as $file) {
+    $imgroute = pathinfo($file)['dirname'].'/'.pathinfo($file)['basename'];
+    array_push($images, $imgroute);
+  }
+  return $images;
+});
 
 Route::get('/scheduler-run-scheduled-tasks', function(){
   $pendingNotifs = App\Notification::whereBetween('sent', [\Carbon\Carbon::now()->subHours(2), \Carbon\Carbon::now()])->get();//get notifications from the last two hours

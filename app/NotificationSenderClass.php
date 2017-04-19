@@ -34,23 +34,41 @@ class NotificationSenderClass
       //replace to send to desired users
       //$token = "e62zTpRIvJs:APA91bHEWPKWkQ3jMsmhrmlO4DR0aD8CxkI1cl1I4FsTFFE7-OkXLge10qYvLX0gR4u9LjBGlczTG2SJmVTl8tbFenmkM7X9pCWO4KFvXGU7w9ckg4oIGjMelrU3culg2JXcRFG_k3ng";
       $notinds = $notif->notification_individuals;
-      $tokens = array();
+      $notsect = $notif->notification_sectors;
 
-      $i = 0;
+      $tokens = array();
+      $sectors = array();
+
       foreach($notinds as $ni){
         if($ni->user->firebase_key != null){
-          $tokens[$i] = $ni->user->firebase_key;
-          $i++;
+          $tokens[] = $ni->user->firebase_key;
         }else{
           Log::warning('User with id '.$ni->user->id.' doesn\'t have a valid firebase key');
         }
       }
-
-      if(!empty($tokens)){
-        $downstreamResponse = FCM::sendTo($tokens, $option, $notification);
-        return NotificationSenderClass::updateDBtokens($downstreamResponse);
+      foreach($notsect as $ns){
+        $sectors[] = $ns->sector->name;
       }
-      return 1;
+
+      $topicResponse = -1;
+      if(!empty($sectors)){//send notification to topics (sectors)
+        $topic = new Topics();
+        $topic->topic($sectors[0]);
+
+        for(int $i = 1; $i<count($topic); $i++){
+          $topic->orTopic($sectors[$i]);
+        }
+
+        $topicResponse = FCM::sendToTopic($topic, null, $notification, null);
+
+      }
+
+      $individualResponse = -1;
+      if(!empty($tokens)){//send notifications to individuals
+        $downstreamResponse = FCM::sendTo($tokens, $option, $notification);
+        return NotificationSenderClass::updateDBtokens($downstreamResponse);//return status
+      }
+      return 1;//error
     }
 
     private static function updateDBtokens($downstreamResponse){
@@ -71,9 +89,9 @@ class NotificationSenderClass
 
       //return Array - you should try to resend the message to the tokens in the array
       if(!empty($downstreamResponse->tokensToRetry())){
-        return $downstreamResponse->tokensToRetry();
+        return $downstreamResponse->tokensToRetry();//array with tokens to resend
       }else{
-        return 0;
+        return 0;//no errors
       }
 
     }

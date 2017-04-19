@@ -13,6 +13,8 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         '/registeruser',
-        '/mobilelogin'
+        '/mobilelogin',
+        '/updateuserdata/*',
+        '/sendmessagefrommobile'
     ];
 }

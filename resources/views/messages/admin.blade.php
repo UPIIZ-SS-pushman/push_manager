@@ -117,7 +117,7 @@ PushManager - Mensajes del administrador
           </tr>
         </thead>
         <tbody>
-          @foreach(\App\AdminMessage::all() as $message)
+          @foreach(\App\AdminMessage::all()->sortByDesc('created_at') as $message)
             <tr>
               <td class="checkbox-bird">
                 <div class="checkbox checkbox-only">
