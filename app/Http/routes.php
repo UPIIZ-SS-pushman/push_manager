@@ -82,7 +82,7 @@ Route::post('/sendmessagefrommobile', 'AdminMessagesController@createMessageFrom
 Route::get('/fetchdashboardimagesroutes', function(){
   $images = array();
   foreach (File::allFiles("img/dashboard") as $file) {
-    $imgroute = pathinfo($file)['dirname'].'/'.pathinfo($file)['basename'];
+    $imgroute = pathinfo($file)['basename'];
     array_push($images, $imgroute);
   }
   return $images;
