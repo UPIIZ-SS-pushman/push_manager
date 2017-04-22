@@ -111,6 +111,7 @@
 	                <div class="mobile-menu-right-overlay"></div>
 	                <div class="site-header-collapsed">
 	                    <div class="site-header-collapsed-in">
+	                    	<h3 class="panel-title">Sistema Administrador de Notificaciones Politécnico</h3>
 	                        <div class="dropdown dropdown-typical">
 	                            <div class="dropdown-menu" aria-labelledby="dd-header-sales">
 	                                <a class="dropdown-item" href="#"><span class="font-icon font-icon-home"></span>Quant and Verbal</a>
