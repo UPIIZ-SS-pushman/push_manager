@@ -103,8 +103,8 @@ class MobileSessionController extends Controller
     public function fetchNotifications($user_id){
       try{
         $user = User::findOrFail($user_id);
-        $notInd = NotificationIndividual::where('user_id', $user->id)->take(10)->get();
-        $notSec = NotificationSector::where('sector_id', $user->sector_id)->take(10)->get();
+        $notInd = NotificationIndividual::where('user_id', $user->id)->latest()->take(10)->get();
+        $notSec = NotificationSector::where('sector_id', $user->sector_id)->latest()->take(10)->get();
 
         $notifications = array();
         foreach($notInd as $ni){
