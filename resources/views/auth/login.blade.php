@@ -58,7 +58,7 @@ PushManager - Iniciar sesión
                     </div>
                 </div>
                 
-                <p class="sign-note">¿Nuevo en el sitio? <a href="{{ url('/register') }}">Registrame</a></p>
+<!--                 <p class="sign-note">¿Nuevo en el sitio? <a href="{{ url('/register') }}">Registrame</a></p> -->
                 
                 <a href="{{ url('/') }}"><button type="button" class="close">
                     <span aria-hidden="true">&times;</span>

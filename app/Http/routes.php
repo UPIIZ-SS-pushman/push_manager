@@ -38,6 +38,7 @@ Route::get('/viewMessage/{id}','AdminMessagesController@viewMessage')->middlewar
 Route::post('/deleteMessages', 'AdminMessagesController@deleteMessages')->middleware('auth');
 
 Route::get('/calendar', function(){return view('calendar');})->middleware('auth');
+Route::get('/line', 'historyLineController@present')->middleware('auth');
 Route::get('/dashboard', function(){return view('dashboard');})->middleware('auth');
 Route::post('/quickNotification', 'NotificationController@quickNotification')->middleware('auth');
 
