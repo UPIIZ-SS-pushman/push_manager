@@ -16,7 +16,7 @@
                         <fieldset class="form-group">
                             <label class="form-label">Tipo</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop', 'name'=>'namePop', 'placeholder'=>'Ej: Estudiante', 'maxlength'=>'25'])}}
+                                {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop', 'name'=>'namePop', 'placeholder'=>'Ej: Estudiante', 'maxlength'=>'255'])}}
                                 <i class="font-icon font-icon-contacts"></i>
                             </div>
                         </fieldset>
@@ -66,7 +66,7 @@
                         <fieldset class="form-group">
                             <label class="form-label">Tipo</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop2', 'name'=>'namePop2', 'placeholder'=>'Ej: Estudiante', 'maxlength'=>'25'])}}
+                                {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop2', 'name'=>'namePop2', 'placeholder'=>'Ej: Estudiante', 'maxlength'=>'255'])}}
                                 <i class="font-icon font-icon-contacts"></i>
                             </div>
                         </fieldset>

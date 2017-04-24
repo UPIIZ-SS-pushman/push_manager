@@ -10,6 +10,7 @@ use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
 use Exception;
+use LaravelFCM\Message\Topics;
 
 use Log;
 
@@ -55,7 +56,7 @@ class NotificationSenderClass
         $topic = new Topics();
         $topic->topic($sectors[0]);
 
-        for(int $i = 1; $i<count($topic); $i++){
+        for($i = 1; $i<count($topic); $i++){
           $topic->orTopic($sectors[$i]);
         }
 

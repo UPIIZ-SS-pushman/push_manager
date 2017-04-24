@@ -12,13 +12,13 @@ class ImageUploadController extends Controller
       if(!$file){
         return 'Error: No hay ningún archivo';
       }
-      $destinationPath = 'img/dashboard';
+      $destinationPath = public_path().'/img/dashboard';
 
 
       $filename = $id.'.'.$file->getClientOriginalExtension();
       foreach(glob($destinationPath."/".$id.".*") as $ftd){
         if(!unlink($ftd)){
-          file_put_contents($destinationPath."log.txt", "error deleting file: ".$ftd);
+          file_put_contents($destinationPath."/log.txt", "error deleting file: ".$ftd);
         }
 
       }

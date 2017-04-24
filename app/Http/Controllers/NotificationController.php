@@ -18,6 +18,8 @@ use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
 use Illuminate\Support\Facades\Auth;
 
+use Log;
+
 class NotificationController extends Controller
 {
     public function viewNotification(Request $request, $id){
@@ -71,6 +73,18 @@ class NotificationController extends Controller
         'sent' => $time
       ]);
       return view('notification.notification5');
+    }
+
+    public function deleteNotification(Request $request)
+    {
+      $this->validate($request,[
+        'notid' => 'required',
+      ]);
+       $notid = $request->input('notid');
+       $notif = Notification::find($notid);
+       $notif->delete();
+
+       return "deleted";
     }
 
     public function quickNotification(Request $request){

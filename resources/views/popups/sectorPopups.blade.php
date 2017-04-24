@@ -16,7 +16,7 @@
                     <fieldset class="form-group">
                         <label class="form-label">Sector</label>
                         <div class="form-control-wrapper form-control-icon-left">
-                            {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop', 'name'=>'namePop', 'placeholder'=>'Ej: Sistemas', 'maxlength'=>'50'])}}
+                            {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop', 'name'=>'namePop', 'placeholder'=>'Ej: Sistemas', 'maxlength'=>'255'])}}
                             <i class="font-icon font-icon-widget"></i>
                         </div>
                     </fieldset>
@@ -79,7 +79,7 @@
                     <fieldset class="form-group">
                         <label class="form-label">Sector</label>
                         <div class="form-control-wrapper form-control-icon-left">
-                            {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop2', 'name'=>'namePop2', 'placeholder'=>'Ej: Sistemas', 'maxlength'=>'50'])}}
+                            {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop2', 'name'=>'namePop2', 'placeholder'=>'Ej: Sistemas', 'maxlength'=>'255'])}}
                             <i class="font-icon font-icon-widget"></i>
                         </div>
                     </fieldset>

@@ -17,7 +17,7 @@
                         <fieldset class="form-group">
                             <label class="form-label">Usuario</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('user', $us->username, ['class'=>'form-control maxlength-custom-message', 'id'=>'userPop', 'name'=>'userPop', 'placeholder'=>'Ej: pepe1', 'maxlength'=>'15'])}}
+                                {{Form::text('user', $us->username, ['class'=>'form-control maxlength-custom-message', 'id'=>'userPop', 'name'=>'userPop', 'placeholder'=>'Ej: pepe1', 'maxlength'=>'255'])}}
                                 <i class="font-icon font-icon-user"></i>
                             </div>
                         </fieldset>
@@ -25,7 +25,7 @@
                         <fieldset class="form-group">
                             <label class="form-label">Nombre(s)</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('name', $us->name, ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop', 'name'=>'namePop', 'placeholder'=>'Ej: Pedro', 'maxlength'=>'30'])}}
+                                {{Form::text('name', $us->name, ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop', 'name'=>'namePop', 'placeholder'=>'Ej: Pedro', 'maxlength'=>'255'])}}
                                 <i class="font-icon font-icon-user"></i>
                             </div>
                         </fieldset>
@@ -33,7 +33,7 @@
                         <fieldset class="form-group">
                             <label class="form-label">Apellidos</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('lastname', $us->lastname, ['class'=>'form-control maxlength-custom-message', 'id'=>'lastnamePop', 'name'=>'lastnamePop', 'placeholder'=>'Ej: Pérez', 'maxlength'=>'30'])}}
+                                {{Form::text('lastname', $us->lastname, ['class'=>'form-control maxlength-custom-message', 'id'=>'lastnamePop', 'name'=>'lastnamePop', 'placeholder'=>'Ej: Pérez', 'maxlength'=>'255'])}}
                                 <i class="font-icon font-icon-user"></i>
                             </div>
                         </fieldset>
@@ -42,7 +42,7 @@
                         <fieldset class="form-group">
                             <label class="form-label">Correo</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::email('email', $us->email, ['class'=>'form-control maxlength-custom-message', 'id'=>'emailPop', 'name'=>'emailPop', 'placeholder'=>'Ej: ejemplo@correo.com', 'maxlength'=>'25'])}}
+                                {{Form::email('email', $us->email, ['class'=>'form-control maxlength-custom-message', 'id'=>'emailPop', 'name'=>'emailPop', 'placeholder'=>'Ej: ejemplo@correo.com', 'maxlength'=>'255'])}}
                                 <i class="font-icon font-icon-earth"></i>
                             </div>
                         </fieldset>
@@ -121,7 +121,7 @@
                         <fieldset class="form-group">
                             <label class="form-label">Usuario</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('user', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'userPop2', 'name'=>'userPop2', 'placeholder'=>'Ej: pepe1', 'maxlength'=>'15'])}}
+                                {{Form::text('user', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'userPop2', 'name'=>'userPop2', 'placeholder'=>'Ej: pepe1', 'maxlength'=>'255'])}}
                                 <i class="font-icon font-icon-user"></i>
                             </div>
                         </fieldset>
@@ -130,13 +130,13 @@
 
                         <fieldset class="form-group">
                             <label class="form-label">Contraseña</label>
-                            {{Form::password('pass', ['name'=>'passwordPop2', 'id'=>'passwordPop2', 'class'=>'form-control maxlength-custom-message', 'placeholder'=>'Ej: 49f9e1', 'maxlength'=>'30'])}}
+                            {{Form::password('pass', ['name'=>'passwordPop2', 'id'=>'passwordPop2', 'class'=>'form-control maxlength-custom-message', 'placeholder'=>'Ej: 49f9e1', 'maxlength'=>'255'])}}
                         </fieldset>
 
                         <fieldset class="form-group">
                             <label class="form-label">Nombre(s)</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop2', 'name'=>'namePop2', 'placeholder'=>'Ej: Pedro', 'maxlength'=>'30'])}}
+                                {{Form::text('name', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'namePop2', 'name'=>'namePop2', 'placeholder'=>'Ej: Pedro', 'maxlength'=>'255'])}}
                                 <i class="font-icon font-icon-user"></i>
                             </div>
                         </fieldset>
@@ -144,7 +144,7 @@
                         <fieldset class="form-group">
                             <label class="form-label">Apellidos</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::text('lastname', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'lastnamePop2', 'name'=>'lastnamePop2', 'placeholder'=>'Ej: Pérez', 'maxlength'=>'30'])}}
+                                {{Form::text('lastname', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'lastnamePop2', 'name'=>'lastnamePop2', 'placeholder'=>'Ej: Pérez', 'maxlength'=>'255'])}}
                                 <i class="font-icon font-icon-user"></i>
                             </div>
                         </fieldset>
@@ -153,7 +153,7 @@
                         <fieldset class="form-group">
                             <label class="form-label">Correo</label>
                             <div class="form-control-wrapper form-control-icon-left">
-                                {{Form::email('email', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'emailPop2', 'name'=>'emailPop2', 'placeholder'=>'Ej: ejemplo@correo.com', 'maxlength'=>'25'])}}
+                                {{Form::email('email', '', ['class'=>'form-control maxlength-custom-message', 'id'=>'emailPop2', 'name'=>'emailPop2', 'placeholder'=>'Ej: ejemplo@correo.com', 'maxlength'=>'255'])}}
                                 <i class="font-icon font-icon-earth"></i>
                             </div>
                         </fieldset>

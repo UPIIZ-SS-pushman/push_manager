@@ -26,10 +26,10 @@ class UserController extends Controller
     
     public function updateUser(Request $request){
         $this->validate($request,[
-        'userPop' => 'required|min:3|max:15|unique:users,username,'.$request->idPop,
-        'namePop' => 'required|min:4|max:30',
-        'lastnamePop' => 'required|min:5|max:30',
-        'emailPop' => 'required|min:3|max:25|email|unique:users,email,'.$request->idPop,
+        'userPop' => 'required|min:3|max:254|unique:users,username,'.$request->idPop,
+        'namePop' => 'required|min:4|max:254',
+        'lastnamePop' => 'required|min:5|max:254',
+        'emailPop' => 'required|min:3|max:254|email|unique:users,email,'.$request->idPop,
         ]);
         
         $user=User::find($request->idPop);
@@ -48,11 +48,11 @@ class UserController extends Controller
     
     public function createUser(Request $request){        
         $this->validate($request,[
-        'userPop2' => 'bail|required|min:3|max:15|unique:users,username',
-        'passwordPop2' => 'bail|required|min:3|max:15',
-        'namePop2' => 'required|min:4|max:30',
-        'lastnamePop2' => 'required|min:5|max:30',
-        'emailPop2' => 'required|min:3|max:25|email|unique:users,email'
+        'userPop2' => 'bail|required|min:3|max:254|unique:users,username',
+        'passwordPop2' => 'bail|required|min:3|max:254',
+        'namePop2' => 'required|min:4|max:254',
+        'lastnamePop2' => 'required|min:5|max:254',
+        'emailPop2' => 'required|min:3|max:254|email|unique:users,email'
         ]);
         
         $user = new User;

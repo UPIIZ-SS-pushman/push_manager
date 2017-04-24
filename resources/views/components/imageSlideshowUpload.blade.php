@@ -5,7 +5,7 @@
     <?php $files = File::allFiles('img/dashboard');?>
     @foreach ($files as $file_index => $file)
     <div class="col-sm-4" id="dz-preview{{$file_index}}">
-            <form action="/image-upload/{{$file_index}}" class="dropzone" id="image-uploader-{{$file_index}}" method="post" enctype="multipart/form-data">
+            <form action="{{url('/image-upload/'.$file_index)}}" class="dropzone" id="image-uploader-{{$file_index}}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
               <!-- <img src="{{$file}}" width="200" height="200" alt="failed" style="object-fit: contain;"> -->
               <div class="fallback">

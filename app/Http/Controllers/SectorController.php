@@ -35,7 +35,7 @@ class SectorController extends Controller
     
     public function updateSector(Request $request){
         $this->validate($request,[
-            'namePop' => 'required|min:5|max:50|unique:sectors,name,'.$request->idPop,
+            'namePop' => 'required|min:5|max:255|unique:sectors,name,'.$request->idPop,
         ]);
         
         $sector=Sector::find($request->idPop);
@@ -50,7 +50,7 @@ class SectorController extends Controller
     
     public function createSector(Request $request){
         $this->validate($request,[
-            'namePop2' => 'required|min:5|max:50|unique:sectors,name',
+            'namePop2' => 'required|min:5|max:255|unique:sectors,name',
         ]);
         
         $sector = new Sector;

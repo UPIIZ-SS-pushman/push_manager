@@ -15,6 +15,7 @@ use App\NotificationSector;
 use Log;
 use Validator;
 use Auth;
+use Carbon\Carbon;
 use Exception;
 
 class MobileSessionController extends Controller
@@ -30,11 +31,11 @@ class MobileSessionController extends Controller
     public function registerUser(Request $request){
       Log::info("Registering user");
       $validator = Validator::make($request->all(),[
-        'username' => 'bail|required|min:3|max:15|unique:users,username',
-        'password' => 'bail|required|min:3|max:15',
+        'username' => 'bail|required|min:3|max:255|unique:users,username',
+        'password' => 'bail|required|min:3|max:255',
         'name' => 'required',
         'lastname' => 'required',
-        'email' => 'required|min:3|max:25|email|unique:users,email',
+        'email' => 'required|min:3|max:255|email|unique:users,email',
         'sector' => 'required',
         'usertype' => 'required',
       ]);
@@ -64,8 +65,8 @@ class MobileSessionController extends Controller
 
     public function mobileLogin(Request $request){
       $validator = Validator::make($request->all(),[
-        'username' => 'required|min:3|max:15',
-        'password' => 'required|min:3|max:15',
+        'username' => 'required|min:3|max:255',
+        'password' => 'required|min:3|max:255',
       ]);
 
       if ($validator->fails()) {
@@ -103,25 +104,26 @@ class MobileSessionController extends Controller
     public function fetchNotifications($user_id){
       try{
         $user = User::findOrFail($user_id);
-        $notInd = NotificationIndividual::where('user_id', $user->id)->take(10)->get();
-        $notSec = NotificationSector::where('sector_id', $user->sector_id)->take(10)->get();
+        $notInd = NotificationIndividual::where('user_id', $user->id)->get();
+        $notSec = NotificationSector::where('sector_id', $user->sector_id)->get();
 
-        $notifications = array();
-        foreach($notInd as $ni){
-          $notif = $ni->notification;
-          if(!in_array($notif, $notifications)){
-            $notifications[] = $notif;
-          }
+        $notids = array();
+        foreach ($notInd as $ni) {
+          $notids[] = $ni->notification_id;
         }
-        foreach($notSec as $ns){
-          $notif = $ns->notification;
-          if(!in_array($notif, $notifications)){
-            $notifications[] = $notif;
-          }
+        foreach ($notSec as $ns) {
+          $notids[] = $ns->notification_id;
         }
+
+        $notifications = Notification::whereIn('id', $notids)->where('sent', '<', Carbon::now())->get()->toArray();
+        usort($notifications, function($a, $b){
+          return ($a['sent'] > $b['sent'])? -1 : 1;
+        });
+        $notifications = array_slice($notifications, 0, 10);
+        //i hate php
         return [
           "status" => "ok",
-          "data" => array_slice($notifications, 0, 10),
+          "data" => $notifications,
           ];
       }catch(Exception $e){
         return [
@@ -151,9 +153,9 @@ class MobileSessionController extends Controller
         $validator = Validator::make($request->all(),[
           'name' => 'required',
           'lastname' => 'required',
-          'email' => 'required|min:3|max:25|email',
-          'password' => 'bail|required|min:3|max:15',
-          'newpassword' => 'bail|min:3|max:15',
+          'email' => 'required|min:3|max:255|email',
+          'password' => 'bail|required|min:3|max:255',
+          'newpassword' => 'bail|min:3|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -171,7 +173,7 @@ class MobileSessionController extends Controller
           }
           if($request->input('email') != $user->email){
             $validator = Validator::make($request->all(),[
-              'email' => 'required|min:3|max:25|email|unique:users,email',
+              'email' => 'required|min:3|max:255|email|unique:users,email',
             ]);
             if ($validator->fails()) {
               return [

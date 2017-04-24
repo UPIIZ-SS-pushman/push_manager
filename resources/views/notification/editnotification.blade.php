@@ -1,10 +1,14 @@
 @extends('layouts.main')
+@section('header')
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+@stop
 @section('title')
 PushManager - Editar notificación
 @stop
 @section('style')
-<!-- <link rel="stylesheet" src="{{ URL::asset('template/css/lib/fullcalendar/fullcalendar.min.css') }}"> -->
 <link rel="stylesheet" href="{{ URL::asset('template/css/lib/clockpicker/bootstrap-clockpicker.min.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('template/css/lib/bootstrap-sweetalert/sweetalert.css') }}"/>
+<link href="{{ URL::asset('template/css/popup.css') }}" rel="stylesheet">
 @stop
 
 @section('content')
@@ -153,8 +157,11 @@ PushManager - Editar notificación
                                     @endif
                                 </div>
                             @else
-                                <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+                                <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-1">
                                     <a href="{{url('/calendar')}}"><button type="button" class="btn btn-rounded btn-grey btn-inline btn-lg btn-block">Cancelar</button></a>
+                                </div>
+                                <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-2">
+                                    <button id="btndeletenotif" type="button" class="btn btn-rounded btn-warning btn-inline btn-lg btn-block">Eliminar</button>
                                 </div>
                             @endif
                         </div>
@@ -177,7 +184,16 @@ PushManager - Editar notificación
 <script src="{{ URL::asset('template/js/lib/daterangepicker/daterangepicker.js') }}"></script>
 <script src="{{ URL::asset('template/js/lib/bootstrap-select/bootstrap-select.min.js') }}"></script>
 <script src="{{ URL::asset('template/js/lib/select2/select2.full.min.js') }}"></script>
-
+<script src="{{ URL::asset('template/js/lib/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
+<script>
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+var postRoute = "{{url('/notification/delete')}}";
+var calendRoute = "{{url('/calendar')}}";
+</script>
 
 <script>
   $(function() {
@@ -187,5 +203,13 @@ PushManager - Editar notificación
     });
 
   });
+
+</script>
+<script src="{{ URL::asset('template/js/popups/viewNotificationPopup.js') }}"></script>
+<script>
+  $('#btndeletenotif').click(function(){
+    deleteNotification({{$notification->id}});
+  });
+
 </script>
 @stop

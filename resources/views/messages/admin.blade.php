@@ -6,8 +6,8 @@
 PushManager - Mensajes del administrador
 @stop
 @section('style')
-<link rel="stylesheet" href="template/css/lib/bootstrap-sweetalert/sweetalert.css"/>
-<link href="template/css/popup.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ URL::asset('template/css/lib/bootstrap-sweetalert/sweetalert.css') }}"/>
+<link href="{{ URL::asset('template/css/popup.css') }}" rel="stylesheet">
 @stop
 
 @section('content')
@@ -87,62 +87,6 @@ PushManager - Mensajes del administrador
         </table>
         </div>
 </section>
-
-<!--<section class="box-typical">
-  <header class="box-typical-header">
-    <div class="tbl-row">
-      <div class="tbl-cell tbl-cell-title">
-        <h3>{{\App\AdminMessage::count()}} mensaje(s)</h3>
-      </div>
-      <div class="tbl-cell tbl-cell-action-bordered">
-        <button id="button-delete" type="button" class="action-btn"><i class="font-icon font-icon-trash"></i></button>
-      </div>
-    </div>
-  </header>
-  <div class="box-typical-body">
-    <div class="table-responsive">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th class="table-check">
-              <div class="checkbox checkbox-only">
-                <input type="checkbox" id="table-check-head"/>
-                <label for="table-check-head"></label>
-              </div>
-            </th>
-            <th> </th>
-            <th>Contenido</th>
-            <th>Recibido</th>
-            <th>Usuario</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach(\App\AdminMessage::all()->sortByDesc('created_at') as $message)
-            <tr>
-              <td class="checkbox-bird">
-                <div class="checkbox checkbox-only">
-                  <input type="checkbox" id="table-check-{{$message->id}}" class="table-check" value="{{$message->id}}">
-                  <label for="table-check-{{$message->id}}"></label>
-                </div>
-              </td>
-              <td>
-                @if($message->read)
-                  <i class="font-icon font-icon-check-circle"></i>
-                @endif
-              </td>
-              <td class="color-blue-grey-lighter"><a href="viewMessage/{{$message->id}}">{{str_limit($message->body_message, $limit = 50, $end = "...")}}</a></td>
-              <td class="table-date">{{$message->sent_date}}</td>
-              <td class="table-photo">
-                {{$message->user->name}} {{$message->user->lastname}}
-              </td>
-            </tr>
-          @endforeach
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>-->
-
 @stop
 
 @section('scripts')

@@ -39,17 +39,11 @@ PushManager - Iniciar sesión
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                     <label for="password" class="form-label">Contraseña</label>
                     <div>
-                        <input id="password" type="password" class="form-control" name="password" placeholder="Ej: Ad135">
+                        <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña">
                     </div>
                 </div>
                 
-                <div class="form-group form-group-checkbox">
-                    <div class="checkbox">
-                        <input id="signup_v2-agree" name="signup_v2[agree]" type="checkbox">
-                        <label for="signup_v2-agree">Recordarme</a></label>
-                    </div>
-                </div>
-                
+               
                 <button type="submit" class="btn btn-rounded btn-lg btn-block"><i class="fa fa-btn fa-sign-in"></i> Entrar</button>
                 
                 <div class="sign-note">
@@ -57,8 +51,7 @@ PushManager - Iniciar sesión
                         <a href="{{ url('/password/reset') }}">¡Olvide mi contraseña!</a>
                     </div>
                 </div>
-                
-                <p class="sign-note">¿Nuevo en el sitio? <a href="{{ url('/register') }}">Registrame</a></p>
+               
                 
                 <a href="{{ url('/') }}"><button type="button" class="close">
                     <span aria-hidden="true">&times;</span>

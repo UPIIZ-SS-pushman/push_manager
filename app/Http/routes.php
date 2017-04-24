@@ -67,6 +67,7 @@ Route::get('/notificationcalendarfeed', 'CalendarController@getEventJson')->midd
 Route::get('/notification/view/{id}', 'NotificationController@viewNotification')->middleware('auth');
 Route::post('/notification/view/{id}', 'NotificationController@editNotification')->middleware('auth');
 Route::post('/notification/update/{id}', 'NotificationController@updateNotification')->middleware('auth');
+Route::post('/notification/delete', 'NotificationController@deleteNotification')->middleware('auth');
 
 Route::post('/image-upload/{id}', 'ImageUploadController@upload')->middleware('auth');
 
@@ -81,11 +82,13 @@ Route::post('/updateuserdata/{user_id}', 'MobileSessionController@updateUserData
 Route::post('/sendmessagefrommobile', 'AdminMessagesController@createMessageFromMobile');
 Route::get('/fetchdashboardimagesroutes', function(){
   $images = array();
+  $i = 0;
   foreach (File::allFiles("img/dashboard") as $file) {
-    $imgroute = pathinfo($file)['dirname'].'/'.pathinfo($file)['basename'];
-    array_push($images, $imgroute);
+    $imgroute = pathinfo($file)['basename'];
+	$images['image'.$i] = $imgroute;
+    $i++;
   }
-  return $images;
+  return ['result'=>$images];
 });
 
 Route::get('/scheduler-run-scheduled-tasks', function(){

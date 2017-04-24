@@ -39,7 +39,7 @@ class UserTypeController extends Controller
 
     public function updateSector(Request $request){
         $this->validate($request,[
-            'namePop' => 'required|min:5|max:25|unique:user_types,name,'.$request->idPop,
+            'namePop' => 'required|min:5|max:255|unique:user_types,name,'.$request->idPop,
         ]);
 
         $type=UserType::find($request->idPop);
@@ -53,7 +53,7 @@ class UserTypeController extends Controller
 
     public function createSector(Request $request){
         $this->validate($request,[
-            'namePop2' => 'required|min:5|max:25|unique:user_types,name',
+            'namePop2' => 'required|min:5|max:255|unique:user_types,name',
         ]);
 
         $type = new UserType;

@@ -19,7 +19,7 @@
 |
 */
 
-require __DIR__.'/../bootstrap/autoload.php';
+require __DIR__.'/../../push_manager/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ require __DIR__.'/../bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+$app = require_once __DIR__.'/../../push_manager/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +46,10 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 | and wonderful application we have prepared for them.
 |
 */
+
+$app->bind('path.public', function() {
+    return __DIR__;
+});
 
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
