@@ -130,7 +130,7 @@ PushManager - Editar notificación
                             </div>
                             <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-0 col-lg-4 col-lg-offset-2">
                                 <div class="input-group">
-                                    <label class="form-control-label">Hora de envío</label>
+                                    <label class="form-control-label">Hora</label>
                                     <div class="input-group clockpicker" data-autoclose="true">
                                         @if($editable=='')
                                             {{Form::text('send_time', $time->format("H:i"), ['id'=>'clockselector', 'class' => 'form-control maxlength-simple', 'placeholder' => '00:00:00'])}}

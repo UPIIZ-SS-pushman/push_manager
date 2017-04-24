@@ -126,3 +126,6 @@ Route::get('/home', 'HomeController@index');
 
 //these routes are for testing only
 Route::get('/generateDB', 'DataForDatabase@generateData');
+Route::get('/sendtestnotification', function(){
+  \App\NotificationSenderClass::sendNotification(\App\Notification::find(28));
+});

@@ -25,15 +25,9 @@ class NotificationSenderClass
                           ->setSound('default')
                           ->setTag('notification');
 
-      // $dataBuilder = new PayloadDataBuilder();
-      // $dataBuilder->addData(['a_data' => 'my_data']);
 
       $option = $optionBuiler->build();
       $notification = $notificationBuilder->build();
-      // $data = $dataBuilder->build();
-
-      //replace to send to desired users
-      //$token = "e62zTpRIvJs:APA91bHEWPKWkQ3jMsmhrmlO4DR0aD8CxkI1cl1I4FsTFFE7-OkXLge10qYvLX0gR4u9LjBGlczTG2SJmVTl8tbFenmkM7X9pCWO4KFvXGU7w9ckg4oIGjMelrU3culg2JXcRFG_k3ng";
       $notinds = $notif->notification_individuals;
       $notsect = $notif->notification_sectors;
 
@@ -48,20 +42,23 @@ class NotificationSenderClass
         }
       }
       foreach($notsect as $ns){
-        $sectors[] = $ns->sector->name;
+        $sect = $ns->sector->name;
+        $sect = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $sect);
+        $sect = str_replace(' ', '', $sect);
+        $sect = str_replace("'", "", $sect);
+        $sectors[] = $sect;
       }
-
-      $topicResponse = -1;
       if(!empty($sectors)){//send notification to topics (sectors)
-        $topic = new Topics();
-        $topic->topic($sectors[0]);
+        for($i = 0; $i < count($sectors); $i++){
+          $topic = new Topics();
+          $topic->topic($sectors[$i]);
 
-        for($i = 1; $i<count($topic); $i++){
-          $topic->orTopic($sectors[$i]);
+          $topicResponse = FCM::sendToTopic($topic, null, $notification, null);
+          if($topicResponse->error()){
+            Log::warning("Couldn't send notification to sectors");
+          }
+          $topic = null;
         }
-
-        $topicResponse = FCM::sendToTopic($topic, null, $notification, null);
-
       }
 
       $individualResponse = -1;
