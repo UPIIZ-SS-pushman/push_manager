@@ -41,6 +41,8 @@ class NotificationSenderClass
           Log::warning('User with id '.$ni->user->id.' doesn\'t have a valid firebase key');
         }
       }
+
+      $retval = 1;
       foreach($notsect as $ns){
         $sect = $ns->sector->name;
         $sect = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $sect);
@@ -56,6 +58,8 @@ class NotificationSenderClass
           $topicResponse = FCM::sendToTopic($topic, null, $notification, null);
           if($topicResponse->error()){
             Log::warning("Couldn't send notification to sectors");
+          }else{
+            $retval = 0;
           }
           $topic = null;
         }
@@ -66,7 +70,7 @@ class NotificationSenderClass
         $downstreamResponse = FCM::sendTo($tokens, $option, $notification);
         return NotificationSenderClass::updateDBtokens($downstreamResponse);//return status
       }
-      return 1;//error
+      return $retval;
     }
 
     private static function updateDBtokens($downstreamResponse){

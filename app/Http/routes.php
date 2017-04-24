@@ -77,6 +77,7 @@ Route::get('/fetchusertypes', 'MobileSessionController@fetchUserTypes');
 Route::get('/fetchsectors/{user_type}', 'MobileSessionController@fetchSectors');
 Route::post('/registeruser', 'MobileSessionController@registerUser');
 Route::post('/mobilelogin', 'MobileSessionController@mobileLogin');
+Route::get('/mobilelogout/{user_id}', 'MobileSessionController@mobileLogout');
 Route::get('/fetchnotifications/{user_id}', 'MobileSessionController@fetchNotifications');
 Route::get('/fetchuserdata/{user_id}', 'MobileSessionController@fetchUserData');
 Route::post('/updateuserdata/{user_id}', 'MobileSessionController@updateUserData');
@@ -123,9 +124,3 @@ Route::get('/scheduler-run-scheduled-tasks', function(){
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-
-//these routes are for testing only
-Route::get('/generateDB', 'DataForDatabase@generateData');
-Route::get('/sendtestnotification', function(){
-  \App\NotificationSenderClass::sendNotification(\App\Notification::find(28));
-});

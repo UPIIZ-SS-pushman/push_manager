@@ -63,6 +63,22 @@ class MobileSessionController extends Controller
       ];
     }
 
+    public function mobileLogout($user_id){
+      try{
+        $user = User::findOrFail($user_id);
+        $user->firebase_key = null;
+        $user->save();
+        //i hate php
+        return [
+          "status" => "ok",
+          ];
+      }catch(Exception $e){
+        return [
+          "status" => "no",
+        ];
+      }
+    }
+
     public function mobileLogin(Request $request){
       $validator = Validator::make($request->all(),[
         'username' => 'required|min:3|max:255',
@@ -120,6 +136,12 @@ class MobileSessionController extends Controller
           return ($a['sent'] > $b['sent'])? -1 : 1;
         });
         $notifications = array_slice($notifications, 0, 10);
+
+        foreach ($notifications as &$not) {//i still hate php
+          $date = Carbon::createFromFormat('Y-m-d H:i:s', $not['sent'], 'UTC');
+          $date->setTimezone('America/Mexico_City');
+          $not['sent'] = $date->toDateTimeString();
+        }
         //i hate php
         return [
           "status" => "ok",
