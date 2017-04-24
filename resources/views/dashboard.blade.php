@@ -9,7 +9,42 @@ PushManager - Página principal
 @stop
 @section('content')
 <div class="row">
-    <div class="col-xl-8 dahsboard-column">
+<div class="col-xl-6 dahsboard-column">
+      <section class="box-typical box-typical-dashboard panel panel-default">
+          <header class="box-typical-header panel-heading">
+              <h3 class="panel-title">Notificación rápida</h3>
+          </header>
+          <div class="box-typical-body panel-body">
+            <div id = "not-step1" style="padding-left:20px;padding-right:20px;">
+            @if($errors->any())
+              <span style="color: red;">Error:</span>
+              <ul>
+                @foreach($errors->all() as $error)
+                  <li style="color: red;">{{ $error }}</li>
+                @endforeach
+              </ul>
+            @endif
+            {{Form::open(array('url'=>'/quickNotification', 'id'=>'quickNotifForm'))}}
+
+              <div class="form-group">
+                <label class="form-control-label">Título</label>
+                {{Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Título', 'id'=>'title'])}}
+              </div>
+
+              <div class="form-group">
+                <label class="form-control-label">Contenido</label>
+                {{Form::textarea('body', null, ['rows'=>2, 'class'=>'form-control', 'placeholder'=>'Contenido', 'id'=>'body'])}}
+              </div>
+
+              <button id="submitNotif" type="button" class="btn btn-rounded float-right">Enviar</button>
+            {{Form::close()}}
+          </div>
+
+          </div><!--.box-typical-body-->
+      </section>
+  </div><!--.col-->
+  
+    <div class="col-xl-6 dahsboard-column">
         <section class="box-typical box-typical-dashboard panel panel-default">
             <header class="box-typical-header panel-heading">
                 <h3 class="panel-title">Anuncios</h3>
@@ -19,6 +54,8 @@ PushManager - Página principal
             </div><!--.box-typical-body-->
         </section>
     </div><!--.col-->
+
+
 </div><!--.row-->
 
 <div class="row">
@@ -53,47 +90,14 @@ PushManager - Página principal
 
         </div><!--.row-->
     </div><!--.col-->
-  <div class="col-xl-6 dahsboard-column">
-      <section class="box-typical box-typical-dashboard panel panel-default">
-          <header class="box-typical-header panel-heading">
-              <h3 class="panel-title">Notificación rápida</h3>
-          </header>
-          <div class="box-typical-body panel-body">
-            <div id = "not-step1" style="padding-left:20px;padding-right:20px;">
-            @if($errors->any())
-              <span style="color: red;">Error:</span>
-              <ul>
-                @foreach($errors->all() as $error)
-                  <li style="color: red;">{{ $error }}</li>
-                @endforeach
-              </ul>
-            @endif
-            {{Form::open(array('url'=>'/quickNotification', 'id'=>'quickNotifForm'))}}
-
-              <div class="form-group">
-                <label class="form-control-label">Título</label>
-                {{Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Título', 'id'=>'title'])}}
-              </div>
-
-              <div class="form-group">
-                <label class="form-control-label">Contenido</label>
-                {{Form::textarea('body', null, ['rows'=>2, 'class'=>'form-control', 'placeholder'=>'Contenido', 'id'=>'body'])}}
-              </div>
-
-              <button id="submitNotif" type="button" class="btn btn-rounded float-right">Enviar</button>
-            {{Form::close()}}
-          </div>
-
-          </div><!--.box-typical-body-->
-      </section>
-  </div><!--.col-->
+ 
 </div><!--.row-->
 
 <div class="row">
     <div class="col-xl-8 dahsboard-column">
         <section class="box-typical box-typical-dashboard panel panel-default">
             <header class="box-typical-header panel-heading">
-                <h3 class="panel-title">Edición de anuncios</h3>
+                <h3 class="panel-title">Edición de anuncios (1080x1620)  </h3> 
             </header>
             <div class="box-typical-body panel-body">
               <div style="padding:20px;">
