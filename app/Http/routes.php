@@ -14,7 +14,10 @@
 Route::get('/', function () {
   if(Auth::guest()){
     return view('welcome');
-  }else {
+  }else if(Auth::user()->user_type_id != 1){
+    Auth::logout();
+    return redirect('/login')->withErrors(['Área sólo para administradores']);
+  }else{
     return view('dashboard');
   }
 });

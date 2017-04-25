@@ -23,7 +23,8 @@ class NotificationSenderClass
       $notificationBuilder = new PayloadNotificationBuilder($notif->title);
       $notificationBuilder->setBody($notif->body)
                           ->setSound('default')
-                          ->setTag('notification');
+                          ->setTag('notification')
+                          ->setIcon('ic_stat_notification');
 
 
       $option = $optionBuiler->build();
