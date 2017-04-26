@@ -1,13 +1,13 @@
 @extends('layouts.main')
 @section('title')
-PushManager - Linea de notificaciones
+PushManager - Línea de notificaciones
 @stop
 @section('style')
-
+<link rel="stylesheet" href="template/css/lib/bootstrap-sweetalert/sweetalert.css"/>
 @stop
 
 @section('content')
-<h5 class="m-t-lg with-border m-t-0">Linea del tiempo de las notificaciones</h5>
+<h5 class="m-t-lg with-border m-t-0">Línea del tiempo de las notificaciones</h5>
 
 <div class="container-fluid">
 	<section class="activity-line">
@@ -52,6 +52,9 @@ PushManager - Linea de notificaciones
 							@elseif($not->notification_log->status == 1)
 							<div class="alert alert-success">
 								{{$not->body}}
+								<div class="alert-btns">
+                                    <button type="button" class="btn btn-rounded" onclick="deleteNotificationLine({{$not->id}});">Eliminar</button>
+                                </div> 
 							</div>
 							@elseif($not->notification_log->status == -1)
 							<div class="alert alert-warning">
@@ -92,7 +95,21 @@ PushManager - Linea de notificaciones
 	</section><!--.activity-line-->
 </div><!--.container-fluid-->
 
+{{Form::open(array('url'=>'/line', 'id'=>'formDel', 'name'=>'formDel'))}}
+    {{ method_field('DELETE') }}
+    <input type="hidden" id="idDel" name="idDel" value="0">
+{{Form::close()}}
+
 @stop
 
 @section('scripts')
+<script src="{{ URL::asset('template/js/lib/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ URL::asset('template/js/popups/viewNotificationPopup.js') }}"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 @stop

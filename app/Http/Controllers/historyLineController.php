@@ -14,4 +14,15 @@ class historyLineController extends Controller
         
         return view('historyLine', ['notif' => $notif]);
     }
+    
+    public function deleteNotification(Request $request){
+        $this->validate($request,[
+            'idDel' => 'required',
+        ]);
+        $notid = $request->input('idDel');
+        $notif = Notification::find($notid);
+        $notif->delete();
+
+        return back();
+    }
 }
