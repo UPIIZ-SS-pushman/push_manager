@@ -43,7 +43,7 @@ PushManager - Página principal
           </div><!--.box-typical-body-->
       </section>
   </div><!--.col-->
-  
+
     <div class="col-xl-6 dahsboard-column">
         <section class="box-typical box-typical-dashboard panel panel-default">
             <header class="box-typical-header panel-heading">
@@ -77,6 +77,14 @@ PushManager - Página principal
                     </div>
                 </article>
             </div><!--.col-->
+            <div class="col-sm-6">
+                <article class="statistic-box green">
+                    <div>
+                        <div class="number">{{\App\NotificationLog::where('status',1)->count()}}</div>
+                        <div class="caption"><div>Notificaciones enviadas</div></div>
+                    </div>
+                </article>
+            </div><!--.col-->
             @if(Auth::user()->user_type_id ==1)
             <div class="col-sm-6">
                 <article class="statistic-box yellow">
@@ -90,14 +98,14 @@ PushManager - Página principal
 
         </div><!--.row-->
     </div><!--.col-->
- 
+
 </div><!--.row-->
 
 <div class="row">
     <div class="col-xl-8 dahsboard-column">
         <section class="box-typical box-typical-dashboard panel panel-default">
             <header class="box-typical-header panel-heading">
-                <h3 class="panel-title">Edición de anuncios (1080x1620)  </h3> 
+                <h3 class="panel-title">Edición de anuncios (1080x1620)  </h3>
             </header>
             <div class="box-typical-body panel-body">
               <div style="padding:20px;">

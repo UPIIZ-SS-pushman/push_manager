@@ -29,18 +29,23 @@ PushManager - Línea de notificaciones
 
 			<header class="activity-line-item-header">
 				<h5 class="m-t-lg m-t-0">{{$not->title}}</h5>
+				@if(! $time->gt(\Carbon\Carbon::now('UTC')->addMinutes(2)))
+					<div class="alert-btns">
+							<button type="button" class="btn btn-danger-outline" onclick="deleteNotificationLine({{$not->id}});">Eliminar</button>
+					</div>
+				@endif
 			</header>
 
 			<div class="activity-line-action-list">
 				<section class="activity-line-action">
 
 					@if($not->notification_log->status == 0)
-					<div class="time">Programada:</div>
+					<div class="time">Programada: </div>
 					@elseif($not->notification_log->status == 1)
 					<div class="time">Enviada <i class="font-icon font-icon-ok"></i> :</div>
 					@elseif($not->notification_log->status == -1)
 					<div class="dot"></div>
-					<div class="time">No enviada :</div>
+					<div class="time">No enviada: </div>
 					@endif
 
 					<div class="cont">
@@ -52,9 +57,6 @@ PushManager - Línea de notificaciones
 							@elseif($not->notification_log->status == 1)
 							<div class="alert alert-success">
 								{{$not->body}}
-								<div class="alert-btns">
-                                    <button type="button" class="btn btn-rounded" onclick="deleteNotificationLine({{$not->id}});">Eliminar</button>
-                                </div> 
 							</div>
 							@elseif($not->notification_log->status == -1)
 							<div class="alert alert-warning">
