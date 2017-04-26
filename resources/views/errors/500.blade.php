@@ -27,8 +27,8 @@
         <div class="page-center-in">
             <div class="container-fluid">
                 <div class="page-error-box">
-                    <div class="error-code">503</div>
-                    <div class="error-title">Intente más tarde</div>
+                    <div class="error-code">500</div>
+                    <div class="error-title">Internal server error</div>
                     <a href="{{url('/')}}" class="btn btn-rounded">Página principal</a>
                 </div>
             </div>

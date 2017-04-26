@@ -24,7 +24,10 @@ class Authenticate
                 return redirect()->guest('login');
             }
         }
-
+        if(Auth::user()->user_type_id != 1){
+          Auth::logout();
+          redirect('/login')->withErrors(['Área sólo para administradores']);
+        }
         return $next($request);
     }
 }

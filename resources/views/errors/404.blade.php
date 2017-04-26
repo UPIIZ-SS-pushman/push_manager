@@ -6,7 +6,7 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>Push Manager</title>
 
-  <link href="{{ URL::asset('template/img/favicon.144x144.png') }}" rel="apple-touch-icon" type="image/png" sizes="144x144">
+	<link href="{{ URL::asset('template/img/favicon.144x144.png') }}" rel="apple-touch-icon" type="image/png" sizes="144x144">
 	<link href="{{ URL::asset('template/img/favicon.114x114.png') }}" rel="apple-touch-icon" type="image/png" sizes="114x114">
 	<link href="{{ URL::asset('template/img/favicon.72x72.png') }}" rel="apple-touch-icon" type="image/png" sizes="72x72">
 	<link href="{{ URL::asset('template/img/favicon.57x57.png') }}" rel="apple-touch-icon" type="image/png">
@@ -18,8 +18,8 @@
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-  <link rel="stylesheet" href="{{ URL::asset('template/css/lib/font-awesome/font-awesome.min.css') }}">
-  <link rel="stylesheet" href="{{ URL::asset('template/css/main.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('template/css/lib/font-awesome/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('template/css/main.css') }}">
 </head>
 <body>
 
@@ -27,8 +27,8 @@
         <div class="page-center-in">
             <div class="container-fluid">
                 <div class="page-error-box">
-                    <div class="error-code">503</div>
-                    <div class="error-title">Intente más tarde</div>
+                    <div class="error-code">404</div>
+                    <div class="error-title">Página no encontrada</div>
                     <a href="{{url('/')}}" class="btn btn-rounded">Página principal</a>
                 </div>
             </div>
