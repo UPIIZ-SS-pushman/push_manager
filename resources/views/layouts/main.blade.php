@@ -185,7 +185,7 @@
 	            </span>
 	            <ul>
 	                <li><a href="{{url('/calendar')}}"><span class="lbl">Calendario (Resumen)</span></a></li>
-	                <li><a href="{{url('/line')}}"><span class="lbl">Linea del tiempo</span></a></li>
+	                <li><a href="{{url('/line')}}"><span class="lbl">Línea del tiempo</span></a></li>
 	            </ul>
 	        </li>
 					<!-- fin historial -->
