@@ -9,14 +9,15 @@ class ImageUploadController extends Controller
 {
     public function upload($id, Request $request){
       $file = $request->file('file');
-      if(!$file){
+      if($file == null){
         return 'Error: No hay ningún archivo';
       }
       $destinationPath = public_path().'/img/dashboard';
 
 
-      $filename = $id.'.'.$file->getClientOriginalExtension();
-      foreach(glob($destinationPath."/".$id.".*") as $ftd){
+      $filename = $id.'-'.uniqid().'.'.$file->getClientOriginalExtension();
+      $filename_orig = $id.'.'.$file->getClientOriginalExtension();
+      foreach(glob($destinationPath."/".$id."*") as $ftd){
         if(!unlink($ftd)){
           file_put_contents($destinationPath."/log.txt", "error deleting file: ".$ftd);
         }
@@ -26,7 +27,7 @@ class ImageUploadController extends Controller
       $upload_success = $request->file('file')->move($destinationPath, $filename);
 
       if( $upload_success ) {
-        $this->makeThumbnails($destinationPath, $filename, "");
+        $this->makeThumbnails($destinationPath, $filename, $filename_orig);
          if($request->fallback){
            return redirect()->back();
          }
@@ -41,7 +42,7 @@ class ImageUploadController extends Controller
         $thumbnail_width = 120;
         $thumbnail_height = 120;
         $thumb_beforeword = "thumb";
-        $arr_image_details = getimagesize("$updir" . $id ."/". "$img"); // pass id to thumb name
+        $arr_image_details = getimagesize("$updir" . "/". "$img"); // pass id to thumb name
         $original_width = $arr_image_details[0];
         $original_height = $arr_image_details[1];
         if ($original_width > $original_height) {
@@ -66,10 +67,10 @@ class ImageUploadController extends Controller
             $imgcreatefrom = "ImageCreateFromPNG";
         }
         if ($imgt) {
-            $old_image = $imgcreatefrom("$updir" . $id . '/' . "$img");
+            $old_image = $imgcreatefrom("$updir" . '/' . "$img");
             $new_image = imagecreatetruecolor($thumbnail_width, $thumbnail_height);
             imagecopyresized($new_image, $old_image, $dest_x, $dest_y, 0, 0, $new_width, $new_height, $original_width, $original_height);
-            $imgt($new_image, "$updir" . '-thumb/' . "$thumb_beforeword" . "$img");
+            $imgt($new_image, "$updir" . '-thumb/' . "$thumb_beforeword" . "$id");
         }
     }
 }

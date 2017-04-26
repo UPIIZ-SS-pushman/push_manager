@@ -7,7 +7,7 @@
         $validImg = $filename['extension'] == "jpg" || $filename['extension'] == "png";
       ?>
       @if($validImg)
-      <img class="dashboard-gallery" src="{{$file}}" style='height: 100%; width: 100%; object-fit: contain'/>
+      <a href="{{$file}}"><img class="dashboard-gallery" src="{{$file}}" style='height: 100%; width: 100%; object-fit: contain'/></a>
       @endif
     @endforeach
 
