@@ -42,6 +42,7 @@ Route::post('/deleteMessages', 'AdminMessagesController@deleteMessages')->middle
 
 Route::get('/calendar', function(){return view('calendar');})->middleware('auth');
 Route::get('/line', 'historyLineController@present')->middleware('auth');
+Route::delete('/line', 'historyLineController@deleteNotification')->middleware('auth');
 Route::get('/dashboard', function(){return view('dashboard');})->middleware('auth');
 Route::post('/quickNotification', 'NotificationController@quickNotification')->middleware('auth');
 
